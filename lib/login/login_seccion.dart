@@ -8,12 +8,21 @@ class loginUser  extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Inicio Sesion"),
+        title: const Text("Inicio  de Sesion"),
         centerTitle: true,
       ),
       body:  Container(
       
-      child: const TextField(),
+      child: Row(
+        children: [
+          IconButton(onPressed: (){}, icon: const Icon(Icons.ac_unit_sharp)),
+
+          const SizedBox(width: 150,),
+
+          
+
+        ],
+      ),
       
         
       ),
