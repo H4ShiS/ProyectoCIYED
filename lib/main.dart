@@ -1,5 +1,5 @@
 import 'package:app_ciyed/config/theme/app_theme.dart';
-import 'package:app_ciyed/login/login_seccion.dart';
+import 'package:app_ciyed/src/pages/login/login_seccion.dart';
 import 'package:flutter/material.dart';
 
 
