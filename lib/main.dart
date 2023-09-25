@@ -13,10 +13,10 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(selectColor: 0).getTheme(),
-      home: const Scaffold(
+      // theme: AppTheme(selectColor: 0).getTheme(),
+      home: Scaffold(
         body: loginUser(),
       ),
     );
