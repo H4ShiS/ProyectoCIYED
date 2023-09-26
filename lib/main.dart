@@ -1,4 +1,3 @@
-import 'package:app_ciyed/config/theme/app_theme.dart';
 import 'package:app_ciyed/src/pages/login/login_seccion.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +16,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // theme: AppTheme(selectColor: 0).getTheme(),
       home: Scaffold(
-        body: loginUser(),
+        body: LoginUser(),
       ),
     );
   }
