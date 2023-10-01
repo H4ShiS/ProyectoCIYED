@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:go_router/go_router.dart';
 class LoginUser extends StatelessWidget {
   const LoginUser({Key? key});
 
@@ -37,7 +37,7 @@ class LoginUser extends StatelessWidget {
     );
   }
 
-  Column _pruebasGuion(ColorScheme colors) {
+  Column _pruebasGuion(ColorScheme colors, ) {
     return Column(
       children: [
         const SizedBox(
@@ -95,6 +95,8 @@ class LoginUser extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
                 onTap: () {
                   // Manejar el evento de pulsación
+
+                  GoRouter.of(context).go('/');                  
                 },
                 child: Material(
                   borderRadius: BorderRadius.circular(15.0),
