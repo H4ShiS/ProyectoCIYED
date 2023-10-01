@@ -1,5 +1,14 @@
+
+import 'package:app_ciyed/config/router/app_router.dart';
+import 'package:app_ciyed/presentation/screens/admin/menu_admin/menu_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+
+
+
+
+
+
 class LoginUser extends StatelessWidget {
   const LoginUser({Key? key});
 
@@ -27,7 +36,9 @@ class LoginUser extends StatelessWidget {
                   const SizedBox(
                     height: 30,
                   ),
-                  _pruebasGuion(colors),
+                  
+                  pruebasGuion(colors),
+
                 ],
               ),
             ],
@@ -37,7 +48,10 @@ class LoginUser extends StatelessWidget {
     );
   }
 
-  Column _pruebasGuion(ColorScheme colors, ) {
+  
+  Column pruebasGuion(ColorScheme colors ) {
+    
+    
     return Column(
       children: [
         const SizedBox(
@@ -79,6 +93,7 @@ class LoginUser extends StatelessWidget {
               const SizedBox(
                 height: 30,
               ),
+
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -96,7 +111,15 @@ class LoginUser extends StatelessWidget {
                 onTap: () {
                   // Manejar el evento de pulsación
 
-                  GoRouter.of(context).go('/');                  
+                  // Navigator.of(context).push(
+                  //   MaterialPageRoute(
+                  //     builder: (BuildContext context) => MenuAdmin(),
+                  //   ),
+                  // );
+                  // contexto.push(MenuAdmin());
+                  appRouter.pushNamed( MenuAdmin.menuAdmin);
+
+                                   
                 },
                 child: Material(
                   borderRadius: BorderRadius.circular(15.0),
@@ -213,3 +236,5 @@ class _BackgroundBubbles extends StatelessWidget {
     );
   }
 }
+
+
