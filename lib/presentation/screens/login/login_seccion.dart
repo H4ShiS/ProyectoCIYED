@@ -38,7 +38,7 @@ class LoginUser extends StatelessWidget {
                     height: 30,
                   ),
                   
-                  pruebasGuion(colors),
+                  DatosLogin(colors),
 
                 ],
               ),
@@ -50,7 +50,7 @@ class LoginUser extends StatelessWidget {
   }
 
   
-  Column pruebasGuion(ColorScheme colors ) {
+  Column DatosLogin(ColorScheme colors ) {
     
     
     return Column(
