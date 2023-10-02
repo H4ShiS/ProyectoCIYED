@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 const colorList = <Color>[
 
   //mi lista de colores
-  Color.fromARGB(70, 53, 50, 192),
-  Color.fromARGB(255, 225, 86, 27),
+  Color.fromARGB(255, 13, 3, 71),
+  Color.fromARGB(255, 42, 3, 114),
   Color.fromARGB(255, 244, 111, 54),
   //colores secundarios y opcionales
   Color.fromARGB(255, 224, 133, 54),
-  Color.fromARGB(255, 5, 31, 114),
+  Color.fromARGB(255, 5, 18, 61),
 ];
 
 

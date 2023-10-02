@@ -14,6 +14,7 @@ static const menuAdmin = "admin";
     return Scaffold(
       appBar: AppBar(
         title: const Text("Menu Administracion"),
+        centerTitle: true,
       ),
 
       body: Container(

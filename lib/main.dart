@@ -1,6 +1,7 @@
 import 'package:app_ciyed/config/router/app_router.dart';
 import 'package:app_ciyed/presentation/screens/login/login_seccion.dart';
 import 'package:flutter/material.dart';
+import 'config/theme/app_theme.dart';
 
 
 void main(){
@@ -16,7 +17,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      // theme: AppTheme(selectColor: 0).getTheme(),
+      theme: AppTheme(selectColor: 0).getTheme(),
       // home: const Scaffold(
       //   body: LoginUser(),
       // ),

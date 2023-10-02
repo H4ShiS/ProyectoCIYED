@@ -17,6 +17,7 @@ class LoginUser extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
+      
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -85,8 +86,9 @@ class LoginUser extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   hintText: "Correo Electronico",
-                  prefixIcon: const Icon(
+                  prefixIcon: Icon(
                     Icons.email,
+                    color: colors.primary,
                   ),
                 ),
               ),
@@ -100,15 +102,23 @@ class LoginUser extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   hintText: "Contraseña",
-                  prefixIcon: const Icon(Icons.lock),
+                  prefixIcon: Icon(
+                    Icons.lock,
+                    color: colors.primary,
+                  ),
+                  labelText: "Name",
+                  floatingLabelBehavior: FloatingLabelBehavior.always
                 ),
               ),
+              
               const SizedBox(
                 height: 30,
               ),
+
               InkWell(
                 borderRadius: BorderRadius.circular(15.0),
                 onTap: () {
+                  
                   // Manejar el evento de pulsación
 
                   // Navigator.of(context).push(
@@ -123,7 +133,7 @@ class LoginUser extends StatelessWidget {
                 },
                 child: Material(
                   borderRadius: BorderRadius.circular(15.0),
-                  color: colors.secondary,
+                  color: colors.primary,
                   child: Ink(
                     width: 150.0,
                     height: 50.0,
@@ -161,7 +171,7 @@ class _BackgroundBubbles extends StatelessWidget {
             top: -30,
             left: 190,
             child: Opacity(
-              opacity: 0.09,
+              opacity: 0.099,
               child: Container(
                 width: 250,
                 height: 250,
