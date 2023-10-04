@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
 // est clase se va a ocupar para lo que es la combinacion de colores, se
-const colorList = <Color>[
+ var colorList = <Color>[
 
   //mi lista de colores
+  Color.fromARGB(255, 11, 1, 71),
+
   Color.fromARGB(255, 13, 3, 71),
-  Color.fromARGB(255, 222, 140, 7),
+  Color.fromARGB(255, 246, 38, 38),
   Color.fromARGB(255, 244, 111, 54),
   //colores secundarios y opcionales
   Color.fromARGB(255, 224, 133, 54),

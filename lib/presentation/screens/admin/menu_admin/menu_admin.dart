@@ -3,98 +3,78 @@ import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
 class MenuAdmin extends StatelessWidget {
+  static const menuAdmin = "admin";
 
-static const menuAdmin = "admin";
-   
   const MenuAdmin({
-    Key? key,});
+    Key? key,
+  });
 
   @override
-  Widget build(BuildContext context,) {
-    
+  Widget build(
+    BuildContext context,
+  ) {
     final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
-      appBar: AppBar(
-        
-        title: const Text("Menu Administracion", style: TextStyle(color: Colors.white),),
-        centerTitle: true,
-        backgroundColor: colors.primary,
-        leading: const Icon(Icons.account_circle_rounded, color: Colors.white,),
-      ),
-
-      
-
-      body:  Column(
-        children: [
-
-          const SizedBox(
-            height: 30,
+        appBar: AppBar(
+          title: const Text(
+            "Menu Administracion",
+            style: TextStyle(color: Colors.white),
           ),
+          centerTitle: true,
+          backgroundColor: colors.primary,
+          leading: const Icon(
+            Icons.account_circle_rounded,
+            color: Colors.white,
+          ),
+        ),
+        body: Stack(
 
-            
+          children: [
 
-          Container(
-            
-            padding: const EdgeInsets.all(20),
-            margin: const EdgeInsets.symmetric(horizontal: 30),
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color:  const Color.fromARGB(255, 255, 255, 255),
-              borderRadius: BorderRadius.circular(20.0),
-              boxShadow: const [
-
-                BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 15,
-                    offset: Offset.zero,
-                  ),
-
-              ]
-            ),
-
-            
-            child:  const Column(
-              
+            const _BackgroundBubbles(),
+            Column(
               children: [
-                
-                ButtosAdmin()
-
-
+                const SizedBox(
+                  height: 30,
+                ),
+                Container(
+                  padding: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 255, 255, 255),
+                      borderRadius: BorderRadius.circular(20.0),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 15,
+                          offset: Offset.zero,
+                        ),
+                      ]),
+                  child: const Column(
+                    children: [ButtosAdmin()],
+                  ),
+                ),
               ],
-              
             ),
-
-          ),
-          
-          
-
-        ],
-      )
-      
-    );
+          ],
+        ));
   }
-
 }
-
-
-
-
-
 
 class ButtosAdmin extends StatelessWidget {
   const ButtosAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
-    const SizedBox(width: 50,);
-    
+    const SizedBox(
+      width: 50,
+    );
+
     final colors = Theme.of(context).colorScheme;
-    return  Column(
-      
+    return Column(
       children: [
-        
-        
         TextButton(
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
@@ -116,7 +96,8 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
@@ -128,10 +109,9 @@ class ButtosAdmin extends StatelessWidget {
             ), // Cambia el color del texto aquí
           ),
         ),
-
-
-        const SizedBox(height: 20,),
-        
+        const SizedBox(
+          height: 20,
+        ),
         TextButton(
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
@@ -153,7 +133,8 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
@@ -165,11 +146,9 @@ class ButtosAdmin extends StatelessWidget {
             ), // Cambia el color del texto aquí
           ),
         ),
-
-        const SizedBox(height: 60,),
-
-
-
+        const SizedBox(
+          height: 60,
+        ),
         TextButton(
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
@@ -191,7 +170,8 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
@@ -203,11 +183,9 @@ class ButtosAdmin extends StatelessWidget {
             ), // Cambia el color del texto aquí
           ),
         ),
-
-
-        const SizedBox(height: 20,),
-
-        
+        const SizedBox(
+          height: 20,
+        ),
         TextButton(
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
@@ -229,7 +207,8 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
@@ -241,13 +220,9 @@ class ButtosAdmin extends StatelessWidget {
             ), // Cambia el color del texto aquí
           ),
         ),
-
-
-
-        const SizedBox(height: 60,),
-
-
-
+        const SizedBox(
+          height: 60,
+        ),
         TextButton(
           style: ButtonStyle(
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
@@ -269,7 +244,8 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
@@ -281,12 +257,16 @@ class ButtosAdmin extends StatelessWidget {
             ), // Cambia el color del texto aquí
           ),
         ),
+        const SizedBox(
+          height: 20,
+        ),
 
-        const SizedBox(height: 20,),
 
-        
+
         TextButton(
+          
           style: ButtonStyle(
+      
             fixedSize: MaterialStateProperty.all(const Size(250, 40)),
             overlayColor: MaterialStateProperty.resolveWith<Color?>(
               (Set<MaterialState> states) {
@@ -306,127 +286,121 @@ class ButtosAdmin extends StatelessWidget {
             ),
             shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0), // Ajusta el radio de borde según sea necesario
+                borderRadius: BorderRadius.circular(
+                    15.0), // Ajusta el radio de borde según sea necesario
               ),
             ),
           ),
-          onPressed: () {},
-          child: const Text(
-            'Opciones Materia',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
+          onPressed: () {
+
+          },
+          child: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+
+               Icon(Icons.person, color: Colors.white,),
+               SizedBox(width: 15),
+
+                Text(
+                  'Opciones Materia',
+                  style: TextStyle(
+                  color: Colors.white,          
+                  ),
+                  textAlign: TextAlign.center,
+                 // Cambia el color del texto aquí
+              ),
+            ],
           ),
         ),
-
-
-
-        
-
-
-
-
-
-
-
-        
       ],
-
     );
   }
 }
 
-
-
-
-
-
 class _BackgroundBubbles extends StatelessWidget {
   const _BackgroundBubbles({Key? key});
 
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Stack(
-        children: [
-         Positioned(
-            // top: index * 50.0,
-            // left: index % 2 == 0 ? 50 : 200,
-            top: -30,
-            left: 190,
-            child: Opacity(
-              opacity: 0.099,
-              child: Container(
-                width: 250,
-                height: 250,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color.fromARGB(248, 109, 24, 199),
-                ),
+
+  final colors = Theme.of(context).colorScheme;
+
+
+
+    return Stack(
+      children: [
+        Positioned(
+          // top: index * 50.0,
+          // left: index % 2 == 0 ? 50 : 200,
+          top: -30,
+          left: 190,
+          child: Opacity(
+            opacity: 0.099,
+            child: Container(
+              width: 250,
+              height: 250,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Color.fromARGB(248, 109, 24, 199),
               ),
             ),
           ),
+        ),
+        Positioned(
+          // top: index * 50.0,
+          // left: index % 2 == 0 ? 50 : 200,
+          top: 150,
+          left: -50,
+          child: Opacity(
+            opacity: 0.2,
+            child: Container(
+              width: 350,
+              height: 350,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(250),
+               color: Color.fromARGB(248, 246, 103, 26),
 
-
-          Positioned(
-            // top: index * 50.0,
-            // left: index % 2 == 0 ? 50 : 200,
-            top: 150,
-            left: -50,
-            child: Opacity(
-              opacity: 0.09,
-              child: Container(
-                width: 350,
-                height: 350,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(250),
-                  color: Color.fromARGB(248, 109, 24, 199),
-                ),
               ),
             ),
           ),
-
-
-
-          Positioned(
-            // top: index * 50.0,
-            // left: index % 2 == 0 ? 50 : 200,
-            top: 650,
-            left: 60,
-            child: Opacity(
-              opacity: 0.09,
-              child: Container(
-                width: 150,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color.fromARGB(248, 109, 24, 199),
-                ),
+        ),
+        Positioned(
+          // top: index * 50.0,
+          // left: index % 2 == 0 ? 50 : 200,
+          top: 650,
+          left: 60,
+          child: Opacity(
+            opacity: 0.09,
+            child: Container(
+              width: 150,
+              height: 150,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Color.fromARGB(248, 109, 24, 199),
               ),
             ),
           ),
-
-
-          Positioned(
-            // top: index * 50.0,
-            // left: index % 2 == 0 ? 50 : 200,
-            top: 565,
-            left: 285,
-            child: Opacity(
-              opacity: 0.09,
-              child: Container(
-                width: 100,
-                height: 100,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: Color.fromARGB(248, 38, 4, 199),
-                ),
+        ),
+        Positioned(
+          // top: index * 50.0,
+          // left: index % 2 == 0 ? 50 : 200,
+          top: 565,
+          left: 285,
+          child: Opacity(
+            opacity: 0.09,
+            child: Container(
+              width: 100,
+              height: 100,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(100),
+                color: Color.fromARGB(248, 38, 4, 199),
               ),
             ),
           ),
-          
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
