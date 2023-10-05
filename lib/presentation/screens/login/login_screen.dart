@@ -1,5 +1,8 @@
+import 'package:app_ciyed/config/router/app_router.dart';
+import 'package:app_ciyed/presentation/screens/admin/menu_admin/menu_admin.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 // ignore: unused_import
 import 'package:simple_animations/simple_animations.dart';
 
@@ -29,9 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
           // Color.fromARGB(255, 10, 62, 141),
           // Color.fromARGB(255, 2, 70, 172),
 
-          Color.fromARGB(255, 177, 50, 11),
+          Color.fromARGB(255, 199, 51, 6),
           Color.fromARGB(255, 215, 75, 33),
-          Color.fromARGB(255, 228, 78, 32),
+          Color.fromARGB(255, 241, 96, 52),
         ])),
         child: ListView(
           // Cambiado a ListView
@@ -125,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               BoxShadow(
                                 color: Color.fromARGB(255, 243, 231, 231),
                                 blurRadius: 15,
-                                offset: Offset(1, 1),
+                                offset: Offset(1, 5),
                               )
                             ]),
                         child: Column(
@@ -193,23 +196,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
 
                       InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          context.pushNamed(MenuAdmin.menuAdmin);
+                        },
+                        
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
-                              color: const Color.fromARGB(255, 4, 45, 106),
+                              color: Color.fromARGB(255, 5, 73, 175),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: const [
                                 BoxShadow(
-                                  color: Color.fromARGB(255, 35, 10, 143),
+                                  
+                                  color: Color.fromARGB(255, 159, 151, 193),
                                   blurRadius: 10,
-                                  offset: Offset(2, 2),
+                                  offset: Offset(2, 5),
+
                                 )
                               ]),
                           child:  Center(
                             child: FadeAnimation(
                               1, const Text(
-                                "Log out",
+                                "Iniciar Sesion",
                                 style: TextStyle(
                                     color: Colors.white,
                                     fontSize: 20,
@@ -219,6 +227,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
+
+
 
                       // Container(
                       //   height: 50,

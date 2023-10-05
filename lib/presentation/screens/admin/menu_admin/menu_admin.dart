@@ -10,19 +10,22 @@ class MenuAdmin extends StatelessWidget {
   });
 
   @override
-  Widget build(
-    BuildContext context,
-  ) {
+  Widget build( BuildContext context,) {
     final colors = Theme.of(context).colorScheme;
+
+    ThemeData(
+
+      
+    );
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 177, 50, 11),
           title: const Text(
             "Menu Administracion",
             style: TextStyle(color: Colors.white),
           ),
           centerTitle: true,
-          backgroundColor: colors.primary,
           leading: const Icon(
             Icons.account_circle_rounded,
             color: Colors.white,
@@ -32,7 +35,7 @@ class MenuAdmin extends StatelessWidget {
 
           children: [
 
-            const _BackgroundBubbles(),
+            // const _BackgroundBubbles(),
             Column(
               children: [
                 const SizedBox(
@@ -85,6 +88,7 @@ class ButtosAdmin extends StatelessWidget {
                 return null; // Defer to the widget's default.
               },
             ),
+
             backgroundColor: MaterialStateProperty.resolveWith<Color?>(
               (Set<MaterialState> states) {
                 if (states.contains(MaterialState.disabled)) {
@@ -263,61 +267,32 @@ class ButtosAdmin extends StatelessWidget {
 
 
 
-        TextButton(
-          
-          style: ButtonStyle(
-      
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
+        Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+            
+              children: <Widget>[
+                const Text('Extended'),
+                const SizedBox(width: 16),
+                // An example of the extended floating action button.
+                //
+                // https://m3.material.io/components/extended-fab/specs#686cb8af-87c9-48e8-a3e1-db9da6f6c69b
+                FloatingActionButton.extended(
+                  onPressed: () {
+                    // Add your onPressed code here!
+                  },
+                  label: const Text('Add'),
+                  icon: const Icon(Icons.add),
+                  
+                ),
+              ],
             ),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {
-
-          },
-          child: const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-
-               Icon(Icons.person, color: Colors.white,),
-               SizedBox(width: 15),
-
-                Text(
-                  'Opciones Materia',
-                  style: TextStyle(
-                  color: Colors.white,          
-                  ),
-                  textAlign: TextAlign.center,
-                 // Cambia el color del texto aquí
-              ),
-            ],
-          ),
-        ),
       ],
     );
   }
 }
 
+
+/*
 class _BackgroundBubbles extends StatelessWidget {
   const _BackgroundBubbles({Key? key});
 
@@ -403,4 +378,4 @@ class _BackgroundBubbles extends StatelessWidget {
       ],
     );
   }
-}
+}*/

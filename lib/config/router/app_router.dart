@@ -1,5 +1,6 @@
 
 import 'package:app_ciyed/presentation/screens/barril.dart';
+import 'package:app_ciyed/presentation/screens/login/login_screen.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
@@ -7,13 +8,13 @@ final appRouter = GoRouter(
   routes: [
     GoRoute(
       path: '/',
-      builder: (context, state) =>  const LoginUser(),
+      builder: (context, state) =>  const LoginScreen(),
     ),
 
     GoRoute(
       path: '/menuadmin',
       name: MenuAdmin.menuAdmin,
-      builder: (context, state) =>  MenuAdmin(),
+      builder: (context, state) => const MenuAdmin(),
     ),
 
   ],

@@ -18,10 +18,13 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-#revisar las condicionales que se manejan en el formulario, insetara datos, correo valido, y contraseña
+#revisar las condicionales que se manejan en el formulario, insetara datos, correo valido, y contraseñav
 
 
 
-#reviar mejor las animaciones
+#revisar mejor las animaciones
+
+#manejo de animaciones en el codigo
 #crear los semestres en botones
 #crear
+

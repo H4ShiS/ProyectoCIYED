@@ -4,14 +4,21 @@ import 'package:flutter/material.dart';
  var colorList = <Color>[
 
   //mi lista de colores
-  Color.fromARGB(255, 11, 1, 71),
+  // Color.fromARGB(251, 245, 78, 36),
+                   Color.fromRGBO(28, 4, 125, 1),
+                  // Color.fromRGBO(255, 70, 31, 228),
 
-  Color.fromARGB(255, 13, 3, 71),
-  Color.fromARGB(255, 246, 38, 38),
-  Color.fromARGB(255, 244, 111, 54),
-  //colores secundarios y opcionales
-  Color.fromARGB(255, 224, 133, 54),
-  Color.fromARGB(255, 5, 18, 61),
+      // Color.fromARGB(255, 14, 14, 74),
+
+    //  Color.fromRGBO(210, 42, 12, 1),
+    // Color.fromARGB(250, 255, 64, 0),
+    Colors.orangeAccent,
+    Color.fromARGB(255, 101, 5, 118),
+
+
+
+
+
 ];
 
 
@@ -33,4 +40,6 @@ class AppTheme{
     useMaterial3: true,
     colorSchemeSeed: colorList[selectColor]
   );
+  
+
 }
