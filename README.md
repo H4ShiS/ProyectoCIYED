@@ -15,10 +15,13 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-#verificar los colores que estamo0s manejando al igua  que el estilo que estamos aplicando
 
-#falta hacer sonbre la sseparacion de los botonels en el medu admin
 
-#agregar las burbujar al menu admin
+
+#revisar las condicionales que se manejan en el formulario, insetara datos, correo valido, y contraseña
+
+
+
+#reviar mejor las animaciones
 #crear los semestres en botones
 #crear
