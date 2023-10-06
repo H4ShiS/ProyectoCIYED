@@ -5,14 +5,14 @@ import 'package:flutter/material.dart';
 
   //mi lista de colores
   // Color.fromARGB(251, 245, 78, 36),
-                   Color.fromRGBO(28, 4, 125, 1),
+    Color.fromRGBO(28, 4, 125, 1),
                   // Color.fromRGBO(255, 70, 31, 228),
 
       // Color.fromARGB(255, 14, 14, 74),
 
-    //  Color.fromRGBO(210, 42, 12, 1),
+     Color.fromRGBO(210, 42, 12, 0.122),
     // Color.fromARGB(250, 255, 64, 0),
-    Colors.orangeAccent,
+    Colors.orangeAccent.shade400,
     Color.fromARGB(255, 101, 5, 118),
 
 

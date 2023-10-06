@@ -37,6 +37,8 @@ class _LoginScreenState extends State<LoginScreen> {
           Color.fromARGB(255, 241, 96, 52),
         ])),
         child: ListView(
+
+          physics: BouncingScrollPhysics(),
           // Cambiado a ListView
           children: <Widget>[
             const SizedBox(
@@ -203,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: Container(
                           height: 50,
                           decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 5, 73, 175),
+                              color: Color.fromARGB(255, 17, 5, 130),
                               borderRadius: BorderRadius.circular(20),
                               boxShadow: const [
                                 BoxShadow(
@@ -214,6 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                 )
                               ]),
+                              
                           child:  Center(
                             child: FadeAnimation(
                               1, const Text(
@@ -227,9 +230,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                         ),
                       ),
-
-
-
                       // Container(
                       //   height: 50,
                       //   margin: const EdgeInsets.symmetric(horizontal: 50),
@@ -241,7 +241,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       //     child: Text("Iniciar Sesion", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
                       //   ),
                       // ),
-
                       const SizedBox(
                         height: 150,
                       )

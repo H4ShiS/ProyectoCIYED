@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -10,40 +11,61 @@ class MenuAdmin extends StatelessWidget {
   });
 
   @override
-  Widget build( BuildContext context,) {
-    final colors = Theme.of(context).colorScheme;
+  Widget build(
+    BuildContext context,
+  ) {
+    // final colors = Theme.of(context).colorScheme;
 
-    ThemeData(
-
-      
-    );
+    ThemeData();
 
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Color.fromARGB(255, 177, 50, 11),
+          backgroundColor: const Color.fromARGB(255, 17, 5, 130),
+          toolbarHeight: 80,
           title: const Text(
-            "Menu Administracion",
-            style: TextStyle(color: Colors.white),
+            "ADMINISTRACIÓN",
+            style: TextStyle(color: Colors.white, fontSize: 23),
+            
           ),
+          actions: [
+            IconButton(
+              onPressed: (){}, 
+              icon: const Icon(Icons.more_vert_rounded, color: Colors.white, size: 27,),
+              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+            
+            )
+          ],
+          
+          
           centerTitle: true,
           leading: const Icon(
-            Icons.account_circle_rounded,
+            Icons.menu,
             color: Colors.white,
+            size: 27,
+            
+          ),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(15), 
+              bottomRight: Radius.circular(15),
+            )
           ),
         ),
+
+
+        
         body: Stack(
-
           children: [
-
             // const _BackgroundBubbles(),
             Column(
               children: [
                 const SizedBox(
-                  height: 30,
+                  height: 50,
                 ),
                 Container(
+
                   padding: const EdgeInsets.all(20),
-                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                  margin: const EdgeInsets.all(20),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: const Color.fromARGB(255, 255, 255, 255),
@@ -56,18 +78,37 @@ class MenuAdmin extends StatelessWidget {
                         ),
                       ]),
                   child: const Column(
-                    children: [ButtosAdmin()],
+                    children: [
+                      ButtonsAdmin()
+                    ],
                   ),
                 ),
               ],
             ),
+
+
+            // Row(crossAxisAlignment: CrossAxisAlignment.end,
+            //   children: [
+            //     FloatingActionButton(
+            //         onPressed: (){},
+            //         child: const Icon(Icons.message),
+            //       ),
+            //   ],
+            // ), 
+
           ],
+
+          
         ));
   }
 }
 
-class ButtosAdmin extends StatelessWidget {
-  const ButtosAdmin({super.key});
+
+
+
+
+class ButtonsAdmin extends StatelessWidget {
+  const ButtonsAdmin({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -78,214 +119,177 @@ class ButtosAdmin extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
     return Column(
       children: [
-        TextButton(
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
-            ),
 
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Agregar Alumno ',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TextButton(
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
-            ),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Opciones Alumno',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
-          ),
-        ),
-        const SizedBox(
-          height: 60,
-        ),
-        TextButton(
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
-            ),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Agregar Docente ',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
-          ),
-        ),
-        const SizedBox(
-          height: 20,
-        ),
-        TextButton(
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
-            ),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Opciones Docente',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
-          ),
-        ),
-        const SizedBox(
-          height: 60,
-        ),
-        TextButton(
-          style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(250, 40)),
-            overlayColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.focused))
-                  return const Color.fromARGB(255, 0, 0, 0);
-                return null; // Defer to the widget's default.
-              },
-            ),
-            backgroundColor: MaterialStateProperty.resolveWith<Color?>(
-              (Set<MaterialState> states) {
-                if (states.contains(MaterialState.disabled)) {
-                  return const Color.fromARGB(255, 255, 255, 255).withOpacity(
-                      0.5); // Color de fondo cuando está deshabilitado
-                }
-                return colors.primary; // Color de fondo cuando está habilitado
-              },
-            ),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    15.0), // Ajusta el radio de borde según sea necesario
-              ),
-            ),
-          ),
-          onPressed: () {},
-          child: const Text(
-            'Agregar Materia ',
-            style: TextStyle(
-              color: Colors.white,
-            ), // Cambia el color del texto aquí
-          ),
-        ),
         const SizedBox(
           height: 20,
         ),
 
+        
+
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.people),
+          label: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              FadeAnimation(1, Text("Registrar Alumno", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+
+            // backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 254, 68, 68)),
+          ),
+        ),
+
+        
+        const SizedBox(height: 20,),
 
 
-        Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-            
-              children: <Widget>[
-                const Text('Extended'),
-                const SizedBox(width: 16),
-                // An example of the extended floating action button.
-                //
-                // https://m3.material.io/components/extended-fab/specs#686cb8af-87c9-48e8-a3e1-db9da6f6c69b
-                FloatingActionButton.extended(
-                  onPressed: () {
-                    // Add your onPressed code here!
-                  },
-                  label: const Text('Add'),
-                  icon: const Icon(Icons.add),
-                  
-                ),
-              ],
-            ),
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.more_sharp),
+          label: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              Text("Opciones Alumno", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+          ),
+        ),
+
+        const SizedBox(height: 60,),
+
+        //----------------------------------------------------------------
+
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.person),
+          label: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              Text("Registrar Docente", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+          ),
+        ),
+
+
+        const SizedBox(height: 20,),
+
+
+
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.more_sharp),
+          label: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              Text("Opciones Docente", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+          ),
+        ),
+
+
+        const SizedBox(height: 60,),
+
+        //----------------------------------------------------------------
+
+
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.book_rounded),
+          label: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              Text("Registrar Materia", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+          ),
+        ),
+
+        const SizedBox(height: 20,),
+
+
+
+        OutlinedButton.icon(
+          onPressed: () {},
+          icon: const Icon(Icons.more_sharp),
+          label: const Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              SizedBox(width: 23),
+              Text("Opciones Materia", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+            ],
+          ),
+          style: ButtonStyle(
+            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            overlayColor: MaterialStateProperty.resolveWith<Color>(
+                (Set<MaterialState> states) {
+              if (states.contains(MaterialState.pressed)) {
+                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+              }
+              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+            }),
+          ),
+        ),
+
+        const SizedBox(height: 20,),
+
+
+
+       
+
+        
       ],
     );
   }
