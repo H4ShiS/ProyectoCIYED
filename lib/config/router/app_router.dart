@@ -17,6 +17,18 @@ final appRouter = GoRouter(
       builder: (context, state) => const MenuAdmin(),
     ),
 
+    GoRoute(
+      path: '/semestrealumnoadd',
+      name: SemestresAlumnosAdd.semestresAlumnosAdd,
+      builder: (context, state) => const SemestresAlumnosAdd(),
+    ),
+    
+    GoRoute(
+        path: '/formularioalumno',
+        name: FomrularioAlumno.formularioAlumno,
+        builder: (context, state) => const FomrularioAlumno(),
+      )
+
   ],
   
 );

@@ -1,6 +1,6 @@
 
 import 'package:app_ciyed/config/router/app_router.dart';
-import 'package:app_ciyed/presentation/screens/admin/menu_admin/menu_admin.dart';
+import 'package:app_ciyed/presentation/screens/admin/menu_admin.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
