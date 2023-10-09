@@ -32,7 +32,7 @@ class MenuAdmin extends StatelessWidget {
             ),
           ),
           actions: [
-            IconButton.filled(
+            IconButton(
               onPressed: (){}, 
               icon: const Icon(Icons.more_vert_rounded, color: Colors.white, size: 25,),
               // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
@@ -65,7 +65,9 @@ class MenuAdmin extends StatelessWidget {
 
 
         
-        body: Stack(
+        body:
+        Stack(
+          
           children: [
             // const _BackgroundBubbles(),
             Column(
@@ -165,12 +167,12 @@ class ButtonsAdmin extends StatelessWidget {
             context.pushNamed(SemestresAlumnosAdd.semestresAlumnosAdd);
 
           },
-          icon: FadeAnimation(1, const Icon(Icons.people)),
+          icon: FadeAnimation(1, const Icon(Icons.people, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Alumno", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),)),
             ],
           ),
           style: ButtonStyle(
@@ -178,14 +180,14 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                 return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                 return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
               }
-              return colors.primary; // Por defecto, usa el overlayColor predeterminado
+              return Color.fromARGB(255, 239, 68, 20);  // Por defecto, usa el overlayColor predeterminado
             }),
 
-            // backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 254, 68, 68)),
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
           ),
         ),
 
@@ -197,12 +199,12 @@ class ButtonsAdmin extends StatelessWidget {
           onPressed: () {
 
           },
-          icon: FadeAnimation(1, const Icon(Icons.settings)),
+          icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Opciones Alumno", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Opciones Alumno", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
             ],
           ),
           style: ButtonStyle(
@@ -210,10 +212,12 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+
           ),
         ),
 
@@ -222,13 +226,15 @@ class ButtonsAdmin extends StatelessWidget {
         //----------------------------------------------------------------
 
         OutlinedButton.icon(
-          onPressed: () {},
-          icon: FadeAnimation(1, const Icon(Icons.person)),
+          onPressed: () {
+            context.pushNamed(SemestresDocentesAdd.semestresDocentesAdd);
+          },
+          icon: FadeAnimation(1, const Icon(Icons.person, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Docente", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
             ],
           ),
           style: ButtonStyle(
@@ -236,10 +242,13 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
+
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+
           ),
         ),
 
@@ -250,12 +259,12 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {},
-          icon: FadeAnimation(1, const Icon(Icons.settings)),
+          icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Opciones Docente", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Opciones Docente", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
             ],
           ),
           style: ButtonStyle(
@@ -263,10 +272,13 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
+
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+
           ),
         ),
 
@@ -278,12 +290,12 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {},
-          icon: FadeAnimation(1,const Icon(Icons.book_rounded)),
+          icon: FadeAnimation(1,const Icon(Icons.book_rounded, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Materia", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Materia", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
             ],
           ),
           style: ButtonStyle(
@@ -291,10 +303,13 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
+
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+
           ),
         ),
 
@@ -304,12 +319,12 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {},
-          icon: FadeAnimation(1, const Icon(Icons.settings)),
+          icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Opciones Materia", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Opciones Materia", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white,),)),
             ],
           ),
           style: ButtonStyle(
@@ -317,11 +332,14 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return const Color.fromARGB(255, 209, 218, 226); // Cambia esto al color que desees para el highlightColor
+                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
+            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+
           ),
+          
         ),
 
         const SizedBox(height: 20,),

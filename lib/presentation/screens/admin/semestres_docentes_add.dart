@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 // ignore: must_be_immutable
-class SemestresAlumnosAdd extends StatelessWidget {
-  static const semestresAlumnosAdd = "semestres";
+class SemestresDocentesAdd extends StatelessWidget {
+  static const semestresDocentesAdd = "semestres-docentes ";
 
-  const SemestresAlumnosAdd({
+  const SemestresDocentesAdd({
     Key? key,
   });
 
@@ -98,7 +98,7 @@ class SemestresAlumnosAdd extends StatelessWidget {
                   ),
                   child: const Column(
                     children: [
-                      SemestreAlumno()
+                      SemestresDocentes()
                     ],
                   ),
                 ),
@@ -149,8 +149,8 @@ class SemestresAlumnosAdd extends StatelessWidget {
 
 
 
-class SemestreAlumno extends StatelessWidget {
-  const SemestreAlumno({super.key});
+class SemestresDocentes extends StatelessWidget {
+  const SemestresDocentes({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -172,7 +172,7 @@ class SemestreAlumno extends StatelessWidget {
           onPressed: () {
 
 
-            context.pushNamed(FomrularioAlumno.formularioAlumno);
+            context.pushNamed(FomrularioDocente.formularioDocente);
 
           },
           icon: FadeAnimation(1, const Icon(Icons.person_add, color: Colors.white,)),
@@ -180,7 +180,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 1s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),)),
+              FadeAnimation(1, const Text("Registrar Docente 1s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),)),
             ],
           ),
           style: ButtonStyle(
@@ -210,7 +210,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 2s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente 2s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             ],
           ),
           style: ButtonStyle(
@@ -236,7 +236,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 3s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente 3s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             ],
           ),
           style: ButtonStyle(
@@ -263,7 +263,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 4s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente 4s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             ],
           ),
           style: ButtonStyle(
@@ -291,7 +291,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 5s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente 5s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             ],
           ),
           style: ButtonStyle(
@@ -317,7 +317,7 @@ class SemestreAlumno extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const SizedBox(width: 23),
-              FadeAnimation(1, const Text("Registrar Alumno 6s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
+              FadeAnimation(1, const Text("Registrar Docente 6s", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),)),
             ],
           ),
           style: ButtonStyle(

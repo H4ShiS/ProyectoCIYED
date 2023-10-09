@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../widgets/Animatios/Animaciones.dart';
 
-class FomrularioAlumno  extends StatelessWidget {
-  static const formularioAlumno = "Formulario-Alumno";
-  const FomrularioAlumno ({super.key});
+class FomrularioDocente  extends StatelessWidget {
+  static const formularioDocente = "Formulario-Docente";
+  const FomrularioDocente ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class FomrularioAlumno  extends StatelessWidget {
          backgroundColor: const Color.fromARGB(255, 17, 5, 130),
           toolbarHeight: 80,
         title: const  Text(
-          "Registrar Alumno", 
+          "Registrar Docente", 
           style: TextStyle(color: Colors.white),
         ),
 
@@ -25,7 +25,7 @@ class FomrularioAlumno  extends StatelessWidget {
               icon: const Icon(
                 Icons.format_list_bulleted_add, 
                 color: Colors.white, size: 30,
-              ),
+              ),  
               // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
             
             ),
@@ -55,26 +55,27 @@ class FomrularioAlumno  extends StatelessWidget {
 
       ),
 
-      body: FormularioAlumnoTextfield(),
+      body: FormularioDocenteTextField(),
 
     );
   }
 }
 
 
-class FormularioAlumnoTextfield extends StatelessWidget {
-   FormularioAlumnoTextfield({super.key});
+class FormularioDocenteTextField extends StatelessWidget {
+   FormularioDocenteTextField({super.key});
   final _keyForm = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       
+      
       physics: const BouncingScrollPhysics(),
       children: [
         Expanded(
           child: Container(
-        
+          
             
             // ... Resto del código ...
             child: Form(
@@ -87,7 +88,9 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                     
                     children: [
                       Expanded(
+                        
                         child: Container(
+
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
                           child: TextFormField(
                             // validator: (valor) {
@@ -132,12 +135,12 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nia")),
+                              label: FadeAnimation(1, const Text("Nombre Docente")),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               prefixIcon: const Icon(
-                                Icons.web_outlined,
+                                Icons.account_circle_rounded,
                                 color: Color.fromARGB(255, 5, 78, 186),
                               ),
                               labelStyle: const TextStyle(
@@ -171,12 +174,12 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nombre Alumno")),
+                              label: FadeAnimation(1, const Text("Ape. Paterno")),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               prefixIcon: const Icon(
-                                Icons. account_circle,
+                                Icons. person,
                                 color: Color.fromARGB(255, 5, 78, 186),
                                 
                               ),
@@ -209,12 +212,12 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Paterno")),
+                              label: FadeAnimation(1, const Text("Ape. Materno")),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               prefixIcon: const Icon(
-                                Icons.person_rounded,
+                                Icons.person_2,
                                 color: Color.fromARGB(255, 5, 78, 186),
                               ),
                               labelStyle: const TextStyle(
@@ -231,7 +234,67 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                       
                     ],
                   ),
+
+                 Row(
+                    
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 30
+                          ),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              label:
+                                  FadeAnimation(1, const Text("Email")),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.email,
+                                  color: Color.fromARGB(255, 5, 78, 186),
+
+                              ),
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 5),
+                            ),
+                          ),
+                        ),
+                      ),
             
+                      const SizedBox(width: 10), // Espacio entre los campos
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 15),
+                          child: TextFormField(
+                            keyboardType: TextInputType.text,
+                            decoration: InputDecoration(
+                              label: FadeAnimation(1, const Text("Contraseña")),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              prefixIcon: const Icon(
+                                Icons.lock,
+                                  color: Color.fromARGB(255, 5, 78, 186),
+                              ),
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 5),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+  
             
             
                   Row(
@@ -239,7 +302,7 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 30),
+                              horizontal: 15,),
                           child: TextFormField(
                             // validator: (value) {
                               
@@ -251,12 +314,12 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Materno")),
+                              label: FadeAnimation(1, const Text("Recado")),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               prefixIcon: const Icon(
-                                Icons.person_2_rounded,
+                                Icons.message,
                                 color: Color.fromARGB(255, 5, 78, 186),
                               ),
                               labelStyle: const TextStyle(
@@ -273,265 +336,11 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                   ),
             
             
-                  Row(
-                    
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                          ),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label:
-                                  FadeAnimation(1, const Text("Grupo ListCheck")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.email,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Semesre List")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_rounded,
-                                color: Color.fromARGB(255, 0, 58, 146),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-            
+           
                   const SizedBox(
                     height: 20,
                   ),
-            
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                          ),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isEmpty) {
-
-                            //     return "Ingresa el Nombre";
-                                
-                            //   }
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nombre Tutor")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.account_circle,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isEmpty) {
-
-                            //     return "Ingresa el dato";
-                                
-                            //   }
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Paterno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-            
-            
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 30
-                          ),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-
-                            //     // return "Ingresa el Dato";
-                                
-                            //   } else {
-                          
-                            //     return "Ingresa el dato";
-                            //   }
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Materno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_2_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isEmpty) {
-                                
-                            //     return "No. Telefononico";
-                            //   }
-                            // },
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Telefono")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.add_call,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-            
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15,
-                          ),
-                          child: TextFormField(
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                // return "Ingresa el Nombre";
-                              } else {
-                                // // Otras condiciones de validación
-                                // if (value == null) {
-                                //   return "El valor no cumple con los requisitos";
-                                // }
-                                return null;
-                              }
-
-                              return null;
-                            },
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Telefono Opcional")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.call,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                         
-                        ),
-                      ),
-                    ],
-                  ),
-        
+      
         
                   Row(
                     children: [
@@ -563,7 +372,7 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                                 FadeAnimation(
                                     1,
                                     const Text(
-                                      "Registrar Alumno",
+                                      "Registrar Docente",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
