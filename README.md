@@ -28,7 +28,32 @@ samples, guidance on mobile development, and a full API reference.
 
 #animaciones en el menu administracion para su mejor visualizacion
 
+
+/*
+revision de ese codigo para implementarlo en la validacion de la api
+void dispose() {
+    _emailController.dispose(); // ¡No olvides liberar recursos!
+    super.dispose();
+  }
+
+  TextEditingController,
+  
+*/
+
+#snackbar y un appbar
 #manejo de animaciones en el codigo
 #crear los semestres en botones
 #crear
 
+
+
+
+#para limpiar el textformfield cuando el campo sea valido
+onPressed: () {
+  if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+    print("Validacion Exitosa");
+    _emailController.clear(); // Limpia el campo
+  } else {
+    print("Validacion no Exitosa");
+  }
+},
