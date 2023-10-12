@@ -63,8 +63,13 @@ class FomrularioAlumno  extends StatelessWidget {
 }
 
 
+// ignore: must_be_immutable
 class FormularioAlumnoTextfield extends StatelessWidget {
    FormularioAlumnoTextfield({super.key});
+  List<String> listaDeGrupo = ["A","B"];
+  List<String> listaDeSemestre = ["1", "2", "3", "4", "5", "6"];
+
+
   final _keyForm = GlobalKey<FormState>();
 
   @override
@@ -91,11 +96,21 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
                           child: TextFormField(
+                            
                             // validator: (valor) {
                             //   if (valor != null && valor.isNotEmpty) {
 
-                            //     if (condition) {
-                                  
+                            //     RegExp matriculaExpress =  RegExp(r'^[A-Z0-9]+$');
+                            //     RegExp matriculaContador =  RegExp(r'^[A-Z0-9]{10,12}$');
+
+                                
+                            //     if (!matriculaExpress.hasMatch(valor)) {
+                            //       return "Letras Mayusculas, Numeros";
+                            //     } else {
+
+                            //       if (!matriculaContador.hasMatch(valor)) {
+                            //         return "10 - 12";
+                            //       }
                             //     }
                                 
                             //   } else {
@@ -134,8 +149,18 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
                             // validator: (value) {
-                            //   if (value != null && value.isEmpty) {
-                            //     return "Ingresa la NIA";
+                            //   if (value != null && value.isNotEmpty) {
+                                
+                            //     RegExp niaalumno =  RegExp(r'^[0-9]{10,12}$');
+
+                            //     if (!niaalumno.hasMatch(value)) {
+                            //       return "Solo numeros y 10 digitos";
+                            //     }
+
+                            //   } else {
+
+                            //     return null;
+
                             //   }
                             // },
                             keyboardType: TextInputType.text,
@@ -312,35 +337,121 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                       const SizedBox(width: 10), // Espacio entre los campos
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isEmpty) {
-
-                            //     return "Ingresa el dato";
+                          margin: const EdgeInsets.only(right: 20),
+                          child: DropdownButtonFormField(
+                            
+                            items: listaDeGrupo.map((name) {
+                              
+                              return DropdownMenuItem(
                                 
+                                value: name,
+                                child: Text(name),
+                                );
+                            }).toList(), 
+                            onChanged: (String? value) { 
+                              print(value);
+                            },
+
+                            // validator: (value) {
+
+                            //   if (value == null || value.isEmpty) {
+
+
+                            //     return "Selecciona un Grupo";
                             //   }
                             // },
-                            keyboardType: TextInputType.text,
+                            
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Lista Desplegable")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
                               prefixIcon: const Icon(
-                                Icons.person_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
+                                Icons.abc_sharp, 
+                                size: 30, 
+                                color: Color.fromARGB(255, 5, 78, 186) ,
                               ),
+                              labelText: "     Grupo", 
                               labelStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              isDense: true,
                             ),
+                            
+
                           ),
                         ),
                       ),
+
+
+                    ],                
+                  ),
+
+
+                 Row(
+                    children: [
+
+                      const SizedBox(width: 80,), // Espacio entre los campos
+
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 15,),
+                          child: DropdownButtonFormField(
+                            
+                            items: listaDeSemestre.map((name) {
+                              
+                              return DropdownMenuItem(
+                                
+                                value: name,
+                                child: Text(name),
+                                );
+                            }).toList(), 
+                            onChanged: (String? value) { 
+                              print(value);
+                            },
+
+                            // validator: (value) {
+
+                            //   if (value == null || value.isEmpty) {
+
+
+                            //     return "Selecciona un semestre";
+                            //   }
+                            // },
+                            
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                Icons.onetwothree_sharp, 
+                                size: 30, 
+                                color: Color.fromARGB(255, 5, 78, 186) ,
+                              ),
+                              labelText: "     Semestre", 
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              isDense: true,
+                            ),
+                            
+
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(width: 80,), // Espacio entre los campos
+
+
+                      // Expanded(
+                      //   child: Container(
+                         
+                      //   ),
+                      // ),
 
 
                     ],                
@@ -490,28 +601,28 @@ class FormularioAlumnoTextfield extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                            //     RegExp telefonoPrincipal =  RegExp(r'^[0-9]{10}$');
-                            //     RegExp letraTelefono = RegExp(r'^[a-zA-Z\s]+$');
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                RegExp telefonoPrincipal =  RegExp(r'^[0-9]{10}$');
+                                RegExp letraTelefono = RegExp(r'^[a-zA-Z\s]+$');
 
-                            //     if (letraTelefono.hasMatch(value)) {
-                            //       return "Solo numeros";
+                                if (letraTelefono.hasMatch(value)) {
+                                  return "Solo numeros";
 
-                            //     } else {
-                            //        if (!telefonoPrincipal.hasMatch(value)) {
+                                } else {
+                                   if (!telefonoPrincipal.hasMatch(value)) {
                                   
-                            //         return "10 digitos";
-                            //       }
-                            //     }
+                                    return "10 digitos";
+                                  }
+                                }
 
                                
 
-                            //   } else {
+                              } else {
 
-                            //     return "Ingresa el Dato";
-                            //   }
-                            // },
+                                return "Ingresa el Dato";
+                              }
+                            },
                             keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Telefono")),

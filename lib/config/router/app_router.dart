@@ -1,4 +1,5 @@
 
+import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/formulario_materias.dart';
 import 'package:app_ciyed/presentation/screens/barril.dart';
 import 'package:app_ciyed/presentation/screens/login/login_screen.dart';
 import 'package:go_router/go_router.dart';
@@ -38,6 +39,11 @@ final appRouter = GoRouter(
       path: '/formulariodocente',
       name: FomrularioDocente.formularioDocente,
       builder: (context, state) => const FomrularioDocente(),
+    ),
+    GoRoute(
+      path: '/formulariomaterias',
+      name: FomrularioMaterias.formularioMaterias,
+      builder: (context, state) => const FomrularioMaterias(),
     )
 
   ],

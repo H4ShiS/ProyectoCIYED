@@ -87,19 +87,37 @@ class FormularioDocenteTextField extends StatelessWidget {
                   Row(
                     
                     children: [
+                      
                       Expanded(
                         
                         child: Container(
 
-                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
                           child: TextFormField(
-                            // validator: (valor) {
-                            //   if (valor != null && valor.isEmpty) {
-                                
-                            //     return "Ingresa la Matricula";
-                            //   }
-                            //   return null;
-                            // },
+                            validator: (valor) {
+                              if (valor != null && valor.isNotEmpty) {
+                                RegExp matriculaDocente = RegExp(r'^[a-zA-Z]+$');
+                                RegExp matriculaDocenteRex = RegExp(r'^[0-9]{4,6}$');
+
+
+                                if (matriculaDocente.hasMatch(valor)) {
+
+                                  return "Solo numeros";
+
+                                } else {
+
+                                  if (!matriculaDocenteRex.hasMatch(valor)) {
+                                    return "4-6 caracteres";
+                                  }
+
+                                }
+                              } else {
+                                return "Ingrese la Matricula";
+                              }
+                              return null;
+                            },
+
+                            
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Matricula")),
@@ -267,7 +285,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 30
+                            horizontal: 15, vertical: 40
                           ),
                           child: TextFormField(
                             // validator: (value) {
@@ -306,10 +324,20 @@ class FormularioDocenteTextField extends StatelessWidget {
                         ),
                       ),
             
-                      const SizedBox(width: 10), // Espacio entre los campos
+                      
+                    ],
+                  ),
+
+
+
+
+                  Row(
+                    
+                    children: [
+
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.only(right: 15),
+                          margin: const EdgeInsets.only(left: 15, right: 15),
                           child: TextFormField(
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
@@ -331,6 +359,11 @@ class FormularioDocenteTextField extends StatelessWidget {
                           ),
                         ),
                       ),
+            
+                      // const SizedBox(width: 10), // Espacio entre los campos
+                      
+
+                      
                     ],
                   ),
   
@@ -341,7 +374,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(
-                              horizontal: 15,),
+                              horizontal: 15, vertical: 40),
                           child: TextFormField(
                             // validator: (value) {
                             //   if (value != null && value.isNotEmpty) {
@@ -371,7 +404,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
                               contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 80, vertical: 20),
+                                  const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
                             ),
                           ),
                         ),
@@ -428,7 +461,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             ),
                             style: ButtonStyle(
                               fixedSize:
-                                  MaterialStateProperty.all(const Size(270, 52)),
+                                  MaterialStateProperty.all(const Size(270, 50)),
                               
                               overlayColor:
                                   MaterialStateProperty.resolveWith<Color>(

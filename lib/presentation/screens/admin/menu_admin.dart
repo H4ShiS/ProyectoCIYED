@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/formulario_materias.dart';
 import 'package:app_ciyed/presentation/screens/barril.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
@@ -164,7 +165,9 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {
-            context.pushNamed(SemestresAlumnosAdd.semestresAlumnosAdd);
+            // context.pushNamed(SemestresAlumnosAdd.semestresAlumnosAdd);
+            context.pushNamed(FomrularioAlumno.formularioAlumno);
+
 
           },
           icon: FadeAnimation(1, const Icon(Icons.people, color: Colors.white,)),
@@ -176,7 +179,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
@@ -208,7 +211,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
@@ -227,7 +230,9 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {
-            context.pushNamed(SemestresDocentesAdd.semestresDocentesAdd);
+            // context.pushNamed(SemestresDocentesAdd.semestresDocentesAdd);
+            context.pushNamed(FomrularioDocente.formularioDocente);
+
           },
           icon: FadeAnimation(1, const Icon(Icons.person, color: Colors.white,)),
           label: Row(
@@ -238,7 +243,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
@@ -268,7 +273,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
@@ -289,7 +294,10 @@ class ButtonsAdmin extends StatelessWidget {
 
 
         OutlinedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+
+            context.pushNamed(FomrularioMaterias.formularioMaterias);
+          },
           icon: FadeAnimation(1,const Icon(Icons.book_rounded, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -299,7 +307,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
@@ -328,7 +336,7 @@ class ButtonsAdmin extends StatelessWidget {
             ],
           ),
           style: ButtonStyle(
-            fixedSize: MaterialStateProperty.all(const Size(270, 40)),
+            fixedSize: MaterialStateProperty.all(const Size(270, 45)),
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {

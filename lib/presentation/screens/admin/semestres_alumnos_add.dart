@@ -172,7 +172,7 @@ class SemestreAlumno extends StatelessWidget {
           onPressed: () {
 
 
-            context.pushNamed(FomrularioAlumno.formularioAlumno);
+            // context.pushNamed(FomrularioAlumno.formularioAlumno);
 
           },
           icon: FadeAnimation(1, const Icon(Icons.person_add, color: Colors.white,)),
