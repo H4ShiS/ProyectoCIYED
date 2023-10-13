@@ -1,5 +1,6 @@
 import 'package:app_ciyed/config/router/app_router.dart';
 import 'package:app_ciyed/presentation/screens/admin/menu_admin.dart';
+import 'package:app_ciyed/presentation/screens/docente/menu_docente.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -242,10 +243,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       //   ),
                       // ),
                       const SizedBox(
-                        height: 150,
+                        height: 50, //cambiar a 150
                       ),
 
-                      FloatingActionButton(onPressed: (){}, child: const Icon(Icons.next_plan),),
+                      FloatingActionButton(
+                        onPressed: (){
+                          context.pushNamed(MenuDocente.menuDocenteHome);
+                        }, 
+                        child: const Icon(Icons.next_plan, size: 50,),
+
+                      ),
                     ],
                   ),
                 ),
