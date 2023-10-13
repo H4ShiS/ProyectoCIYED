@@ -17,23 +17,13 @@ final appRouter = GoRouter(
       name: MenuAdmin.menuAdmin,
       builder: (context, state) => const MenuAdmin(),
     ),
-
-    GoRoute(
-      path: '/semestrealumnoadd',
-      name: SemestresAlumnosAdd.semestresAlumnosAdd,
-      builder: (context, state) => const SemestresAlumnosAdd(),
-    ),
     
     GoRoute(
         path: '/formularioalumno',
         name: FomrularioAlumno.formularioAlumno,
         builder: (context, state) => const FomrularioAlumno(),
     ),
-    GoRoute(
-      path: '/semestresdocentesadd',
-      name: SemestresDocentesAdd.semestresDocentesAdd,
-      builder: (context, state) => const SemestresDocentesAdd(),
-    ),
+
 
     GoRoute(
       path: '/formulariodocente',
@@ -44,6 +34,11 @@ final appRouter = GoRouter(
       path: '/formulariomaterias',
       name: FomrularioMaterias.formularioMaterias,
       builder: (context, state) => const FomrularioMaterias(),
+    ),
+    GoRoute(
+      path: '/semestresopcionesmenualumnos',
+      name: OpcionesMenuAlumnoSemestres.opcionesSemestresAlumnosMenu,
+      builder: (context, state) => const OpcionesMenuAlumnoSemestres(),
     )
 
   ],

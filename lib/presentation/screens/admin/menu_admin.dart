@@ -183,14 +183,14 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                 return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                 return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
               }
-              return Color.fromARGB(255, 239, 68, 20);  // Por defecto, usa el overlayColor predeterminado
+              return const Color.fromARGB(255, 239, 68, 20);  // Por defecto, usa el overlayColor predeterminado
             }),
 
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
           ),
         ),
 
@@ -200,6 +200,8 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {
+
+            context.pushNamed(OpcionesMenuAlumnoSemestres.opcionesSemestresAlumnosMenu);
 
           },
           icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
@@ -215,11 +217,11 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
 
           ),
         ),
@@ -247,12 +249,12 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
 
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
 
           ),
         ),
@@ -264,7 +266,7 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {},
-          icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
+          icon: FadeAnimation(1, const Icon(Icons.settings_accessibility_rounded, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -277,12 +279,12 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
 
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
 
           ),
         ),
@@ -311,12 +313,12 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
 
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
 
           ),
         ),
@@ -326,8 +328,10 @@ class ButtonsAdmin extends StatelessWidget {
 
 
         OutlinedButton.icon(
-          onPressed: () {},
-          icon: FadeAnimation(1, const Icon(Icons.settings, color: Colors.white,)),
+          onPressed: () {
+
+          },
+          icon: FadeAnimation(1, const Icon(Icons.room_preferences_outlined, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -340,11 +344,11 @@ class ButtonsAdmin extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                return Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
+                return const Color.fromARGB(255, 239, 68, 20);  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
 
           ),
           

@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:flutter/material.dart';
 
 import '../../../widgets/Animatios/Animaciones.dart';
@@ -15,7 +17,7 @@ class FomrularioMaterias  extends StatelessWidget {
          backgroundColor: const Color.fromARGB(255, 17, 5, 130),
           toolbarHeight: 80,
         title: const  Text(
-          "Registrar Alumno", 
+          "Registrar Materia", 
           style: TextStyle(color: Colors.white),
         ),
 
@@ -24,7 +26,17 @@ class FomrularioMaterias  extends StatelessWidget {
             IconButton(
               onPressed: (){}, 
               icon: const Icon(
-                Icons.format_list_bulleted_add, 
+                Icons.book, 
+                color: Colors.white, size: 30,
+              ),
+              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
+            
+            ),
+
+            IconButton(
+              onPressed: (){}, 
+              icon: const Icon(
+                Icons.article_rounded, 
                 color: Colors.white, size: 30,
               ),
               // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
@@ -68,6 +80,8 @@ class FormularioMateriasTextfield extends StatelessWidget {
    FormularioMateriasTextfield({super.key});
   List<String> listaDeGrupo = ["A","B"];
   List<String> listaDeDocentes = ["1231", "5642", "3453", "8654", "6575", "7506"];
+  List<String> listaDeSemestres = ["1", "2", "3", "4", "5", "6"];
+
 
 
   final _keyForm = GlobalKey<FormState>();
@@ -92,9 +106,12 @@ class FormularioMateriasTextfield extends StatelessWidget {
                   Row(
                     
                     children: [
+
+                      const SizedBox(width: 80), // Espacio entre los campos
+
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 30),
+                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
                           child: TextFormField(
                             
                             // validator: (valor) {
@@ -105,7 +122,7 @@ class FormularioMateriasTextfield extends StatelessWidget {
 
                                 
                             //     if (!matriculaExpress.hasMatch(valor)) {
-                            //       return "Letras Mayusculas, Numeros";
+                            //       return "Letras Mayusculas y Numeros";
                             //     } else {
 
                             //       if (!matriculaContador.hasMatch(valor)) {
@@ -143,46 +160,8 @@ class FormularioMateriasTextfield extends StatelessWidget {
                         ),
                       ),
             
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                                
-                            //     RegExp niaalumno =  RegExp(r'^[0-9]{10,12}$');
+                      const SizedBox(width: 80), // Espacio entre los campos
 
-                            //     if (!niaalumno.hasMatch(value)) {
-                            //       return "Solo numeros y 10 digitos";
-                            //     }
-
-                            //   } else {
-
-                            //     return null;
-
-                            //   }
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nia")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.web_outlined,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
             
@@ -190,19 +169,17 @@ class FormularioMateriasTextfield extends StatelessWidget {
                   Row(
                     
                     children: [
-                      Expanded(
+
+                      const SizedBox(width: 10), // Espacio entre los campos
+
+                      Expanded(                        
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15,),
                           child: TextFormField(
                             // validator: (value) {
                             //   if (value != null && value.isNotEmpty) {
 
-                            //     RegExp nombreAlumno =  RegExp(r'^[a-zA-Z\s]+$');
-
-                            //     if (!nombreAlumno.hasMatch(value)) {
-                                  
-                            //       return "Solo letras";
-                            //     }
+                                
 
                             //   } else {
 
@@ -214,12 +191,12 @@ class FormularioMateriasTextfield extends StatelessWidget {
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nombre Alumno")),
+                              label: FadeAnimation(1, const Text("Nombre de la Materia")),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               prefixIcon: const Icon(
-                                Icons. account_circle,
+                                Icons. menu_book,
                                 color: Color.fromARGB(255, 5, 78, 186),
                                 
                               ),
@@ -237,49 +214,7 @@ class FormularioMateriasTextfield extends StatelessWidget {
             
             
                       const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-
-                            //     RegExp nombreAlumno =  RegExp(r'^[a-zA-Z\s]+$');
-
-                            //     if (!nombreAlumno.hasMatch(value)) {
-                                  
-                            //       return "Solo letras";
-                            //     }
-                                
-                            //   } else {
-
-                            //     return "Ingresa el dato";
-                            //   }
-
-                            //   return null;
-
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Paterno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                            ),
-                          ),
-                        ),
-                      ),
-            
+                      
                       
                     ],
                   ),
@@ -288,67 +223,18 @@ class FormularioMateriasTextfield extends StatelessWidget {
             
                   Row(
                     children: [
-
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 30),
-                          child: TextFormField(
-                            // validator: (value) {
-                              
-                            //   if (value != null && value.isNotEmpty) {
-                            //     RegExp apellidoMaterno =  RegExp(r'^[a-zA-Z\s]+$');
-
-                            //     if (!apellidoMaterno.hasMatch(value)) {
-                            //       return "Solo letras";
-                            //     }
-
-
-                            //   } else {
-
-                            //     return "Ingresa el dato";
-
-                            //   }
-                            // },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              
-                              label: FadeAnimation(1, const Text("Ape. Materno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_2_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-
-
-                       // Espacio entre los campos
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 20),
+                              horizontal: 15, vertical: 50),
                           child: DropdownButtonFormField(
-                            
                             items: listaDeGrupo.map((name) {
-                              
                               return DropdownMenuItem(
-                                
                                 value: name,
                                 child: Text(name),
-                                );
-                            }).toList(), 
-                            onChanged: (String? value) { 
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
                               print(value);
                             },
 
@@ -356,38 +242,79 @@ class FormularioMateriasTextfield extends StatelessWidget {
 
                             //   if (value == null || value.isEmpty) {
 
-
                             //     return "Selecciona un Grupo";
                             //   }
                             // },
-                            
+
                             decoration: InputDecoration(
                               prefixIcon: const Icon(
-                                Icons.abc_sharp, 
-                                size: 30, 
-                                color: Color.fromARGB(255, 5, 78, 186) ,
+                                Icons.abc_sharp,
+                                size: 30,
+                                color: Color.fromARGB(255, 5, 78, 186),
                               ),
-                              labelText: "     Grupo", 
+                              labelText: "     Grupo",
                               labelStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 10),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               isDense: true,
                             ),
-                            
-
                           ),
                         ),
                       ),
 
+                      // Espacio entre los campos
+                      const SizedBox(width: 10), // Espacio entre los campos
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 20),
+                          child: DropdownButtonFormField(
+                            items: listaDeDocentes.map((name) {
+                              return DropdownMenuItem(
+                                value: name,
+                                child: Text(name),
+                              );
+                            }).toList(),
+                            onChanged: (String? value) {
+                              print(value);
+                            },
 
-                    ],                
+                            // validator: (value) {
+
+                            //   if (value == null || value.isEmpty) {
+
+                            //     return "Selecciona un Docente";
+                            //   }
+                            // },
+
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                Icons.person_pin_rounded,
+                                size: 30,
+                                color: Color.fromARGB(255, 5, 78, 186),
+                              ),
+                              labelText: "     Docente",
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              isDense: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-
 
                  Row(
                     children: [
@@ -400,7 +327,7 @@ class FormularioMateriasTextfield extends StatelessWidget {
                               horizontal: 15,),
                           child: DropdownButtonFormField(
                             
-                            items: listaDeDocentes.map((name) {
+                            items: listaDeSemestres.map((name) {
                               
                               return DropdownMenuItem(
                                 
@@ -447,19 +374,13 @@ class FormularioMateriasTextfield extends StatelessWidget {
                       const SizedBox(width: 80,), // Espacio entre los campos
 
 
-                      // Expanded(
-                      //   child: Container(
-                         
-                      //   ),
-                      // ),
-
 
                     ],                
                   ),
             
                   
                   const SizedBox(
-                    height: 20,
+                    height: 80,
                   ),
                   
         
@@ -469,7 +390,7 @@ class FormularioMateriasTextfield extends StatelessWidget {
                         child: Container(
         
                           margin: const EdgeInsets.symmetric(
-                            horizontal: 80, vertical: 40
+                            horizontal: 80, vertical: 80
                           ),
         
                          child: 
@@ -493,7 +414,7 @@ class FormularioMateriasTextfield extends StatelessWidget {
                                 FadeAnimation(
                                     1,
                                     const Text(
-                                      "Registrar Alumno",
+                                      "Registrar Materia",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
@@ -511,13 +432,13 @@ class FormularioMateriasTextfield extends StatelessWidget {
                                   MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.pressed)) {
-                                  return Color.fromARGB(255, 239, 68, 20);
+                                  return const Color.fromARGB(255, 239, 68, 20);
                                   
                                 }
-                                return Color.fromARGB(255, 48, 8, 206); // Por defecto, usa el overlayColor predeterminado
+                                return const Color.fromARGB(255, 48, 8, 206); // Por defecto, usa el overlayColor predeterminado
                               }),
                       
-                               backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+                               backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
                             ),
                           ),
                                 
