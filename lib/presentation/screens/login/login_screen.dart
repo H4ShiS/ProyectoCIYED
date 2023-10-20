@@ -243,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       //   ),
                       // ),
                       const SizedBox(
-                        height: 50, //cambiar a 150
+                        height: 150, //cambiar a 150
                       ),
 
                       FloatingActionButton(

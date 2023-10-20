@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: body_might_complete_normally_nullable, avoid_print, unnecessary_new, prefer_const_constructors, use_build_context_synchronously, unused_local_variable
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import '../../../widgets/Animatios/Animaciones.dart';
+import 'package:http/http.dart' as http;
+
 
 class FomrularioDocente  extends StatelessWidget {
   static const formularioDocente = "Formulario-Docente";
@@ -64,60 +68,53 @@ class FomrularioDocente  extends StatelessWidget {
 
 class FormularioDocenteTextField extends StatelessWidget {
    FormularioDocenteTextField({super.key});
+
   final _keyForm = GlobalKey<FormState>();
+  final TextEditingController matriculaDocente = new TextEditingController();
+  final TextEditingController nombreDocente = new TextEditingController();
+  final TextEditingController apePaternoDocente = new TextEditingController();
+  final TextEditingController apeMaternoDocente = new TextEditingController();
+  final TextEditingController emailDocente = new TextEditingController();
+  final TextEditingController contrasenaDocente = new TextEditingController();
+  final TextEditingController recadoDocente = new TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-      
-      
       physics: const BouncingScrollPhysics(),
       children: [
         Expanded(
           child: Container(
-          
-            
-            // ... Resto del código ...
             child: Form(
-        
-        
               key: _keyForm,
               child: Column(
                 children: [
-                  Row(
-                    
-                    children: [
-                      
-                      Expanded(
-                        
-                        child: Container(
 
+
+                  Row(
+                    children: [
+                      Expanded(  
+                        child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
                           child: TextFormField(
+                            controller: matriculaDocente,
                             validator: (valor) {
                               if (valor != null && valor.isNotEmpty) {
                                 RegExp matriculaDocente = RegExp(r'^[a-zA-Z]+$');
                                 RegExp matriculaDocenteRex = RegExp(r'^[0-9]{4,6}$');
-
-
                                 if (matriculaDocente.hasMatch(valor)) {
-
                                   return "Solo numeros";
-
                                 } else {
-
                                   if (!matriculaDocenteRex.hasMatch(valor)) {
                                     return "4-6 caracteres";
                                   }
-
                                 }
                               } else {
                                 return "Ingrese la Matricula";
                               }
                               return null;
-                            },
-
-                            
+                            },                            
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Matricula")),
@@ -132,34 +129,29 @@ class FormularioDocenteTextField extends StatelessWidget {
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-            
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                              
+                              contentPadding: const EdgeInsets.symmetric(vertical: 5),                  
                             ),
                           ),
                         ),
                       ),
             
                       const SizedBox(width: 10), // Espacio entre los campos
+                      
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                            //      RegExp nombreTutor = RegExp(r'[a-zA-Z\s]$');
-
-                            //      if (!nombreTutor.hasMatch(value)) {
-                            //        return "Solo letras";
-                            //      }
-                            //   }else {
-
-                            //     return "Ingresa el Nombre ";
-                            //   }
-
-                            
-                            // },
+                            controller: nombreDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                 RegExp nombreTutor = RegExp(r'[a-zA-Z\s]$');
+                                 if (!nombreTutor.hasMatch(value)) {
+                                   return "Solo letras";
+                                 }
+                              }else {
+                                return "Ingresa el Nombre ";
+                              }
+                            },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Nombre Docente")),
@@ -174,9 +166,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-                              
                               contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
                             ),
                           ),
                         ),
@@ -186,27 +176,23 @@ class FormularioDocenteTextField extends StatelessWidget {
             
             
                   Row(
-                    
                     children: [
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15,),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                            //     RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z\s]+$');
-
-                            //     if (!apellidoPaterno.hasMatch(value)) {
-                                  
-                            //       return "Solo letras";
-                            //     }
-                            //   }  else {
-
-                            //     return "Ingresa el dato";
-                            //   }
-                                      
-                            //   return null;
-                            // },
+                            controller: apePaternoDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z\s]+$');
+                                if (!apellidoPaterno.hasMatch(value)) {
+                                  return "Solo letras";
+                                }
+                              }  else {
+                                return "Ingresa el dato";
+                              }                                 
+                              return null;
+                            },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Ape. Paterno")),
@@ -216,15 +202,12 @@ class FormularioDocenteTextField extends StatelessWidget {
                               prefixIcon: const Icon(
                                 Icons. person,
                                 color: Color.fromARGB(255, 5, 78, 186),
-                                
                               ),
                               labelStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-            
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                              
+                              contentPadding: const EdgeInsets.symmetric(vertical: 5),   
                             ),
                           ),
                         ),
@@ -232,28 +215,23 @@ class FormularioDocenteTextField extends StatelessWidget {
             
             
                       const SizedBox(width: 10), // Espacio entre los campos
+                      
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            // validator: (value) {
-                              
-                            //   if (value != null && value.isNotEmpty) {
-
-                            //   RegExp apellidoM = RegExp(r'^[a-zA-Z\s]+$');
-                            //     if (!apellidoM.hasMatch(value)) {
-
-                            //       return "Solo letras";
-                            //     }
-             
-                            //   } else {
-
-                            //     return "Ingresa el Dato";
-                            //   }
-
-                            //   return null;
-
-                            // },
+                            controller: apeMaternoDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                              RegExp apellidoM = RegExp(r'^[a-zA-Z\s]+$');
+                                if (!apellidoM.hasMatch(value)) {
+                                  return "Solo letras";
+                                }
+                              } else {
+                                return "Ingresa el Dato";
+                              }
+                              return null;
+                            },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Ape. Materno")),
@@ -273,14 +251,12 @@ class FormularioDocenteTextField extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-            
-                      
+                      ),                      
                     ],
                   ),
 
-                 Row(
-                    
+
+                 Row(      
                     children: [
                       Expanded(
                         child: Container(
@@ -288,19 +264,18 @@ class FormularioDocenteTextField extends StatelessWidget {
                             horizontal: 15, vertical: 40
                           ),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                            //     RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
-                            //     if (!regex.hasMatch(value)) {
-                            //       return "Ingresa un correo electrónico válido";
-                            //     }
-                                
-                            //   } else {
-                            //     return "Ingresa el Email";
-                            //   }
-
-                            //   return null;
-                            // },
+                            controller: emailDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+                                if (!regex.hasMatch(value)) {
+                                  return "Ingresa un correo electrónico válido";
+                                }
+                              } else {
+                                return "Ingresa el Email";
+                              }
+                              return null;
+                            },
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               label:
@@ -311,7 +286,6 @@ class FormularioDocenteTextField extends StatelessWidget {
                               prefixIcon: const Icon(
                                 Icons.email,
                                   color: Color.fromARGB(255, 5, 78, 186),
-
                               ),
                               labelStyle: const TextStyle(
                                 fontSize: 12,
@@ -322,23 +296,24 @@ class FormularioDocenteTextField extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-            
-                      
+                      ), 
                     ],
                   ),
 
-
-
-
                   Row(
-                    
                     children: [
-
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.only(left: 15, right: 15),
                           child: TextFormField(
+                            controller: contrasenaDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                
+                              } else {
+                                return "Ingresa la contraseña";
+                              }
+                            },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Contraseña")),
@@ -358,12 +333,8 @@ class FormularioDocenteTextField extends StatelessWidget {
                             ),
                           ),
                         ),
-                      ),
-            
+                      ),            
                       // const SizedBox(width: 10), // Espacio entre los campos
-                      
-
-                      
                     ],
                   ),
   
@@ -386,8 +357,6 @@ class FormularioDocenteTextField extends StatelessWidget {
                             //     // }
                             //     return "Validacion";
                             //   }
-
-                              
                             // },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
@@ -431,13 +400,48 @@ class FormularioDocenteTextField extends StatelessWidget {
                          child: 
           
                          OutlinedButton.icon(
-                            onPressed: () {
+                            onPressed: () async {
+
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
-                                print("Validacion Exitosa");
-                                
-                              } else{
+                                var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/registrarDocente.php');
+                                var response = await http.post(
+                                  url,
+                                  body: {
+                                    'matricula': matriculaDocente.text,
+                                    'nombre': nombreDocente.text,
+                                    'apePaterno': apePaternoDocente.text,
+                                    'apeMaterno': apeMaternoDocente.text,
+                                    'email': emailDocente.text,
+                                    'pass': contrasenaDocente.text,
+                                    'recado': recadoDocente.text,
+                                  }
+                                );
 
+                                if (response.statusCode == 200) {
+                                  Map<String, dynamic> responseData = json.decode(response.body);
+                                  int httpCode = responseData['httpCode'];
+                                  String message = responseData['message'];
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(message))
+                                  );  
+                                                                 
+                                  print('Response data-------------------------: ${response.body}');
+
+                                } else {
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Error en la solicitud. Código de estado: ${response.statusCode}', 
+                                      style: const TextStyle(color: Colors.red),)
+                                    )
+                                  );
+
+                                }
+
+                                print("Validacion Exitosa");
+                              } else{
                                 print("Validacion no Exitosa");
                               }
                             },
@@ -446,44 +450,38 @@ class FormularioDocenteTextField extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const SizedBox(width: 10),
-                                FadeAnimation(
-                                    1,
+                                FadeAnimation(1,
                                     const Text(
                                       "Registrar Docente",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,
                                           color: Colors.white
-                                        ),
-                                          
-                                    )),
+                                        ),   
+                                    )
+                                ),
                               ],
                             ),
                             style: ButtonStyle(
                               fixedSize:
                                   MaterialStateProperty.all(const Size(270, 50)),
-                              
                               overlayColor:
                                   MaterialStateProperty.resolveWith<Color>(
                                       (Set<MaterialState> states) {
                                 if (states.contains(MaterialState.pressed)) {
                                   return Color.fromARGB(255, 239, 68, 20);
-                                  
                                 }
-                                return Color.fromARGB(255, 48, 8, 206); // Por defecto, usa el overlayColor predeterminado
+                                return Color.fromARGB(255, 48, 8, 206); 
                               }),
                       
                                backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
                             ),
-                          ),
-                                
+                          ),      
                          
                          ),
                       ),
                     ],
-                  )
-            
-            
+                  )        
                   // Resto de tus TextFormField aquí...
                 ],
               ),
