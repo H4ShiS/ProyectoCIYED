@@ -78,7 +78,6 @@ class FomrularioMaterias  extends StatelessWidget {
 // ignore: must_be_immutable
 class FormularioMateriasTextfield extends StatelessWidget {
    FormularioMateriasTextfield({super.key});
-  List<String> listaDeGrupo = ["A","B"];
   List<String> listaDeDocentes = ["1231", "5642", "3453", "8654", "6575", "7506"];
   List<String> listaDeSemestres = ["1", "2", "3", "4", "5", "6"];
 
@@ -223,56 +222,12 @@ class FormularioMateriasTextfield extends StatelessWidget {
             
                   Row(
                     children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 50),
-                          child: DropdownButtonFormField(
-                            items: listaDeGrupo.map((name) {
-                              return DropdownMenuItem(
-                                value: name,
-                                child: Text(name),
-                              );
-                            }).toList(),
-                            onChanged: (String? value) {
-                              print(value);
-                            },
-
-                            // validator: (value) {
-
-                            //   if (value == null || value.isEmpty) {
-
-                            //     return "Selecciona un Grupo";
-                            //   }
-                            // },
-
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                Icons.abc_sharp,
-                                size: 30,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelText: "     Grupo",
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 10),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              isDense: true,
-                            ),
-                          ),
-                        ),
-                      ),
 
                       // Espacio entre los campos
                       const SizedBox(width: 10), // Espacio entre los campos
                       Expanded(
                         child: Container(
-                          margin: const EdgeInsets.only(right: 20),
+                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
                           child: DropdownButtonFormField(
                             items: listaDeDocentes.map((name) {
                               return DropdownMenuItem(

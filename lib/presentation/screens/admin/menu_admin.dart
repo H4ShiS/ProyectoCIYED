@@ -265,7 +265,10 @@ class ButtonsAdmin extends StatelessWidget {
 
 
         OutlinedButton.icon(
-          onPressed: () {},
+          onPressed: () {
+            
+            context.pushNamed(OpcionesDocente.opcionesDocente);
+          },
           icon: FadeAnimation(1, const Icon(Icons.settings_accessibility_rounded, color: Colors.white,)),
           label: Row(
             mainAxisAlignment: MainAxisAlignment.start,

@@ -115,7 +115,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                               }
                               return null;
                             },                            
-                            keyboardType: TextInputType.text,
+                            keyboardType: TextInputType.number,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Matricula")),
                               border: OutlineInputBorder(
@@ -347,17 +347,23 @@ class FormularioDocenteTextField extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 40),
                           child: TextFormField(
-                            // validator: (value) {
-                            //   if (value != null && value.isNotEmpty) {
-                            //     return "Ingresa el Nombre";
-                            //   } else {
-                            //     // // Otras condiciones de validación
-                            //     // if (value == null) {
-                            //     //   return "El valor no cumple con los requisitos";
-                            //     // }
-                            //     return "Validacion";
-                            //   }
-                            // },
+                            controller: recadoDocente,
+                            validator: (value) {
+                              if (value != null && value.isNotEmpty) {
+                                RegExp recado =  RegExp(r'^[a-zA-Z\s]+$');
+                                if (recado.hasMatch(value)) {
+                                  
+                                } else {
+                                  return "Solo Letras";
+                                }
+                              } else {
+                                // // Otras condiciones de validación
+                                // if (value == null) {
+                                //   return "El valor no cumple con los requisitos";
+                                // }
+                                return null;
+                              }
+                            },
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Recado")),
@@ -426,11 +432,28 @@ class FormularioDocenteTextField extends StatelessWidget {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(message))
                                   );  
+
+                                  matriculaDocente.clear();
+                                  nombreDocente.clear();
+                                  apePaternoDocente.clear();
+                                  apeMaternoDocente.clear();
+                                  emailDocente.clear();
+                                  contrasenaDocente.clear();
+                                  recadoDocente.clear();
                                                                  
-                                  print('Response data-------------------------: ${response.body}');
+                                  // print('Response data-------------------------: ${response.body}');
 
+                                } else if(response.statusCode == 409){
+                                  Map<String, dynamic> responseData = json.decode(response.body);
+                                  int httpCode = responseData['httpCode'];
+                                  String message = responseData['message'];
+
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text(message)
+                                    )
+                                  );
+                                
                                 } else {
-
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(
                                       content: Text('Error en la solicitud. Código de estado: ${response.statusCode}', 

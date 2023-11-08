@@ -47,8 +47,25 @@ try {
 
     require_once('../bd/conexionBd.php');
 
-    $sql = "INSERT INTO docentesregistro (matricula, nombre, appaterno, apmaterno, email, contraseña, recado) 
-                VALUES ('$matricula', '$nombre', '$apePaterno', '$apeMaterno', '$email', '$pass', '$recado')";
+    $duplicate = "SELECT COUNT(*) as count FROM usuarios WHERE matricula = '$matricula'";
+    $resul = $connect->query($duplicate);
+
+    if ($resul && $resul->num_rows > 0) {
+        $row = $resul->fetch_assoc();
+        $count = $row['count'];
+        if ($count > 0) {
+            $httpCode = 409;
+            $message = "Matricula Duplicado";
+            header('Content-Type: application/json; charset=utf-8');
+            header("HTTP/1.1 409 Conflict");
+            echo json_encode(['httpCode' => $httpCode,'message' => $message], true);
+            exit();
+        }
+
+    }
+
+    $sql = "INSERT INTO usuarios (matricula, nombre, appaterno, apmaterno, email, contrasena, recordatorio, id_rol) 
+                VALUES ('$matricula', '$nombre', '$apePaterno', '$apeMaterno', '$email', '$pass', '$recado', 2)";
 
     if (!$connect->query($sql)) {
         throw new Exception("Sentencia SQL invalida: (" . $connect->errno . ") " . $connect->error);
@@ -72,7 +89,6 @@ try {
     $httpCode = $e->getCode();
     $message = $e->getMessage();
     header('Content-Type: application/json; charset=utf-8');
-
     $json = json_encode(['httpCode' => $httpCode,'mensaje' => $message], true);
     echo $json;
 
