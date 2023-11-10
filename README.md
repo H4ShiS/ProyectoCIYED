@@ -18,15 +18,6 @@ samples, guidance on mobile development, and a full API reference.
 
 
 
-#revisar las condicionales que se manejan en el formulario, insetara datos, correo valido, y contraseñav
-
-
-#validacion del correo y contraseña del login
-
-#expresiones regulares para el formulario alumno, docente y materias
-#revision de codigo
-
-#animaciones en el menu administracion para su mejor visualizacion
 
 
 /*
@@ -59,5 +50,6 @@ onPressed: () {
 },
 
 
+******************************** Pendientes Importantes
 
-
+encriptacion de contraseñas pendiente

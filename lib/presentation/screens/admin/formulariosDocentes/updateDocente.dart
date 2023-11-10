@@ -1,15 +1,42 @@
-// ignore_for_file: body_might_complete_normally_nullable, avoid_print, unnecessary_new, prefer_const_constructors, use_build_context_synchronously, unused_local_variable
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: body_might_complete_normally_nullable, avoid_print, unnecessary_new, prefer_const_constructors, use_build_context_synchronously, unused_local_variable, must_be_immutable
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import '../../../widgets/Animatios/Animaciones.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../widgets/Animatios/Animaciones.dart';
 
-class FomrularioDocente  extends StatelessWidget {
-  static const formularioDocente = "Formulario-Docente";
-  const FomrularioDocente ({super.key});
+class UpdateDocente  extends StatefulWidget {
+  static const actualizarDocente = "Update-Docente";
 
+    String id;
+    String nombre;
+    String appaterno;
+    String apmaterno;
+    String email;
+    String contrasena;
+    String matricula;
+    String recordatorio;
+
+
+    UpdateDocente ({
+    super.key,
+    required this.id, 
+    required this.nombre, 
+    required this.appaterno,
+    required this.apmaterno, 
+    required this.email, 
+    required this.contrasena, 
+    required this.matricula, 
+    required this.recordatorio
+    });
+
+  @override
+  State<UpdateDocente> createState() => _UpdateDocenteState();
+}
+
+class _UpdateDocenteState extends State<UpdateDocente> {
   @override
   Widget build(BuildContext context) {
 
@@ -18,7 +45,7 @@ class FomrularioDocente  extends StatelessWidget {
          backgroundColor: const Color.fromARGB(255, 17, 5, 130),
           toolbarHeight: 80,
         title: const  Text(
-          "Registrar Docente", 
+          "Actualizar Docente", 
           style: TextStyle(color: Colors.white),
         ),
 
@@ -27,7 +54,7 @@ class FomrularioDocente  extends StatelessWidget {
             IconButton(
               onPressed: (){}, 
               icon: const Icon(
-                Icons.format_list_bulleted_add, 
+                Icons.update, 
                 color: Colors.white, size: 30,
               ),  
               // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
@@ -59,7 +86,18 @@ class FomrularioDocente  extends StatelessWidget {
 
       ),
 
-      body: FormularioDocenteTextField(),
+      body: FormularioDocenteTextField(
+
+        userId: widget.id,
+        nombre: widget.nombre,
+        appaterno: widget.appaterno,
+        apmaterno: widget.apmaterno,
+        email: widget.email,
+        contrasena: widget.contrasena,
+        matricula: widget.matricula,
+        recordatorio: widget.recordatorio,
+
+      ),
 
     );
   }
@@ -67,20 +105,51 @@ class FomrularioDocente  extends StatelessWidget {
 
 
 class FormularioDocenteTextField extends StatelessWidget {
-   FormularioDocenteTextField({super.key});
+
+    String userId;
+    String nombre;
+    String appaterno;
+    String apmaterno;
+    String email;
+    String contrasena;
+    String matricula;
+    String recordatorio;
+
+
+  FormularioDocenteTextField({
+    Key? key,
+    required this.userId,
+    required this.nombre,
+    required this.appaterno,
+    required this.apmaterno,
+    required this.email,
+    required this.contrasena,
+    required this.matricula,
+    required this.recordatorio,
+    
+  }) : super(key: key);
 
   final _keyForm = GlobalKey<FormState>();
-  final TextEditingController matriculaDocente = new TextEditingController();
-  final TextEditingController nombreDocente = new TextEditingController();
-  final TextEditingController apePaternoDocente = new TextEditingController();
-  final TextEditingController apeMaternoDocente = new TextEditingController();
-  final TextEditingController emailDocente = new TextEditingController();
-  final TextEditingController contrasenaDocente = new TextEditingController();
-  final TextEditingController recadoDocente = new TextEditingController();
+  final TextEditingController matriculaDocenteUpdate = new TextEditingController();
+  final TextEditingController nombreDocenteUpdate = new TextEditingController();
+  final TextEditingController apePaternoDocenteUpdate = new TextEditingController();
+  final TextEditingController apeMaternoDocenteUpdate = new TextEditingController();
+  final TextEditingController emailDocenteUpdate = new TextEditingController();
+  final TextEditingController contrasenaDocenteUpdate = new TextEditingController();
+  final TextEditingController recadoDocenteUpdate = new TextEditingController();
 
 
   @override
   Widget build(BuildContext context) {
+
+    matriculaDocenteUpdate.text = matricula;
+    nombreDocenteUpdate.text = nombre;
+    apePaternoDocenteUpdate.text = appaterno;
+    apeMaternoDocenteUpdate.text = apmaterno;
+    emailDocenteUpdate.text = email;
+    contrasenaDocenteUpdate.text = contrasena;
+    recadoDocenteUpdate.text = recordatorio;
+
     return ListView(
       physics: const BouncingScrollPhysics(),
       children: [
@@ -98,7 +167,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
                           child: TextFormField(
-                            controller: matriculaDocente,
+                            controller: matriculaDocenteUpdate,
                             validator: (valor) {
                               if (valor != null && valor.isNotEmpty) {
                                 RegExp matriculaDocente = RegExp(r'^[a-zA-Z]+$');
@@ -141,7 +210,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: nombreDocente,
+                            controller: nombreDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                  RegExp nombreTutor = RegExp(r'[a-zA-Z\s]$');
@@ -181,7 +250,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15,),
                           child: TextFormField(
-                            controller: apePaternoDocente,
+                            controller: apePaternoDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                 RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z\s]+$');
@@ -220,7 +289,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(right: 15),
                           child: TextFormField(
-                            controller: apeMaternoDocente,
+                            controller: apeMaternoDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                               RegExp apellidoM = RegExp(r'^[a-zA-Z\s]+$');
@@ -264,7 +333,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             horizontal: 15, vertical: 40
                           ),
                           child: TextFormField(
-                            controller: emailDocente,
+                            controller: emailDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                 RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
@@ -306,7 +375,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                         child: Container(
                           margin: const EdgeInsets.only(left: 15, right: 15),
                           child: TextFormField(
-                            controller: contrasenaDocente,
+                            controller: contrasenaDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                 
@@ -347,7 +416,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15, vertical: 40),
                           child: TextFormField(
-                            controller: recadoDocente,
+                            controller: recadoDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                 RegExp recado =  RegExp(r'^[a-zA-Z0-9\s]+$');
@@ -410,19 +479,26 @@ class FormularioDocenteTextField extends StatelessWidget {
 
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
-                                var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/registrarDocente.php');
-                                var response = await http.post(
-                                  url,
+                                String id = userId;
+                                String matricula =  matriculaDocenteUpdate.text;
+                                String nombre = nombreDocenteUpdate.text;
+                                String apPaterno = apePaternoDocenteUpdate.text;
+                                String apMaterno = apeMaternoDocenteUpdate.text;
+                                String email = emailDocenteUpdate.text;
+                                String pass = contrasenaDocenteUpdate.text;
+                                String recordatorio = recadoDocenteUpdate.text;
+
+
+                                var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/updateDocente.php?id=$id'),
                                   body: {
-                                    'matricula': matriculaDocente.text,
-                                    'nombre': nombreDocente.text,
-                                    'apePaterno': apePaternoDocente.text,
-                                    'apeMaterno': apeMaternoDocente.text,
-                                    'email': emailDocente.text,
-                                    'pass': contrasenaDocente.text,
-                                    'recado': recadoDocente.text,
-                                  }
-                                );
+                                    'matricula': matricula,
+                                    'nombre': nombre,
+                                    'apePaterno': apPaterno,
+                                    'apeMaterno': apMaterno,
+                                    'email': email,
+                                    'pass': pass,
+                                    'recado': recordatorio,
+                                  } );
 
                                 if (response.statusCode == 200) {
                                   Map<String, dynamic> responseData = json.decode(response.body);
@@ -431,19 +507,11 @@ class FormularioDocenteTextField extends StatelessWidget {
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(message))
-                                  );  
+                                  );            
 
-                                  matriculaDocente.clear();
-                                  nombreDocente.clear();
-                                  apePaternoDocente.clear();
-                                  apeMaternoDocente.clear();
-                                  emailDocente.clear();
-                                  contrasenaDocente.clear();
-                                  recadoDocente.clear();
-                                                                 
-                                  // print('Response data-------------------------: ${response.body}');
+                                  print('Response data: ${response.body}');
 
-                                } else if(response.statusCode == 409){
+                                } else if(response.statusCode == 400){
                                   Map<String, dynamic> responseData = json.decode(response.body);
                                   int httpCode = responseData['httpCode'];
                                   String message = responseData['message'];
@@ -463,19 +531,19 @@ class FormularioDocenteTextField extends StatelessWidget {
 
                                 }
 
-                                print("Validacion Exitosa");
+                                print("Actualizacion Exitosa");
                               } else{
-                                print("Validacion no Exitosa");
+                                print("Actualizacion no Exitosa");
                               }
                             },
-                            icon: FadeAnimation(1, const Icon(Icons.person_add, color: Colors.white,)),
+                            icon: FadeAnimation(1, const Icon(Icons.check_box, color: Colors.white,)),
                             label: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 const SizedBox(width: 10),
                                 FadeAnimation(1,
                                     const Text(
-                                      "Registrar Docente",
+                                      "Actualizar Docente",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,

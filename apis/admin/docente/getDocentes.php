@@ -8,7 +8,7 @@ try {
 
     require_once('../bd/conexionBd.php');
 
-    $sql = "SELECT * FROM usuarios";
+    $sql = "SELECT * FROM usuarios ORDER BY nombre ASC";
     $res = mysqli_query($connect, $sql);
 
     if ($res) {
@@ -16,6 +16,8 @@ try {
             while ($row = mysqli_fetch_array($res)) {
                 $data[] = $row;
             }
+
+            print_r($data);
 
             
 
@@ -26,7 +28,7 @@ try {
             echo json_encode(["httCode" => $httpCode, "message" => $message], true);
 
             json_encode($data); 
-            print_r($data);
+            // print_r($data);
 
         } else {
             $httpCode = 400;
