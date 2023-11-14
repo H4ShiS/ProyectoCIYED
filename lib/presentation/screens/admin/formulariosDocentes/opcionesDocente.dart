@@ -1,4 +1,7 @@
+// ignore_for_file: avoid_print
+
 import 'dart:convert';
+
 
 import 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/getDocentesFromJson.dart';
 import 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/updateDocente.dart';
@@ -38,9 +41,29 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
 
   }
 
+
+  Future<void> deleteDocente(String id) async {
+    final http.Response response = await http.delete(
+      Uri.parse(
+          'https://pruebas97979797.000webhostapp.com/apis/admin/docente/deleteDocente.php/$id'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      // Manejar la respuesta exitosa si es necesario
+      print('Docente eliminado exitosamente');
+    } else {
+      // Manejar el error si es necesario
+      print('Error al eliminar el docente. Código de estado: ${response.statusCode}');
+      print('Respuesta del servidor: ${response.body}');
+    }
+  }
+
   Future<void> starPolling  () async{
   
-    await Future.delayed(const Duration(seconds: 5));
+    await Future.delayed(const Duration(seconds: 2));
 
     if (!_isDisposed) {
       var newData = await getDocentes();
@@ -153,8 +176,9 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
                       ),
                       TextButton(
                         child: const Text("Eliminar"),
-                        onPressed: () {
-                          Navigator.of(context).pop(true); // Confirmar eliminar
+                        onPressed: () async {
+                          Navigator.of(context).pop(true);
+                          await deleteDocente(data[index].id);
                         },
                       ),
                     ],
@@ -187,3 +211,77 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
     );
   }
 }
+
+
+
+
+
+
+                           // Confirmar eliminar
+
+                          //  String id = data[index].id;
+
+                          //   try {
+                          //     var response = await http.delete(
+                          //       Uri.parse(
+                          //           'https://pruebas97979797.000webhostapp.com/apis/admin/docente/deleteDocente.php/$id'),
+                          //     );
+
+                          //     if (response.statusCode == 200) {
+                          //       Map<String, dynamic> responseData =
+                          //           jsonDecode(response.body);
+                          //       int httpCode = responseData['httpCode'];
+                          //       String message = responseData['message'];
+
+                          //       // ignore: use_build_context_synchronously
+                          //       ScaffoldMessenger.of(context).showSnackBar(
+                          //         SnackBar(content: Text(message)),
+                          //       );
+
+                          //       // Si deseas realizar alguna acción adicional después de eliminar, puedes hacerlo aquí.
+                          //     } else {
+                          //       print(
+                          //           'Error al eliminar el usuario. Código de estado: ${response.statusCode}');
+                          //       print(
+                          //           'Respuesta del servidor: ${response.body}');
+                          //     }
+                          //   } catch (e) {
+                          //     print('Error durante la solicitud DELETE: $e');
+                          //   }
+
+
+
+
+
+
+
+/*String id = data[index].id;
+                          print(id);
+                          
+                          try {
+                            
+                                          
+                          var response = await http.delete(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/deleteDocente.php?id=$id'),).timeout(const Duration(seconds: 30));
+                          
+                          if (response.statusCode == 200) {
+                            Map<String, dynamic> responseData = jsonDecode(response.body);
+                            int httpCode = responseData['httpCode'];
+                            String message = responseData['message'];
+                            // ignore: use_build_context_synchronously
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(message))
+                            );
+
+                            print('Response data: ${response.body}');
+                            
+                          } else {
+                            print('Response data: ${response.body}');
+
+                          }
+
+                          } catch (e) {
+                            print('Error durante la solicitud DELETE: $e');
+                            if (e is http.ClientException) {
+                              print('Detalles del error: ${e.message}');
+                            }
+                          }  */

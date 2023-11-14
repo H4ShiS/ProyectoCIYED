@@ -354,7 +354,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                                 if (recado.hasMatch(value)) {
                                   
                                 } else {
-                                  return "Solo Letras";
+                                  return "No caracteres Especiales";
                                 }
                               } else {
                                 // // Otras condiciones de validación

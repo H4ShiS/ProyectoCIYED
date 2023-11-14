@@ -41,6 +41,14 @@ final appRouter = GoRouter(
       builder: (context, state) => const OpcionesMenuAlumnoSemestres(),
     ),
 
+    //Rutas Listado de Alumnos Por semestre en Administrador
+    GoRoute(
+      path: '/primerSemestre',
+      name: ListPrimero.listaPrimero,
+      builder: (context, state) => const ListPrimero(),
+
+    ),
+
 
 
 

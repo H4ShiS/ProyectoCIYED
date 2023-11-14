@@ -27,7 +27,7 @@ try {
             header("HTTP/1.1 200 OK");
             echo json_encode(["httCode" => $httpCode, "message" => $message], true);
 
-            json_encode($data); 
+            // json_encode($data); 
             // print_r($data);
 
         } else {

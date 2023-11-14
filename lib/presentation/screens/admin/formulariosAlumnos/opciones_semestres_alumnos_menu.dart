@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:app_ciyed/presentation/screens/admin/semestres/primero/primer_semestre_list.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // ignore: must_be_immutable
 class OpcionesMenuAlumnoSemestres extends StatelessWidget {
@@ -174,6 +176,8 @@ class OpcionesSemestreAlumno extends StatelessWidget {
 
 
             // context.pushNamed(FomrularioAlumno.formularioAlumno);
+            context.pushNamed(ListPrimero.listaPrimero);
+            
 
           },
           icon: FadeAnimation(1, const Icon(Icons.looks_one, color: Colors.white,)),
