@@ -112,7 +112,7 @@ class _ListPrimeroState extends State<ListPrimero> {
                 context, 
                 MaterialPageRoute(
                   builder: (context) => UpdateFomrularioAlumno(
-
+                    id: data[index].id,
                     nombre: data[index].nombre,
                     appaterno: data[index].appaterno,
                     apmaterno: data[index].apmaterno,

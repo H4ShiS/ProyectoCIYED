@@ -1,4 +1,4 @@
-// ignore_for_file: body_might_complete_normally_nullable, avoid_print, unnecessary_new, unused_local_variable
+// ignore_for_file: body_might_complete_normally_nullable, avoid_print, unnecessary_new, unused_local_variable, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 
 class UpdateFomrularioAlumno extends StatefulWidget {
   static const UpdateformularioAlumno = "Formulario-Alumno";
+  final String id;
   final String nombre;
   final String appaterno;
   final String apmaterno;
@@ -23,6 +24,7 @@ class UpdateFomrularioAlumno extends StatefulWidget {
 
   const UpdateFomrularioAlumno(
       {super.key,
+      required this.id,
       required this.nombre,
       required this.appaterno,
       required this.apmaterno,
@@ -34,7 +36,9 @@ class UpdateFomrularioAlumno extends StatefulWidget {
       required this.matricula,
       required this.nia,
       required this.idGrupo,
-      required this.idSemestre});
+      required this.idSemestre, 
+      }
+    );
 
   @override
   State<UpdateFomrularioAlumno> createState() => _UpdateFomrularioAlumnoState();
@@ -82,6 +86,7 @@ class _UpdateFomrularioAlumnoState extends State<UpdateFomrularioAlumno> {
         )),
       ),
       body: UpdateFormularioAlumnoTextfield(
+        userId: widget.id,
         nombre: widget.nombre,
         appaterno: widget.appaterno,
         apmaterno: widget.apmaterno,
@@ -101,6 +106,7 @@ class _UpdateFomrularioAlumnoState extends State<UpdateFomrularioAlumno> {
 
 // ignore: must_be_immutable
 class UpdateFormularioAlumnoTextfield extends StatefulWidget {
+  final String userId;
   final String nombre;
   final String appaterno;
   final String apmaterno;
@@ -117,6 +123,7 @@ class UpdateFormularioAlumnoTextfield extends StatefulWidget {
   UpdateFormularioAlumnoTextfield(
 
       {super.key,
+      required this.userId,
       required this.nombre,
       required this.appaterno,
       required this.apmaterno,
@@ -192,8 +199,6 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
   @override
   Widget build(BuildContext context) {
     // String grupoSelected = listaDeGrupo[0];
-    
-
    updateNombre.text = widget.nombre;
    updateAppaterno.text = widget.appaterno;
    updateApmaterno.text = widget.apmaterno;
@@ -805,6 +810,8 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                             onPressed: () async {
                                
                                 if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+
+                                  
                                   posicionGrupo =listaDeGrupo.indexOf(grupoSeleccion) + 1;
                                   // posicionGrupo = listaDeGrupo.indexOf(grupoSeleccion) + 1;
                                 print("Valor GRUPO seleccionado: $grupoSeleccion");
@@ -814,20 +821,22 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                                   print("Valor SEMESTRE seleccionado: $semestreSeleccion");
                                 print("Valor entero para SEMESTRE ==>: $posicionSemestre");
 
-                                  var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/alumno/insertAlumno.php');
+                                String id = widget.userId;
+
+                                  var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/alumno/primero/updateAlumnoPrimer.php?id=$id');
                                   var response = await http.post(
                                     url, 
                                     body: {
-                                      // 'nombre': nombre.text,
-                                      // 'apePaterno': appaterno.text,
-                                      // 'apeMaterno': apmaterno.text,
-                                      // 'nombretutor': nombreTutor.text,
-                                      // 'appaternotutor': appaternoTutor.text,
-                                      // 'apmaternotutor': apmatertoTutor.text,
-                                      // 'telefono': telefono.text,
-                                      // 'telopcional': telefonoOpcional.text,
-                                      // 'nia': nia.text,
-                                      // 'matricula': matricula.text,
+                                      'nombre': updateNombre.text,
+                                      'apePaterno': updateAppaterno.text,
+                                      'apeMaterno': updateApmaterno.text,
+                                      'nombretutor': updateNombreTutor.text,
+                                      'appaternotutor': updateAppaternoTutor.text,
+                                      'apmaternotutor': updateApmatertoTutor.text,
+                                      'telefono': updateTelefono.text,
+                                      'telopcional': updateTelefonoOpcional.text,
+                                      'nia': updateNia.text,
+                                      'matricula': updateMatricula.text,
                                       'grupo': posicionGrupo.toString(),
                                       'semestre': posicionSemestre.toString(),
                                     }
@@ -845,7 +854,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
 
                                   print('Response data-------------------------: ${response.body}');
                                   
-                                  } else if(response.statusCode == 409){
+                                  } else if(response.statusCode == 400){
                                     Map<String, dynamic> responseData = json.decode(response.body);
                                     int httpCode = responseData['httpCode'];
                                     String message = responseData['message'];

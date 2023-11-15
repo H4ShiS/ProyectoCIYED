@@ -1,3 +1,4 @@
+
 import 'dart:convert';
 
 List<GetAlumnosPrimero> getAlumnosPrimeroFromJson(String str) => List<GetAlumnosPrimero>.from(json.decode(str).map((x) => GetAlumnosPrimero.fromJson(x)));
@@ -5,7 +6,7 @@ List<GetAlumnosPrimero> getAlumnosPrimeroFromJson(String str) => List<GetAlumnos
 String getAlumnosPrimeroToJson(List<GetAlumnosPrimero> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 class GetAlumnosPrimero {
-    
+    final String id;
     final String nombre;
     final String appaterno;
     final String apmaterno;
@@ -20,6 +21,7 @@ class GetAlumnosPrimero {
     final String idSemestre;
 
     GetAlumnosPrimero({
+        required this.id,
         required this.nombre,
         required this.appaterno,
         required this.apmaterno,
@@ -35,6 +37,7 @@ class GetAlumnosPrimero {
     });
 
     GetAlumnosPrimero copyWith({
+        String? id,
         String? nombre,
         String? appaterno,
         String? apmaterno,
@@ -49,6 +52,7 @@ class GetAlumnosPrimero {
         String? idSemestre,
     }) => 
         GetAlumnosPrimero(
+            id: id ?? this.id,
             nombre: nombre ?? this.nombre,
             appaterno: appaterno ?? this.appaterno,
             apmaterno: apmaterno ?? this.apmaterno,
@@ -64,6 +68,7 @@ class GetAlumnosPrimero {
         );
 
     factory GetAlumnosPrimero.fromJson(Map<String, dynamic> json) => GetAlumnosPrimero(
+        id: json["id"],
         nombre: json["nombre"],
         appaterno: json["appaterno"],
         apmaterno: json["apmaterno"],
@@ -79,6 +84,7 @@ class GetAlumnosPrimero {
     );
 
     Map<String, dynamic> toJson() => {
+        "id": id,
         "nombre": nombre,
         "appaterno": appaterno,
         "apmaterno": apmaterno,
