@@ -53,3 +53,5 @@ onPressed: () {
 ******************************** Pendientes Importantes
 
 encriptacion de contraseñas pendiente
+
+revision de los ScaffoldMessenger para que cambie e color cuando sea una peticion erronea
