@@ -757,10 +757,11 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                                     int httpCode = responseData['httpCode'];
                                     String message = responseData['message'];
 
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(message)
-                                      )
-                                    );
+                                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                    content: Text(message,
+                                      style: const TextStyle(color: Colors.red),
+                                    ),
+                                  ));
                                   
                                   } else {
                                     ScaffoldMessenger.of(context).showSnackBar(

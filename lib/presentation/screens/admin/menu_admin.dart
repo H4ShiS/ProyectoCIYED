@@ -332,7 +332,7 @@ class ButtonsAdmin extends StatelessWidget {
 
         OutlinedButton.icon(
           onPressed: () {
-
+            context.pushNamed(GetListaMaterias.opcionesMateria);
           },
           icon: FadeAnimation(1, const Icon(Icons.room_preferences_outlined, color: Colors.white,)),
           label: Row(

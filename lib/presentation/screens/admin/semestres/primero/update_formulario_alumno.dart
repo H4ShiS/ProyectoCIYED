@@ -847,7 +847,8 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                                     String message = responseData['message'];
 
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(content: Text(message))
+                                        SnackBar(content: Text(message,
+                                        style: const TextStyle(color: Colors.red),))
                                     );
 
                                 
@@ -860,7 +861,8 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                                     String message = responseData['message'];
 
                                     ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(content: Text(message)
+                                      SnackBar(content: Text(message,
+                                      style: const TextStyle(color: Colors.red),)
                                       )
                                     );
                                   

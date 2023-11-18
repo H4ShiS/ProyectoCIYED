@@ -49,6 +49,13 @@ final appRouter = GoRouter(
 
     ),
 
+    //ruta materia opcionesn
+    GoRoute(
+      path: '/materias',
+      name: GetListaMaterias.opcionesMateria,
+      builder: (context, state) => const GetListaMaterias(),
+
+    ),
 
 
 

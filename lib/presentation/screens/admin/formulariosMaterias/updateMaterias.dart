@@ -5,9 +5,22 @@ import '../../../widgets/Animatios/Animaciones.dart';
 import 'package:http/http.dart' as http;
 
 
-class FomrularioMaterias  extends StatelessWidget {
-  static const formularioMaterias = "formulario-materias";
-  const FomrularioMaterias ({super.key});
+class UpdateFomrularioMaterias  extends StatelessWidget {
+  static const updateFormularioMaterias = "update-formulario-materias";
+
+  final String materiaId;
+  final String nombre;
+  final String matricula;
+  final String idUsuario;
+  final String idSemestre;
+
+  const UpdateFomrularioMaterias(
+      {super.key,
+      required this.materiaId,
+      required this.nombre,
+      required this.matricula,
+      required this.idUsuario,
+      required this.idSemestre});
 
 
   @override
@@ -69,7 +82,13 @@ class FomrularioMaterias  extends StatelessWidget {
 
       ),
 
-      body: FormularioMateriasTextfield(),
+      body: UpdateFormularioMateriasTextfield(
+        userId: materiaId,
+        nombre: nombre,
+        matricula: matricula,
+        idUsuario: idUsuario,
+        idSemestre: idSemestre,
+      ),
 
     );
   }
@@ -77,32 +96,47 @@ class FomrularioMaterias  extends StatelessWidget {
 
 
 // ignore: must_be_immutable
-class FormularioMateriasTextfield extends StatefulWidget {
-   FormularioMateriasTextfield({super.key});
+class UpdateFormularioMateriasTextfield extends StatefulWidget {
+  final String userId;
+  final String nombre;
+  final String matricula;
+  final String idUsuario;
+  final String idSemestre;
+
+  UpdateFormularioMateriasTextfield(
+      {super.key,
+      required this.userId,
+      required this.nombre,
+      required this.matricula,
+      required this.idUsuario,
+      required this.idSemestre});
 
   @override
-  State<FormularioMateriasTextfield> createState() => _FormularioMateriasTextfieldState();
+  State<UpdateFormularioMateriasTextfield> createState() => _UpdateFormularioMateriasTextfieldState();
 }
 
-class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfield> {
+class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMateriasTextfield> {
   
   final _keyForm = GlobalKey<FormState>();
-  TextEditingController matriculaMateria = TextEditingController();
-  TextEditingController nombreMateria = TextEditingController();
+  TextEditingController updateMatriculaMateria = TextEditingController();
+  TextEditingController updateNombreMateria = TextEditingController();
   List<String> listaDeSemestre = [ "Primero",  "Segundo", "Tercer", "Cuarto","Quinto", "Sexto"];
 
   late List<Map<String, dynamic>> docentes;
   Map<String, dynamic> docenteSelected = {};
+  
   int posicionSemestre = 0;
   late String semestreSeleccion; 
-  int posicionDocente = 0;
+
 
 
   @override
   void initState() {
     super.initState();
-    semestreSeleccion = listaDeSemestre[0];
+    // semestreSeleccion = listaDeSemestre[0];
     docentes = [];
+    semestreSeleccion = semestreSeleccion = listaDeSemestre[int.parse(widget.idSemestre) - 1];
+
     // docenteSelected = {};
     fetchData();
 
@@ -115,7 +149,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
       final List<dynamic> data = json.decode(response.body);
       setState(() {
         docentes = data.map((item) => {
-          'id': item['id'],
+          'idDocente': item['id'],
           'nombre': item['nombre'].toString(),
           'appaterno': item['appaterno'].toString(),
           'apmaterno': item['apmaterno'].toString(),
@@ -132,9 +166,16 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
     super.dispose();
   }
 
+  
+
 
   @override
   Widget build(BuildContext context) {
+
+
+    updateMatriculaMateria.text = widget.matricula;
+    updateNombreMateria.text = widget.nombre;
+
     return ListView(
       
       physics: const BouncingScrollPhysics(),
@@ -182,7 +223,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                               }
                               return null;
                             },
-                            controller: matriculaMateria,
+                            controller: updateMatriculaMateria,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Matricula")),
@@ -224,18 +265,12 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-
-                                
-
                               } else {
-
                                 return "Ingresa el Nombre";
-
                               }
-                                      
                               return null;
                             },
-                            controller: nombreMateria,
+                            controller: updateNombreMateria,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Nombre de la Materia")),
@@ -332,7 +367,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15,),
                           child: DropdownButtonFormField(
-                            
+                            value: semestreSeleccion,
                             items: listaDeSemestre.map((name) {
                               
                               return DropdownMenuItem(
@@ -406,14 +441,14 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                             onPressed: () async{
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
-                                String idDocenteSeleccionado  = docenteSelected['id'].toString();
+                                String idDocenteSeleccionado  = docenteSelected['idDocente'].toString();
                                 print("Valor GRUPO seleccionado: $docenteSelected");
                                 print("Valor entero para la API: $idDocenteSeleccionado");
 
                                 posicionSemestre = listaDeSemestre.indexOf(semestreSeleccion) + 1;
                                 print("Valor SEMESTRE seleccionado: $semestreSeleccion");
                                 print("Valor entero para SEMESTRE ==>: $posicionSemestre");
-
+/*
                                 var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/insertMateria.php'), 
                                   body: {
                                     'matricula': matriculaMateria.text,
@@ -456,7 +491,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                                   );
 
                                 }
-                                
+                               */ 
                                 
 
                                 print("Validacion Exitosa");

@@ -1,13 +1,25 @@
 // ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../../widgets/Animatios/Animaciones.dart';
+import '../../../lib/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:http/http.dart' as http;
 
 
-class FomrularioMaterias  extends StatelessWidget {
-  static const formularioMaterias = "formulario-materias";
-  const FomrularioMaterias ({super.key});
+class UpdateFomrularioMaterias  extends StatelessWidget {
+  static const updateFormularioMaterias = "update-formulario-materias";
+
+  final String materiaId;
+  final String nombre;
+
+  final String idUsuario;
+  final String idSemestre;
+
+  const UpdateFomrularioMaterias(
+      {super.key,
+      required this.materiaId,
+      required this.nombre,
+      required this.idUsuario,
+      required this.idSemestre});
 
 
   @override
@@ -22,100 +34,65 @@ class FomrularioMaterias  extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
 
-        actions: [
-            
-            IconButton(
-              onPressed: (){}, 
-              icon: const Icon(
-                Icons.book, 
-                color: Colors.white, size: 30,
-              ),
-              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-            
-            ),
-
-            IconButton(
-              onPressed: (){}, 
-              icon: const Icon(
-                Icons.article_rounded, 
-                color: Colors.white, size: 30,
-              ),
-              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-            
-            ),
-
-            const SizedBox(width: 15,),
-
-          ],
-
-
-        leading: IconButton(
-            icon: const Icon(
-              Icons.arrow_back_rounded, // Icono de flecha de retroceso
-              color:
-                  Colors.white, // Cambia el color de la flecha de retroceso aquí
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-        ),
-
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.circular(15), 
-              bottomRight: Radius.circular(15),
-            )
-          ),
-
       ),
 
-      body: FormularioMateriasTextfield(),
+      body: UpdateFormularioMateriasTextfield(
+        userId: materiaId,
+        nombre: nombre,
+        idUsuario: idUsuario,
+        idSemestre: idSemestre,
+      ),
 
     );
   }
 }
 
-
 // ignore: must_be_immutable
-class FormularioMateriasTextfield extends StatefulWidget {
-   FormularioMateriasTextfield({super.key});
+class UpdateFormularioMateriasTextfield extends StatefulWidget {
+  final String userId;
+  final String nombre;
+  final String idUsuario;
+  final String idSemestre;
+
+  UpdateFormularioMateriasTextfield(
+      {super.key,
+      required this.userId,
+      required this.nombre,
+      required this.idUsuario,
+      required this.idSemestre});
 
   @override
-  State<FormularioMateriasTextfield> createState() => _FormularioMateriasTextfieldState();
+  State<UpdateFormularioMateriasTextfield> createState() => _UpdateFormularioMateriasTextfieldState();
 }
 
-class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfield> {
+class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMateriasTextfield> {
   
   final _keyForm = GlobalKey<FormState>();
-  TextEditingController matriculaMateria = TextEditingController();
-  TextEditingController nombreMateria = TextEditingController();
+  TextEditingController updateMatriculaMateria = TextEditingController();
+  TextEditingController updateNombreMateria = TextEditingController();
   List<String> listaDeSemestre = [ "Primero",  "Segundo", "Tercer", "Cuarto","Quinto", "Sexto"];
-
   late List<Map<String, dynamic>> docentes;
   Map<String, dynamic> docenteSelected = {};
   int posicionSemestre = 0;
   late String semestreSeleccion; 
-  int posicionDocente = 0;
 
 
   @override
   void initState() {
     super.initState();
-    semestreSeleccion = listaDeSemestre[0];
+    // semestreSeleccion = listaDeSemestre[0];
     docentes = [];
+    semestreSeleccion = semestreSeleccion = listaDeSemestre[int.parse(widget.idSemestre) - 1];
     // docenteSelected = {};
     fetchData();
-
   }
-
-
     Future<void> fetchData() async {
     final response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/getNombreDocente.php'));
     if (response.statusCode == 200) {
       final List<dynamic> data = json.decode(response.body);
       setState(() {
         docentes = data.map((item) => {
-          'id': item['id'],
+          'idDocente': item['id'],
           'nombre': item['nombre'].toString(),
           'appaterno': item['appaterno'].toString(),
           'apmaterno': item['apmaterno'].toString(),
@@ -125,117 +102,39 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
       throw Exception('Error al cargar datos');
     }
   }
-
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
   }
-
-
   @override
   Widget build(BuildContext context) {
+    updateNombreMateria.text = widget.nombre;
     return ListView(
-      
+  
       physics: const BouncingScrollPhysics(),
       children: [
         Expanded(
           child: Container(
-        
-            child: Form(
-        
-        
+            child: Form(        
               key: _keyForm,
               child: Column(
-                children: [
-                  Row(
-                    
+                children: [  
+                  Row(                   
                     children: [
-
-                      const SizedBox(width: 80), // Espacio entre los campos
-
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
-                          child: TextFormField(
-                            
-                            validator: (valor) {
-                              if (valor != null && valor.isNotEmpty) {
-
-                                RegExp matriculaExpress =  RegExp(r'^[A-Z0-9]+$');
-                                RegExp matriculaContador =  RegExp(r'^[A-Z0-9]{10,12}$');
-
-                                
-                                if (!matriculaExpress.hasMatch(valor)) {
-                                  return "Letras Mayusculas y Numeros";
-                                } else {
-
-                                  if (!matriculaContador.hasMatch(valor)) {
-                                    return "10 - 12";
-                                  }
-                                }
-                                
-                              } else {
-
-                                return "Ingresa la Matricula";
-
-                              }
-                              return null;
-                            },
-                            controller: matriculaMateria,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Matricula")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.app_registration_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-            
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                              
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 80), // Espacio entre los campos
-
-                    ],
-                  ),
-            
-            
-                  Row(
-                    
-                    children: [
-
                       const SizedBox(width: 10), // Espacio entre los campos
-
                       Expanded(                        
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15,),
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-
-                                
-
                               } else {
-
                                 return "Ingresa el Nombre";
-
                               }
-                                      
                               return null;
                             },
-                            controller: nombreMateria,
+                            controller: updateNombreMateria,
                             keyboardType: TextInputType.text,
                             decoration: InputDecoration(
                               label: FadeAnimation(1, const Text("Nombre de la Materia")),
@@ -250,23 +149,17 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                               labelStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-            
+                              ),           
                               contentPadding: const EdgeInsets.symmetric(vertical: 5),
                               
                             ),
                           ),
                         ),
-                      ),
-            
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      
-                      
+                      ),           
+        
+                      const SizedBox(width: 10), // Espacio entre los campos             
                     ],
-                  ),
-                  
-            
+                  ),      
                   Row(
                     children: [
 
@@ -289,9 +182,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                                 docenteSelected = value!;
                               });
                             },
-
                             validator: (value) {
-
                               if (value == null || value.isEmpty) {
 
                                 return "Selecciona un Docente";
@@ -332,7 +223,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15,),
                           child: DropdownButtonFormField(
-                            
+                            value: semestreSeleccion,
                             items: listaDeSemestre.map((name) {
                               
                               return DropdownMenuItem(
@@ -347,10 +238,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                             },
 
                             validator: (value) {
-
                               if (value == null || value.isEmpty) {
-
-
                                 return "Selecciona un semestre";
                               }
                             },
@@ -372,25 +260,16 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                               ),
                               isDense: true,
                             ),
-                            
-
                           ),
                         ),
                       ),
 
                       const SizedBox(width: 80,), // Espacio entre los campos
-
-
-
                     ],                
                   ),
-            
-                  
                   const SizedBox(
                     height: 80,
                   ),
-                  
-        
                   Row(
                     children: [
                       Expanded(
@@ -406,59 +285,13 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                             onPressed: () async{
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
-                                String idDocenteSeleccionado  = docenteSelected['id'].toString();
+                                String idDocenteSeleccionado  = docenteSelected['idDocente'].toString();
                                 print("Valor GRUPO seleccionado: $docenteSelected");
                                 print("Valor entero para la API: $idDocenteSeleccionado");
 
                                 posicionSemestre = listaDeSemestre.indexOf(semestreSeleccion) + 1;
                                 print("Valor SEMESTRE seleccionado: $semestreSeleccion");
                                 print("Valor entero para SEMESTRE ==>: $posicionSemestre");
-
-                                var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/insertMateria.php'), 
-                                  body: {
-                                    'matricula': matriculaMateria.text,
-                                    'nombremateria':  nombreMateria.text,
-                                    'iddocente': idDocenteSeleccionado.toString(),
-                                    'idsemestre': posicionSemestre.toString(),
-                                  },
-                                );
-
-
-                                if (response.statusCode == 200) {
-                                  Map<String, dynamic> responseData = json.decode(response.body);
-                                  int httpCode = responseData['httpCode'];
-                                  String message = responseData['message'];
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(message))
-                                  ); 
-
-                                  matriculaMateria.clear();
-                                  nombreMateria.clear();
-
-                                } else if(response.statusCode == 409){
-                                  Map<String, dynamic> responseData = json.decode(response.body);
-                                  int httpCode = responseData['httpCode'];
-                                  String message = responseData['message'];
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text(message, 
-                                      style: const TextStyle(color: Colors.red),)
-                                    )
-                                  );
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Error en la solicitud. Código de estado: ${response.statusCode}', 
-                                      style: const TextStyle(color: Colors.red),)
-                                    )
-                                  );
-
-                                }
-                                
-                                
-
                                 print("Validacion Exitosa");
                                 
                               } else{
@@ -507,9 +340,7 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                       ),
                     ],
                   )
-            
-            
-                  // Resto de tus TextFormField aquí...
+          // Resto de tus TextFormField aquí...
                 ],
               ),
             ),

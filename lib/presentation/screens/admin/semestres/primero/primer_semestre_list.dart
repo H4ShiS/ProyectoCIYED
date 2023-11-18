@@ -70,7 +70,7 @@ class _ListPrimeroState extends State<ListPrimero> {
         backgroundColor: const Color.fromARGB(255, 17, 5, 130),
         toolbarHeight: 80,
         title: const Text(
-          "Lista Alumno",
+          "Alumnos Primero",
           style: TextStyle(color: Colors.white),
         ),
         actions: [
@@ -134,7 +134,10 @@ class _ListPrimeroState extends State<ListPrimero> {
               elevation: 2,
               margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
               child: ListTile(
-                title: Text(data[index].nombre, style: const TextStyle(fontSize: 16)),
+                title: Text(data[index].matricula, style: const TextStyle(fontSize: 18)),
+                subtitle: Text(
+                      'Nombre: ${data[index].nombre}', style: const TextStyle(fontSize: 18),
+                ),
                 trailing: const Icon(Icons.arrow_back_ios_new_outlined), // Personaliza el icono según tus necesidades
               ),
             ),
@@ -145,3 +148,9 @@ class _ListPrimeroState extends State<ListPrimero> {
   }
 }
 
+
+/*title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
+                subtitle: Text(
+                      'Nombre: ${data[index].nombre}',
+                      style: const TextStyle(fontSize: 18),
+                ), */
