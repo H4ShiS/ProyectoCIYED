@@ -31,7 +31,7 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
          backgroundColor: const Color.fromARGB(255, 17, 5, 130),
           toolbarHeight: 80,
         title: const  Text(
-          "Registrar Materia", 
+          "Actualizar Materia", 
           style: TextStyle(color: Colors.white),
         ),
 
@@ -447,6 +447,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                          OutlinedButton.icon(
                             onPressed: () async{
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+                                String id = widget.userId;
 
                                 String idDocenteSeleccionado  = docenteSelected['idDocente'].toString();
                                 // print("Valor GRUPO seleccionado: $docenteSelected");
@@ -455,11 +456,11 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 posicionSemestre = listaDeSemestre.indexOf(semestreSeleccion) + 1;
                                 // print("Valor SEMESTRE seleccionado: $semestreSeleccion");
                                 // print("Valor entero para SEMESTRE ==>: $posicionSemestre");
-/*
-                                var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/insertMateria.php'), 
+
+                                var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/updateMateria.php?id=$id'), 
                                   body: {
-                                    'matricula': matriculaMateria.text,
-                                    'nombremateria':  nombreMateria.text,
+                                    'nombremateria':  updateNombreMateria.text,
+                                    'matricula': updateMatriculaMateria.text,
                                     'iddocente': idDocenteSeleccionado.toString(),
                                     'idsemestre': posicionSemestre.toString(),
                                   },
@@ -475,10 +476,9 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                     SnackBar(content: Text(message))
                                   ); 
 
-                                  matriculaMateria.clear();
-                                  nombreMateria.clear();
+                                
 
-                                } else if(response.statusCode == 409){
+                                } else if(response.statusCode == 400){
                                   Map<String, dynamic> responseData = json.decode(response.body);
                                   int httpCode = responseData['httpCode'];
                                   String message = responseData['message'];
@@ -498,7 +498,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                   );
 
                                 }
-                               */ 
+                               
                                 
 
                                 print("Validacion Exitosa");
@@ -516,7 +516,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 FadeAnimation(
                                     1,
                                     const Text(
-                                      "Registrar Materia",
+                                      "Actualizar Materia",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,

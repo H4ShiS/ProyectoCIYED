@@ -2,22 +2,22 @@
 
 try {
 
-    // if ($_SERVER['REQUEST_METHOD'] !== 'POST') {    
-    //     throw new Exception("Error Processing Request", 400);
-    // }
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') {    
+        throw new Exception("Error Processing Request", 400);
+    }
 
-    // $id = !empty($_GET['id']) ? $_GET['id'] : null;
-    // $nombreMateria = !empty($_POST['nombremateria']) ? $_POST['nombremateria'] : null;
-    // $matricula = !empty($_POST['matricula']) ? $_POST['matricula'] : null;
-    // $idDocente = !empty($_POST['iddocente']) ? $_POST['iddocente'] : null;
-    // $idSemestre = !empty($_POST['idsemestre']) ? $_POST['idsemestre'] : null;
+    $id = !empty($_GET['id']) ? $_GET['id'] : null;
+    $nombreMateria = !empty($_POST['nombremateria']) ? $_POST['nombremateria'] : null;
+    $matricula = !empty($_POST['matricula']) ? $_POST['matricula'] : null;
+    $idDocente = !empty($_POST['iddocente']) ? $_POST['iddocente'] : null;
+    $idSemestre = !empty($_POST['idsemestre']) ? $_POST['idsemestre'] : null;
 
 
-    $id = 9;
-    $nombreMateria = "LECTURA";
-    $matricula = "KOKOL15426";
-    $idDocente = 9;
-    $idSemestre = 1;
+    // $id = 9;
+    // $nombreMateria = "LECTURA";
+    // $matricula = "KOKOL15426";
+    // $idDocente = 9;
+    // $idSemestre = 1;
 
     if (is_null($matricula)){
         throw new Exception("Parametro Matricula requerido", 400);     
