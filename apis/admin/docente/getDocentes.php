@@ -19,8 +19,6 @@ try {
 
             print_r($data);
 
-            
-
             $httpCode = 200;
             $message = "OK";
             header('Content-Type: application/json; charset=utf-8');

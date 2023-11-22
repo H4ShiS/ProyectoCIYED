@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, curly_braces_in_flow_control_structures, use_build_context_synchronously
+
 import 'package:app_ciyed/config/router/app_router.dart';
 import 'package:app_ciyed/presentation/screens/admin/menu_admin.dart';
 import 'package:app_ciyed/presentation/screens/docente/menu_docente.dart';
@@ -6,7 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 // ignore: unused_import
 import 'package:simple_animations/simple_animations.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -20,131 +23,113 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     // final colors = Theme.of(context).colorScheme;
     final formField = GlobalKey<FormState>();
+    final _keyForm = GlobalKey<FormState>();
     final emailController = TextEditingController();
     final passController = TextEditingController();
     bool passToggle = true;
 
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(begin: Alignment.topCenter, colors: [
-          // Color.fromARGB(255, 6, 30, 65),
-          // Color.fromARGB(255, 10, 62, 141),
-          // Color.fromARGB(255, 2, 70, 172),
-
-          Color.fromARGB(255, 199, 51, 6),
-          Color.fromARGB(255, 215, 75, 33),
-          Color.fromARGB(255, 241, 96, 52),
-        ])),
-        child: ListView(
-
-          physics: BouncingScrollPhysics(),
-          // Cambiado a ListView
-          children: <Widget>[
-            const SizedBox(
-              height: 5,
-            ),
-
-            const Stack(
-              children: [
-                Padding(
-                  padding: EdgeInsets.all(10),
-
-                  child: Column(
-                    children: [
-                      Center(
-                        child: Positioned(
-                          top:
-                              30, // Ajusta la posición vertical según tus necesidades
-                          left:
-                              20, // Ajusta la posición horizontal según tus necesidades
-                          child: CircleAvatar(
-                            radius: 130, // Tamaño del avatar
-                            backgroundColor: Color.fromARGB(
-                                255, 255, 255, 255), // Color de fondo
-                            backgroundImage:
-                                AssetImage('assets/images/logociyed.png'),
+      body: Form(
+        key: _keyForm,
+        child: Container(
+          width: double.infinity,
+          decoration: const BoxDecoration(
+              gradient: LinearGradient(begin: Alignment.topCenter, colors: [
+            // Color.fromARGB(255, 6, 30, 65),
+            // Color.fromARGB(255, 10, 62, 141),
+            // Color.fromARGB(255, 2, 70, 172),
+      
+            Color.fromARGB(255, 199, 51, 6),
+            Color.fromARGB(255, 215, 75, 33),
+            Color.fromARGB(255, 241, 96, 52),
+          ])),
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            // Cambiado a ListView
+            children: <Widget>[
+              const SizedBox(
+                height: 5,
+              ),
+      
+              const Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(10),
+      
+                    child: Column(
+                      children: [
+                        Center(
+                          child: Positioned(
+                            top:
+                                30, // Ajusta la posición vertical según tus necesidades
+                            left:
+                                20, // Ajusta la posición horizontal según tus necesidades
+                            child: CircleAvatar(
+                              radius: 130, // Tamaño del avatar
+                              backgroundColor: Color.fromARGB(
+                                  255, 255, 255, 255), // Color de fondo
+                              backgroundImage:
+                                  AssetImage('assets/images/logociyed.png'),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
+    
                   ),
-
-                  // child:
-                  // Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: <Widget>[
-                  //     Text(
-                  //       "Login screen",
-                  //       style: TextStyle(color: Colors.white, fontSize: 40),
-                  //     ),
-                  //     SizedBox(
-                  //       height: 10,
-                  //     ),
-                  //     Text(
-                  //       "Step",
-                  //       style: TextStyle(color: Colors.white, fontSize: 18),
-                  //     ),
-                  //   ],
-                  // ),
-                ),
-              ],
-            ),
-
-            // FloatingActionButton(onPressed: (){},
-            //     backgroundColor: Colors.blue, child: const Icon(Icons.add),),
-
-            const SizedBox(
-              height: 10,
-            ),
-
-            Expanded(
-              child: Container(
-                decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topRight: Radius.circular(40),
-                        topLeft: Radius.circular(40)),
-
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.white,
-                        blurRadius: 20,
-                        offset: Offset(5, 10),
-                      )
-                    ]),
-
-                child: Padding(
-                  padding: const EdgeInsets.all(20),
-                  child: Column(
-                    children: <Widget>[
-                      const SizedBox(
-                        height: 50,
-                      ),
-
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(15),
-                            boxShadow: const [
-                              BoxShadow(
-                                color: Color.fromARGB(255, 243, 231, 231),
-                                blurRadius: 15,
-                                offset: Offset(1, 5),
-                              )
-                            ]),
-                        child: Column(
+                ],
+              ),
+      
+              const SizedBox(
+                height: 10,
+              ),
+      
+              Expanded(
+                child: Container(
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                          topRight: Radius.circular(40),
+                          topLeft: Radius.circular(40)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.white,
+                          blurRadius: 20,
+                          offset: Offset(5, 10),
+                        )
+                      ]),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20),
+                    child: Column(
+                      children: <Widget>[
+                        const SizedBox(
+                          height: 50,
+                        ),
+      
+                        Column(
                           children: <Widget>[
                             const SizedBox(
                               height: 10,
                             ),
                             TextFormField(
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                  RegExp regex = RegExp(
+                                      r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+                                  if (!regex.hasMatch(value)) {
+                                    return "Ingresa un correo electrónico válido";
+                                  }
+                                } else {
+                                  return "Ingresa el Email";
+                                  print("R EMAIL");
+                                }
+                                return null;
+                              },
                               controller: emailController,
                               keyboardType: TextInputType.emailAddress,
                               decoration: InputDecoration(
-                                
-                                label: FadeAnimation(1, const Text("Correo Electronico")),
+                                label: FadeAnimation(
+                                    1, const Text("Correo Electronico")),
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(20)),
                                 prefixIcon: const Icon(
@@ -163,10 +148,17 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 40,
                             ),
                             TextFormField(
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                } else {
+                                  return "Ingresa la contraseña";
+                                }
+                              },
                               controller: passController,
                               keyboardType: TextInputType.visiblePassword,
                               decoration: InputDecoration(
-                                  label: FadeAnimation(1, const Text("Password")),
+                                  label:
+                                      FadeAnimation(1, const Text("Password")),
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20)),
                                   prefixIcon: const Icon(
@@ -192,73 +184,113 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           ],
                         ),
-                      ),
-
-                      const SizedBox(
-                        height: 50,
-                      ),
-
-                      InkWell(
-                        onTap: () {
-                          context.pushNamed(MenuAdmin.menuAdmin);
-                        },
-                        
-                        child: Container(
+      
+                        const SizedBox(
                           height: 50,
-                          decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 17, 5, 130),
-                              borderRadius: BorderRadius.circular(20),
-                              boxShadow: const [
-                                BoxShadow(
-                                  
-                                  color: Color.fromARGB(255, 159, 151, 193),
-                                  blurRadius: 10,
-                                  offset: Offset(2, 5),
+                        ),
+      
+                        InkWell(
+                          onTap: () async {
+                            context.pushNamed(MenuAdmin.menuAdmin);
+                            
+                            /*if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+                              String email = emailController.text;
+                              String pass = passController.text;
 
-                                )
-                              ]),
-                              
-                          child:  Center(
-                            child: FadeAnimation(
-                              1, const Text(
-                                "Iniciar Sesion",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
+                              var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/sesion/sesion.php'),
+                                body: {
+                                  'email': email,
+                                  'pass': pass,
+                                }
+                              ); 
+
+                              if (response.statusCode == 200) {
+                                // Map<String, dynamic> responseData = json.decode(response.body);
+                                List<dynamic> responseData = json.decode(response.body);
+                                  for (var item in responseData) {
+                                    String idRol = item['id_rol'];
+
+                                    if (idRol == "2") {
+                                      Navigator.push(context, MaterialPageRoute(
+                                          builder: (context) => const MenuDocente(),
+                                        )
+                                      );
+                                    } else if(idRol == "1"){
+                                      Navigator.push(context, MaterialPageRoute(
+                                        builder: (context) => const MenuAdmin(
+
+                                        ),
+                                      ));
+                                    };
+                                     // Accede a los elementos de la lista directamente
+                                  }
+                                  print(responseData);
+                                  
+                                } else {
+                                  print("Error 500");
+                              }
+                            
+                            // context.pushNamed(MenuAdmin.menuAdmin);
+      
+                            }*/
+                          },
+                          child: Container(
+                            height: 50,
+                            decoration: BoxDecoration(
+                                color: const Color.fromARGB(255, 17, 5, 130),
+                                borderRadius: BorderRadius.circular(20),
+                                boxShadow: const [
+                                  BoxShadow(
+                                    color: Color.fromARGB(255, 159, 151, 193),
+                                    blurRadius: 10,
+                                    offset: Offset(2, 5),
+                                  )
+                                ]),
+                            child: Center(
+                              child: FadeAnimation(
+                                1,
+                                const Text(
+                                  "Iniciar Sesion",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      // Container(
-                      //   height: 50,
-                      //   margin: const EdgeInsets.symmetric(horizontal: 50),
-                      //   decoration: BoxDecoration(
-                      //     borderRadius: BorderRadius.circular(50),
-                      //     color: const Color.fromARGB(255, 202, 73, 4)
-                      //   ),
-                      //   child: const Center(
-                      //     child: Text("Iniciar Sesion", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
-                      //   ),
-                      // ),
-                      const SizedBox(
-                        height: 150, //cambiar a 150
-                      ),
-
-                      FloatingActionButton(
-                        onPressed: (){
-                          context.pushNamed(MenuDocente.menuDocenteHome);
-                        }, 
-                        child: const Icon(Icons.next_plan, size: 50,),
-
-                      ),
-                    ],
+                        // Container(
+                        //   height: 50,
+                        //   margin: const EdgeInsets.symmetric(horizontal: 50),
+                        //   decoration: BoxDecoration(
+                        //     borderRadius: BorderRadius.circular(50),
+                        //     color: const Color.fromARGB(255, 202, 73, 4)
+                        //   ),
+                        //   child: const Center(
+                        //     child: Text("Iniciar Sesion", style: TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),),
+                        //   ),
+                        // ),
+                        const SizedBox(
+                          height: 150, //cambiar a 150
+                        ),
+      
+                        FloatingActionButton(
+                          onPressed: () {
+                            context.pushNamed(MenuAdmin.menuAdmin);
+                          },
+                          child: const Icon(
+                            Icons.next_plan,
+                            size: 50,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

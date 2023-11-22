@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import '../../../lib/presentation/widgets/Animatios/Animaciones.dart';
+import '../../lib/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:http/http.dart' as http;
 
 

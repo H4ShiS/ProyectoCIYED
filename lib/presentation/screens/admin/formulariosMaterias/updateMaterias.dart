@@ -136,6 +136,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
     // semestreSeleccion = listaDeSemestre[0];
     docentes = [];
     semestreSeleccion = semestreSeleccion = listaDeSemestre[int.parse(widget.idSemestre) - 1];
+    // docenteSelected = docentes.firstWhere((docente) => docente['idDocente'] == widget.idUsuario);
 
     // docenteSelected = {};
     fetchData();
@@ -154,6 +155,11 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
           'appaterno': item['appaterno'].toString(),
           'apmaterno': item['apmaterno'].toString(),
         }).toList();
+        
+        if (docentes.isNotEmpty) {
+        docenteSelected = docentes.firstWhere((docente) => docente['idDocente'] == widget.idUsuario, orElse: () => docentes.first);
+      }
+
       });
     } else {
       throw Exception('Error al cargar datos');
@@ -311,6 +317,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
                           child: DropdownButtonFormField(
+                            value: docenteSelected,
                             items: docentes.map((Map<String, dynamic> value) {
                               return DropdownMenuItem(
                                 value: value,
@@ -442,12 +449,12 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
                                 String idDocenteSeleccionado  = docenteSelected['idDocente'].toString();
-                                print("Valor GRUPO seleccionado: $docenteSelected");
-                                print("Valor entero para la API: $idDocenteSeleccionado");
+                                // print("Valor GRUPO seleccionado: $docenteSelected");
+                                // print("Valor entero para la API: $idDocenteSeleccionado");
 
                                 posicionSemestre = listaDeSemestre.indexOf(semestreSeleccion) + 1;
-                                print("Valor SEMESTRE seleccionado: $semestreSeleccion");
-                                print("Valor entero para SEMESTRE ==>: $posicionSemestre");
+                                // print("Valor SEMESTRE seleccionado: $semestreSeleccion");
+                                // print("Valor entero para SEMESTRE ==>: $posicionSemestre");
 /*
                                 var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/insertMateria.php'), 
                                   body: {
