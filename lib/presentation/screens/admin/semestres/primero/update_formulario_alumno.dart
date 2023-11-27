@@ -332,7 +332,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreAlumno = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreAlumno = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreAlumno.hasMatch(value)) {
                                   return "Solo letras";
@@ -373,7 +373,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreAlumno = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreAlumno = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreAlumno.hasMatch(value)) {
                                   return "Solo letras";
@@ -419,7 +419,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
                                 RegExp apellidoMaterno =
-                                    RegExp(r'^[a-zA-Z\s]+$');
+                                    RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apellidoMaterno.hasMatch(value)) {
                                   return "Solo letras";
@@ -577,7 +577,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreTutor = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreTutor = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreTutor.hasMatch(value)) {
                                   return "Solo letras";
@@ -618,7 +618,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apPTutor = new RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apPTutor = new RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apPTutor.hasMatch(value)) {
                                   return "Solo letras";
@@ -661,7 +661,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apMTutor = new RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apMTutor = new RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apMTutor.hasMatch(value)) {
                                   return "Solo letrras";
@@ -702,7 +702,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                               if (value != null && value.isNotEmpty) {
                                 RegExp telefonoPrincipal =
                                     RegExp(r'^[0-9]{10}$');
-                                RegExp letraTelefono = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp letraTelefono = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (letraTelefono.hasMatch(value)) {
                                   return "Solo numeros";
@@ -894,7 +894,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
                                 FadeAnimation(
                                     1,
                                     const Text(
-                                      "Registrar Alumno",
+                                      "Actualizar Alumno",
                                       style: TextStyle(
                                           fontSize: 15,
                                           fontWeight: FontWeight.bold,

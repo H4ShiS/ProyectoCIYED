@@ -1,15 +1,32 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 
+import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
+
 // ignore: must_be_immutable
-class MenuDocente extends StatelessWidget {
+class MenuDocente extends StatefulWidget {
   static const menuDocenteHome = "menu_docente";
 
-  const MenuDocente({
-    Key? key,
-  });
+  String id;
+  String nombre;
+  String appaterno;
+  String apmaterno;
+  String recordatorio;
 
+  MenuDocente({
+    Key? key,
+    required this.id,
+    required this.nombre,
+    required this.appaterno,
+    required this.apmaterno,
+    required this.recordatorio,
+  }) : super(key: key);
+
+  @override
+  State<MenuDocente> createState() => _MenuDocenteState();
+}
+
+class _MenuDocenteState extends State<MenuDocente> {
   @override
   Widget build(
     BuildContext context,
@@ -17,40 +34,31 @@ class MenuDocente extends StatelessWidget {
     // final colors = Theme.of(context).colorScheme;
 
     ThemeData();
-
     return Scaffold(
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 17, 5, 130),
           toolbarHeight: 80,
           title: FadeAnimation(1,
              const Text(
-              "DOCENTES",
+              "CIYED DOCENTE",
               style: TextStyle(color: Colors.white, fontSize: 20),
               
             ),
-          ),
-          
+          ),     
           actions: [
             IconButton(
               onPressed: (){}, 
               icon: const Icon(Icons.account_circle, color: Colors.white, size: 25,),
               // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-            
-            ),
-
-            
+            ),       
             IconButton(
               onPressed: (){}, 
-              icon: const Icon(Icons.message, color: Colors.white, size: 30, ),
-              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-              
+              icon: const Icon(Icons.notification_add, color: Colors.white, size: 30, ),
+              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)), 
             ),
             
-          ],
-          
-          
+          ],    
           centerTitle: false,
-
           leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_rounded, // Icono de flecha de retroceso
@@ -68,10 +76,7 @@ class MenuDocente extends StatelessWidget {
               bottomRight: Radius.circular(15),
             )
           ),
-        ),
-
-
-        
+        ),    
         body: ListView(
           physics: const BouncingScrollPhysics(),
           children: [
@@ -82,7 +87,6 @@ class MenuDocente extends StatelessWidget {
                   height: 10,
                 ),
                 Container(
-
                   padding: const EdgeInsets.all(20),
                   margin: const EdgeInsets.all(20),
                   width: double.infinity,
@@ -97,20 +101,22 @@ class MenuDocente extends StatelessWidget {
                         ),
                       ]
                   ),
-                  child: const Column(
+                  child: Column(
                     children: [
-                      OpcionesMenuDocente()
+                      OpcionesMenuDocente(
+                        userId: widget.id,
+                        nombre: widget.nombre,
+                        appaterno: widget.appaterno,
+                        apmaterno: widget.apmaterno,
+                        recordatorio: widget.recordatorio,
+                      )
                     ],
                   ),
                 ),
               ],
             ),
-
           ],  
         ),
-
-
-        
     );
   }
 }
@@ -119,8 +125,23 @@ class MenuDocente extends StatelessWidget {
 
 
 
+// ignore: must_be_immutable
 class OpcionesMenuDocente extends StatelessWidget {
-  const OpcionesMenuDocente({super.key});
+
+  String userId;
+  String nombre;
+  String appaterno;
+  String apmaterno;
+  String recordatorio;
+  
+  OpcionesMenuDocente({
+    Key? key,
+    required this.userId,
+    required this.nombre,
+    required this.appaterno,
+    required this.apmaterno,
+    required this.recordatorio,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -145,19 +166,19 @@ class OpcionesMenuDocente extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20), // Puedes ajustar el radio del borde
               ),
-              child: const Row(
+              child: Row(
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.person,
                     color: Colors.blue, // Puedes cambiar el color del ícono
                   ),
-                  SizedBox(
+                  const SizedBox(
                       width:
                           15), // Puedes ajustar el espacio entre el ícono y el texto
                   Text(
-                    "Pedro Rojas Prado",
-                    style: TextStyle(
-                      fontSize: 15,
+                    "$nombre $appaterno $apmaterno",
+                    style: const TextStyle(
+                      fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -170,8 +191,6 @@ class OpcionesMenuDocente extends StatelessWidget {
         const SizedBox(
           height: 30,
         ),
-
-
         
 
         OutlinedButton.icon(
@@ -412,17 +431,17 @@ class OpcionesMenuDocente extends StatelessWidget {
                 ),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: const Row(
+              child: Row(
                 children: [
                   // Icon(
                   //   Icons.message_rounded,
                   //   color: Colors.blue,
                   // ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Expanded(
                     child: Text(
-                      "Recado:",
-                      style: TextStyle(
+                      "Recado: $recordatorio",
+                      style: const TextStyle(
                         fontSize: 15,
                       ),
                       softWrap: true,

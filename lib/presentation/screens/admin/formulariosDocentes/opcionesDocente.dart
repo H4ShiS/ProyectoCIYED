@@ -23,52 +23,28 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
   Future<List<GetDocentes>> getDocentes() async {
     var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/getDocentes.php'));
     var jsonData = jsonDecode(response.body);
-
     var registros = <GetDocentes>[];
 
     if (jsonData is List) {
-
       for (var datos in jsonData) {
         registros.add(GetDocentes.fromJson(datos));
-      }
-      
+      }  
     } else {
       registros.add(GetDocentes.fromJson(jsonData));
     }
     return registros;
-
-  }
-
-
-  Future<void> deleteDocente(String id) async {
-    final http.Response response = await http.delete(
-      Uri.parse(
-          'https://pruebas97979797.000webhostapp.com/apis/admin/docente/deleteDocente.php/$id'),
-      headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
-      },
-    );
-
-    if (response.statusCode == 200) {
-      // Manejar la respuesta exitosa si es necesario
-      print('Docente eliminado exitosamente');
-    } else {
-      // Manejar el error si es necesario
-      print('Error al eliminar el docente. Código de estado: ${response.statusCode}');
-      print('Respuesta del servidor: ${response.body}');
-    }
   }
 
   Future<void> starPolling  () async{
-  
+    while (!_isDisposed) {
     await Future.delayed(const Duration(seconds: 2));
-
     if (!_isDisposed) {
-      var newData = await getDocentes();
-      setState(() {
-        data.clear();
-        data.addAll(newData);
-      });
+        var newData = await getDocentes();
+        setState(() {
+          data.clear();
+          data.addAll(newData);
+        });
+      }
     }
   }
 
@@ -83,10 +59,9 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
   @override
   void dispose() {
     // TODO: implement dispose
+    _isDisposed = true;
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -175,8 +150,7 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
                       TextButton(
                         child: const Text("Eliminar"),
                         onPressed: () async {
-                          Navigator.of(context).pop(true);
-                          await deleteDocente(data[index].id);
+                          Navigator.of(context).pop(true); 
                         },
                       ),
                     ],
@@ -199,7 +173,6 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
                       style: const TextStyle(fontSize: 18),
                 ),
                 trailing: const Icon(Icons.arrow_back_ios_new_outlined),
-                  
               )
             ),
           ),

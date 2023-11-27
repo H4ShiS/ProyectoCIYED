@@ -225,7 +225,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreAlumno = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreAlumno = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreAlumno.hasMatch(value)) {
                                   return "Solo letras";
@@ -266,7 +266,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreAlumno = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreAlumno = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreAlumno.hasMatch(value)) {
                                   return "Solo letras";
@@ -311,8 +311,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apellidoMaterno =
-                                    RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apellidoMaterno = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apellidoMaterno.hasMatch(value)) {
                                   return "Solo letras";
@@ -468,7 +467,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp nombreTutor = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp nombreTutor = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!nombreTutor.hasMatch(value)) {
                                   return "Solo letras";
@@ -509,7 +508,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apPTutor = new RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apPTutor = new RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apPTutor.hasMatch(value)) {
                                   return "Solo letras";
@@ -552,7 +551,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                           child: TextFormField(
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apMTutor = new RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apMTutor = new RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (!apMTutor.hasMatch(value)) {
                                   return "Solo letrras";
@@ -593,7 +592,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                               if (value != null && value.isNotEmpty) {
                                 RegExp telefonoPrincipal =
                                     RegExp(r'^[0-9]{10}$');
-                                RegExp letraTelefono = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp letraTelefono = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (letraTelefono.hasMatch(value)) {
                                   return "Solo numeros";
@@ -642,7 +641,7 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                               if (value != null && value.isNotEmpty) {
                                 RegExp telefonoPrincipal =
                                     RegExp(r'^[0-9]{10}$');
-                                RegExp letraTelefono = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp letraTelefono = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
 
                                 if (letraTelefono.hasMatch(value)) {
                                   return "Solo numeros";
@@ -745,10 +744,10 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
                                     nia.clear();
                                     matricula.clear();
                                     print("Validacion Exitosa");
-                                    setState(() {
-                                      grupoSeleccion = listaDeGrupo[0];
-                                      semestreSeleccion = listaDeGrupo[0];
-                                    });
+                                    // setState(() {
+                                    //   grupoSeleccion = listaDeGrupo[0];
+                                    //   semestreSeleccion = listaDeGrupo[0];
+                                    // });
 
                                   print('Response data-------------------------: ${response.body}');
                                   

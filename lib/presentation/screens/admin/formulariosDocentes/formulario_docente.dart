@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 
 class FomrularioDocente  extends StatelessWidget {
+  
   static const formularioDocente = "Formulario-Docente";
   const FomrularioDocente ({super.key});
 
@@ -20,8 +21,7 @@ class FomrularioDocente  extends StatelessWidget {
         title: const  Text(
           "Registrar Docente", 
           style: TextStyle(color: Colors.white),
-        ),
-
+        ),    
         actions: [
             
             IconButton(
@@ -144,7 +144,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             controller: nombreDocente,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                 RegExp nombreTutor = RegExp(r'[a-zA-Z\s]$');
+                                 RegExp nombreTutor = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
                                  if (!nombreTutor.hasMatch(value)) {
                                    return "Solo letras";
                                  }
@@ -173,8 +173,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                       ),
                     ],
                   ),
-            
-            
+    
                   Row(
                     children: [
                       Expanded(
@@ -184,7 +183,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             controller: apePaternoDocente,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apellidoPaterno =  RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
                                 if (!apellidoPaterno.hasMatch(value)) {
                                   return "Solo letras";
                                 }
@@ -223,7 +222,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             controller: apeMaternoDocente,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                              RegExp apellidoM = RegExp(r'^[a-zA-Z\s]+$');
+                              RegExp apellidoM = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
                                 if (!apellidoM.hasMatch(value)) {
                                   return "Solo letras";
                                 }
@@ -350,7 +349,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             controller: recadoDocente,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp recado =  RegExp(r'^[a-zA-Z0-9\s]+$');
+                                RegExp recado =  RegExp(r'^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]+$');
                                 if (recado.hasMatch(value)) {
                                   
                                 } else {
@@ -410,7 +409,7 @@ class FormularioDocenteTextField extends StatelessWidget {
 
                               if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
 
-                                var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/registrarDocente.php');
+                                var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/insertDocente.php');
                                 var response = await http.post(
                                   url,
                                   body: {
@@ -463,7 +462,6 @@ class FormularioDocenteTextField extends StatelessWidget {
                                   );
 
                                 }
-
                                 print("Validacion Exitosa");
                               } else{
                                 print("Validacion no Exitosa");
@@ -501,7 +499,6 @@ class FormularioDocenteTextField extends StatelessWidget {
                                backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
                             ),
                           ),      
-                         
                          ),
                       ),
                     ],

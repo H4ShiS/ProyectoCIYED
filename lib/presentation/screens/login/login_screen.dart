@@ -191,8 +191,22 @@ class _LoginScreenState extends State<LoginScreen> {
       
                         InkWell(
                           onTap: () async {
-                            // context.pushNamed(MenuAdmin.menuAdmin);
                             
+                            /*
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                              builder: (context) => const MenuDocente(
+                                id: item[],
+                                nombre: ,
+                                appaterno: ,
+                                apmaterno: ,
+                              ),
+                            ));
+                            // */
+                            // context.pushNamed(MenuAdmin.menuAdmin);
+                          
+                    // /*        
                             if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
                               String email = emailController.text;
                               String pass = passController.text;
@@ -212,19 +226,28 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                     if (idRol == "2") {
                                       Navigator.push(context, MaterialPageRoute(
-                                          builder: (context) => const MenuDocente(),
+                                          builder: (context) => MenuDocente(
+                                            id: item['id'],
+                                            nombre: item['nombre'],
+                                            appaterno: item['appaterno'],
+                                            apmaterno: item['apmaterno'],
+                                            recordatorio: item['recordatorio'],
+                                          ),
                                         )
                                       );
                                     } else if(idRol == "1"){
                                       Navigator.push(context, MaterialPageRoute(
                                         builder: (context) => const MenuAdmin(
-
+                                          // id: item['nombre']
                                         ),
                                       ));
                                     };
                                      // Accede a los elementos de la lista directamente
                                   }
                                   print(responseData);
+
+                                  emailController.clear();
+                                  passController.clear();
                                   
                                 } else {
                                   print("Error 500");
@@ -233,6 +256,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             // context.pushNamed(MenuAdmin.menuAdmin);
       
                             }
+                            // */
                           },
                           child: Container(
                             height: 50,

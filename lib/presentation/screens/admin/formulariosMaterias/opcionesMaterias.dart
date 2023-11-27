@@ -38,18 +38,20 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
 
   }
 
-    Future<void> starPolling  () async{
-  
-    await Future.delayed(const Duration(seconds: 2));
+  Future<void> starPolling() async {
+    while (!_isDisposed) {
+      await Future.delayed(const Duration(seconds: 2));
 
-    if (!_isDisposed) {
-      var newData = await getMaterias();
-      setState(() {
-        data.clear();
-        data.addAll(newData);
-      });
+      if (!_isDisposed) {
+        var newData = await getMaterias();
+        setState(() {
+          data.clear();
+          data.addAll(newData);
+        });
+      }
     }
   }
+    
 
   @override
   void initState() {
@@ -60,7 +62,7 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
 
   @override
   void dispose() {
-    
+    _isDisposed = true;
     super.dispose();
   }
 
@@ -117,11 +119,10 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
                 MaterialPageRoute(
                   builder: (context) => UpdateFomrularioMaterias(
                     materiaId: data[index].id,
-                    nombre: data[index].nombre,
-                    matricula: data[index].matricula,
+                    nombreM: data[index].nombre,
+                    matriculaM: data[index].matricula,
                     idSemestre: data[index].idSemestre,
                     idUsuario: data[index].idUsuario,
-
                   ),
                 )
               );

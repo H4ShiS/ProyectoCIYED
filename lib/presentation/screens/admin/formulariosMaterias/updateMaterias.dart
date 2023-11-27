@@ -9,16 +9,16 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
   static const updateFormularioMaterias = "update-formulario-materias";
 
   final String materiaId;
-  final String nombre;
-  final String matricula;
+  final String nombreM;
+  final String matriculaM;
   final String idUsuario;
   final String idSemestre;
 
   const UpdateFomrularioMaterias(
       {super.key,
       required this.materiaId,
-      required this.nombre,
-      required this.matricula,
+      required this.nombreM,
+      required this.matriculaM,
       required this.idUsuario,
       required this.idSemestre});
 
@@ -34,19 +34,15 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
           "Actualizar Materia", 
           style: TextStyle(color: Colors.white),
         ),
-
-        actions: [
-            
+        actions: [    
             IconButton(
               onPressed: (){}, 
               icon: const Icon(
                 Icons.book, 
                 color: Colors.white, size: 30,
               ),
-              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
-            
+              // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),    
             ),
-
             IconButton(
               onPressed: (){}, 
               icon: const Icon(
@@ -60,8 +56,6 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
             const SizedBox(width: 15,),
 
           ],
-
-
         leading: IconButton(
             icon: const Icon(
               Icons.arrow_back_rounded, // Icono de flecha de retroceso
@@ -72,7 +66,6 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
               Navigator.pop(context);
             },
         ),
-
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(15), 
@@ -84,8 +77,8 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
 
       body: UpdateFormularioMateriasTextfield(
         userId: materiaId,
-        nombre: nombre,
-        matricula: matricula,
+        nombreM: nombreM,
+        matriculaM: matriculaM,
         idUsuario: idUsuario,
         idSemestre: idSemestre,
       ),
@@ -98,16 +91,16 @@ class UpdateFomrularioMaterias  extends StatelessWidget {
 // ignore: must_be_immutable
 class UpdateFormularioMateriasTextfield extends StatefulWidget {
   final String userId;
-  final String nombre;
-  final String matricula;
+  final String nombreM;
+  final String matriculaM;
   final String idUsuario;
   final String idSemestre;
 
-  UpdateFormularioMateriasTextfield(
+  const UpdateFormularioMateriasTextfield(
       {super.key,
       required this.userId,
-      required this.nombre,
-      required this.matricula,
+      required this.nombreM,
+      required this.matriculaM,
       required this.idUsuario,
       required this.idSemestre});
 
@@ -118,15 +111,16 @@ class UpdateFormularioMateriasTextfield extends StatefulWidget {
 class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMateriasTextfield> {
   
   final _keyForm = GlobalKey<FormState>();
-  TextEditingController updateMatriculaMateria = TextEditingController();
-  TextEditingController updateNombreMateria = TextEditingController();
+  final TextEditingController updateMatriculaMateria = TextEditingController();
+  final TextEditingController updateNombreMateria = TextEditingController();
+
   List<String> listaDeSemestre = [ "Primero",  "Segundo", "Tercer", "Cuarto","Quinto", "Sexto"];
 
   late List<Map<String, dynamic>> docentes;
   Map<String, dynamic> docenteSelected = {};
   
   int posicionSemestre = 0;
-  late String semestreSeleccion; 
+  late String semestreSeleccion;
 
 
 
@@ -155,7 +149,6 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
           'appaterno': item['appaterno'].toString(),
           'apmaterno': item['apmaterno'].toString(),
         }).toList();
-        
         if (docentes.isNotEmpty) {
         docenteSelected = docentes.firstWhere((docente) => docente['idDocente'] == widget.idUsuario, orElse: () => docentes.first);
       }
@@ -178,9 +171,8 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
   @override
   Widget build(BuildContext context) {
 
-
-    updateMatriculaMateria.text = widget.matricula;
-    updateNombreMateria.text = widget.nombre;
+    updateMatriculaMateria.text = widget.matriculaM;
+    updateNombreMateria.text = widget.nombreM;
 
     return ListView(
       
@@ -190,8 +182,6 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
           child: Container(
         
             child: Form(
-        
-        
               key: _keyForm,
               child: Column(
                 children: [
@@ -200,7 +190,6 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                     children: [
 
                       const SizedBox(width: 80), // Espacio entre los campos
-
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
@@ -208,24 +197,18 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                             
                             validator: (valor) {
                               if (valor != null && valor.isNotEmpty) {
-
                                 RegExp matriculaExpress =  RegExp(r'^[A-Z0-9]+$');
                                 RegExp matriculaContador =  RegExp(r'^[A-Z0-9]{10,12}$');
 
-                                
                                 if (!matriculaExpress.hasMatch(valor)) {
                                   return "Letras Mayusculas y Numeros";
                                 } else {
-
                                   if (!matriculaContador.hasMatch(valor)) {
                                     return "10 - 12";
                                   }
                                 }
-                                
                               } else {
-
                                 return "Ingresa la Matricula";
-
                               }
                               return null;
                             },
@@ -244,27 +227,19 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
                               ),
-            
                               contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                              
                             ),
                           ),
                         ),
-                      ),
-            
+                      ),            
                       const SizedBox(width: 80), // Espacio entre los campos
-
                     ],
                   ),
             
             
                   Row(
-                    
                     children: [
-
                       const SizedBox(width: 10), // Espacio entre los campos
-
                       Expanded(                        
                         child: Container(
                           margin: const EdgeInsets.symmetric(horizontal: 15,),
@@ -285,33 +260,24 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                               ),
                               prefixIcon: const Icon(
                                 Icons. menu_book,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                                
+                                color: Color.fromARGB(255, 5, 78, 186),                            
                               ),
                               labelStyle: const TextStyle(
                                 fontSize: 12,
                                 color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-            
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                              
+                              ),         
+                              contentPadding: const EdgeInsets.symmetric(vertical: 5),                         
                             ),
                           ),
                         ),
                       ),
-            
-            
                       const SizedBox(width: 10), // Espacio entre los campos
-                      
-                      
                     ],
                   ),
                   
             
                   Row(
                     children: [
-
-                      // Espacio entre los campos
                       const SizedBox(width: 10), // Espacio entre los campos
                       Expanded(
                         child: Container(
@@ -331,15 +297,11 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 docenteSelected = value!;
                               });
                             },
-
-                            validator: (value) {
-
+                            validator: (value){
                               if (value == null || value.isEmpty) {
-
                                 return "Selecciona un Docente";
                               }
                             },
-
                             decoration: InputDecoration(
                               prefixIcon: const Icon(
                                 Icons.person_pin_rounded,
@@ -363,20 +325,16 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                       ),
                     ],
                   ),
-
                  Row(
                     children: [
-
                       const SizedBox(width: 80,), // Espacio entre los campos
-
                       Expanded(
                         child: Container(
                           margin: const EdgeInsets.symmetric(
                               horizontal: 15,),
                           child: DropdownButtonFormField(
                             value: semestreSeleccion,
-                            items: listaDeSemestre.map((name) {
-                              
+                            items: listaDeSemestre.map((name) {            
                               return DropdownMenuItem(
                                 value: name,
                                 child: Text(name),
@@ -387,12 +345,8 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 semestreSeleccion = value!;
                               });
                             },
-
                             validator: (value) {
-
                               if (value == null || value.isEmpty) {
-
-
                                 return "Selecciona un semestre";
                               }
                             },
@@ -413,17 +367,11 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                 borderRadius: BorderRadius.circular(20),
                               ),
                               isDense: true,
-                            ),
-                            
-
+                            ),                         
                           ),
                         ),
                       ),
-
                       const SizedBox(width: 80,), // Espacio entre los campos
-
-
-
                     ],                
                   ),
             
@@ -432,7 +380,6 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                     height: 80,
                   ),
                   
-        
                   Row(
                     children: [
                       Expanded(
@@ -466,7 +413,6 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                   },
                                 );
 
-
                                 if (response.statusCode == 200) {
                                   Map<String, dynamic> responseData = json.decode(response.body);
                                   int httpCode = responseData['httpCode'];
@@ -474,9 +420,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
 
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(content: Text(message))
-                                  ); 
-
-                                
+                                  );                
 
                                 } else if(response.statusCode == 400){
                                   Map<String, dynamic> responseData = json.decode(response.body);
@@ -497,9 +441,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                                     )
                                   );
 
-                                }
-                               
-                                
+                                }                           
 
                                 print("Validacion Exitosa");
                                 

@@ -419,7 +419,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                             controller: recadoDocenteUpdate,
                             validator: (value) {
                               if (value != null && value.isNotEmpty) {
-                                RegExp recado =  RegExp(r'^[a-zA-Z0-9\s]+$');
+                                RegExp recado =  RegExp(r'^[a-zA-Z9-9áéíóúüÁÉÍÓÚÜ\s]+$');
                                 if (recado.hasMatch(value)) {
                                   
                                 } else {

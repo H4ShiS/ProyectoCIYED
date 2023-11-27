@@ -60,11 +60,7 @@ final appRouter = GoRouter(
 
 
     //---------------------------------------------------------------- Docente Router
-    GoRoute(
-      path: '/menudocentehome',
-      name: MenuDocente.menuDocenteHome,
-      builder: (context, state) => const MenuDocente(),
-    ),
+
     GoRoute(
       path: '/opcionesdocente',
       name: OpcionesDocente.opcionesDocente,

@@ -55,3 +55,5 @@ onPressed: () {
 encriptacion de contraseñas pendiente
 
 revision de los ScaffoldMessenger para que cambie e color cuando sea una peticion erronea
+
+Corregir el inicio de seseion para que no se pulse demaciadas veces antes de cumplir con la peticion principal

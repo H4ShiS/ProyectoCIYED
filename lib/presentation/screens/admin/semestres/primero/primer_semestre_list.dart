@@ -24,7 +24,6 @@ class _ListPrimeroState extends State<ListPrimero> {
   Future<List<GetAlumnosPrimero>> getDatos() async {
     var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/alumno/primero/getPrimerSemestre.php'));
     var jsonData = jsonDecode(response.body);
-
     var registros = <GetAlumnosPrimero>[];
     
     if (jsonData is List) {
@@ -34,22 +33,21 @@ class _ListPrimeroState extends State<ListPrimero> {
     } else {
       registros.add(GetAlumnosPrimero.fromJson(jsonData));
     }
-
     return registros;
   }
 
   Future<void> startLongPolling() async {
-     
-      await Future.delayed(const Duration(seconds: 5)); // Espera 10 segundos
 
-      if (!_isDisposed) {
+    while (!_isDisposed) {
+    await Future.delayed(const Duration(seconds: 5)); // Espera 10 segundos
+    if (!_isDisposed) {
         var newData = await getDatos();
         setState(() {
           data.clear();
           data.addAll(newData);
         });
       }
-    
+    }   
   }
 
   @override
@@ -59,8 +57,12 @@ class _ListPrimeroState extends State<ListPrimero> {
     startLongPolling();
   }
 
-
-
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _isDisposed = true;
+  }
 
 
   @override
@@ -136,7 +138,7 @@ class _ListPrimeroState extends State<ListPrimero> {
               child: ListTile(
                 title: Text(data[index].matricula, style: const TextStyle(fontSize: 18)),
                 subtitle: Text(
-                      'Nombre: ${data[index].nombre}', style: const TextStyle(fontSize: 18),
+                      'Nombre: ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}', style: const TextStyle(fontSize: 18),
                 ),
                 trailing: const Icon(Icons.arrow_back_ios_new_outlined), // Personaliza el icono según tus necesidades
               ),
