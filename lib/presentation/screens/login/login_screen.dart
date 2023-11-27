@@ -191,9 +191,9 @@ class _LoginScreenState extends State<LoginScreen> {
       
                         InkWell(
                           onTap: () async {
-                            context.pushNamed(MenuAdmin.menuAdmin);
+                            // context.pushNamed(MenuAdmin.menuAdmin);
                             
-                            /*if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+                            if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
                               String email = emailController.text;
                               String pass = passController.text;
 
@@ -232,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             
                             // context.pushNamed(MenuAdmin.menuAdmin);
       
-                            }*/
+                            }
                           },
                           child: Container(
                             height: 50,
