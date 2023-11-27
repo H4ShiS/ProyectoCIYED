@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, curly_braces_in_flow_control_structures, use_build_context_synchronously
+// ignore_for_file: avoid_print, curly_braces_in_flow_control_structures, use_build_context_synchronously, unused_local_variable, no_leading_underscores_for_local_identifiers, unused_import, body_might_complete_normally_nullable
 
 import 'package:app_ciyed/config/router/app_router.dart';
 import 'package:app_ciyed/presentation/screens/admin/menu_admin.dart';
@@ -6,7 +6,6 @@ import 'package:app_ciyed/presentation/screens/docente/menu_docente.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-// ignore: unused_import
 import 'package:simple_animations/simple_animations.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -121,7 +120,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   }
                                 } else {
                                   return "Ingresa el Email";
-                                  print("R EMAIL");
+                                  
                                 }
                                 return null;
                               },

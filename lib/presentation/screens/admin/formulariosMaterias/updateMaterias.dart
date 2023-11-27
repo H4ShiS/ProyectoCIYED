@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously
+// ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously, body_might_complete_normally_nullable, unused_local_variable, file_names
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../../widgets/Animatios/Animaciones.dart';
@@ -184,11 +184,111 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
             child: Form(
               key: _keyForm,
               child: Column(
-                children: [
+                children: [          
                   Row(
-                    
                     children: [
-
+                      const SizedBox(width: 10), // Espacio entre los campos
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
+                          child: DropdownButtonFormField(
+                            value: docenteSelected,
+                            items: docentes.map((Map<String, dynamic> value) {
+                              return DropdownMenuItem(
+                                value: value,
+                                child: Text(
+                                  '${value['nombre']} ${value['appaterno']} ${value['apmaterno']}',
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (Map<String, dynamic>? value) {
+                              setState(() {
+                                docenteSelected = value!;
+                              });
+                            },
+                            validator: (value){
+                              if (value == null || value.isEmpty) {
+                                return "Selecciona un Docente";
+                              }
+                            },
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                Icons.person_pin_rounded,
+                                size: 30,
+                                color: Color.fromARGB(255, 5, 78, 186),
+                              ),
+                              labelText: "     Docente",
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.symmetric(vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              isDense: true,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  
+                 Row(
+                    children: [
+                      const SizedBox(width: 80,), // Espacio entre los campos
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 15,),
+                          child: DropdownButtonFormField(
+                            value: semestreSeleccion,
+                            items: listaDeSemestre.map((name) {            
+                              return DropdownMenuItem(
+                                value: name,
+                                child: Text(name),
+                                );
+                            }).toList(), 
+                            onChanged: (String? value) { 
+                              setState(() {
+                                semestreSeleccion = value!;
+                              });
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return "Selecciona un semestre";
+                              }
+                            },
+                            
+                            decoration: InputDecoration(
+                              prefixIcon: const Icon(
+                                Icons.onetwothree_sharp, 
+                                size: 30, 
+                                color: Color.fromARGB(255, 5, 78, 186) ,
+                              ),
+                              labelText: "     Semestre", 
+                              labelStyle: const TextStyle(
+                                fontSize: 12,
+                                color: Color.fromARGB(255, 6, 30, 65),
+                              ),
+                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              isDense: true,
+                            ),                         
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 80,), // Espacio entre los campos
+                    ],                
+                  ),
+            
+    
+                  
+                  Row(    
+                    children: [
                       const SizedBox(width: 80), // Espacio entre los campos
                       Expanded(
                         child: Container(
@@ -275,107 +375,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
                     ],
                   ),
                   
-            
-                  Row(
-                    children: [
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
-                          child: DropdownButtonFormField(
-                            value: docenteSelected,
-                            items: docentes.map((Map<String, dynamic> value) {
-                              return DropdownMenuItem(
-                                value: value,
-                                child: Text(
-                                  '${value['nombre']} ${value['appaterno']} ${value['apmaterno']}',
-                                ),
-                              );
-                            }).toList(),
-                            onChanged: (Map<String, dynamic>? value) {
-                              setState(() {
-                                docenteSelected = value!;
-                              });
-                            },
-                            validator: (value){
-                              if (value == null || value.isEmpty) {
-                                return "Selecciona un Docente";
-                              }
-                            },
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                Icons.person_pin_rounded,
-                                size: 30,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelText: "     Docente",
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 10),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              isDense: true,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                 Row(
-                    children: [
-                      const SizedBox(width: 80,), // Espacio entre los campos
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15,),
-                          child: DropdownButtonFormField(
-                            value: semestreSeleccion,
-                            items: listaDeSemestre.map((name) {            
-                              return DropdownMenuItem(
-                                value: name,
-                                child: Text(name),
-                                );
-                            }).toList(), 
-                            onChanged: (String? value) { 
-                              setState(() {
-                                semestreSeleccion = value!;
-                              });
-                            },
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return "Selecciona un semestre";
-                              }
-                            },
-                            
-                            decoration: InputDecoration(
-                              prefixIcon: const Icon(
-                                Icons.onetwothree_sharp, 
-                                size: 30, 
-                                color: Color.fromARGB(255, 5, 78, 186) ,
-                              ),
-                              labelText: "     Semestre", 
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 10),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              isDense: true,
-                            ),                         
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 80,), // Espacio entre los campos
-                    ],                
-                  ),
-            
-                  
+              
                   const SizedBox(
                     height: 80,
                   ),

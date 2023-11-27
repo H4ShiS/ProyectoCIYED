@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously
+// ignore_for_file: avoid_print, avoid_unnecessary_containers, use_build_context_synchronously, body_might_complete_normally_nullable, unused_local_variable, prefer_const_constructors_in_immutables
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import '../../../widgets/Animatios/Animaciones.dart';

@@ -128,18 +128,29 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
               );
             },
 
-            child: Card(
-              elevation: 2,
-              margin:  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: ListTile(
-                title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
-                subtitle: Text(
-                      'Nombre: ${data[index].nombre}',
-                      style: const TextStyle(fontSize: 18),
-                ),
-                trailing: const Icon(Icons.arrow_back_ios_new_outlined),
-                  
-              )
+            child: Dismissible(
+              key: Key(data[index].id),
+              direction: DismissDirection.endToStart,
+              background: Container(
+                color: Colors.red,
+                alignment: Alignment.centerRight,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: const Icon(Icons.delete, color: Colors.white),
+
+              ),
+              child: Card(
+                elevation: 2,
+                margin:  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                child: ListTile(
+                  title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
+                  subtitle: Text(
+                        'Nombre: ${data[index].nombre}',
+                        style: const TextStyle(fontSize: 18),
+                  ),
+                  trailing: const Icon(Icons.arrow_back_ios_new_outlined),
+                    
+                )
+              ),
             ),
           );
           
