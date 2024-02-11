@@ -1,9 +1,12 @@
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/getListaMateriasFromJSON.dart';
 import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/updateMaterias.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+//lista de las materias para que se visualicen en una pantalla
 
 class GetListaMaterias extends StatefulWidget {
   static const opcionesMateria = "opciones materia";

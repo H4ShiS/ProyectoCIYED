@@ -81,435 +81,438 @@ class FormularioDocenteTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: const BouncingScrollPhysics(),
-      children: [
-        Expanded(
-          child: Container(
-            child: Form(
-              key: _keyForm,
-              child: Column(
-                children: [
+    return Scaffold(
+      body: SafeArea(
 
-
-                  Row(
-                    children: [
-                      Expanded(  
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
-                          child: TextFormField(
-                            controller: matriculaDocente,
-                            validator: (valor) {
-                              if (valor != null && valor.isNotEmpty) {
-                                RegExp matriculaDocente = RegExp(r'^[a-zA-Z]+$');
-                                RegExp matriculaDocenteRex = RegExp(r'^[0-9]{4,6}$');
-                                if (matriculaDocente.hasMatch(valor)) {
-                                  return "Solo numeros";
-                                } else {
-                                  if (!matriculaDocenteRex.hasMatch(valor)) {
-                                    return "4-6 caracteres";
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView(
+            physics: const BouncingScrollPhysics(),
+            children: [
+              Form(
+                key: _keyForm,
+                child: Column(
+                  children: [
+                        
+                    Row(
+                      children: [
+                        Expanded(  
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+                            child: TextFormField(
+                              controller: matriculaDocente,
+                              validator: (valor) {
+                                if (valor != null && valor.isNotEmpty) {
+                                  RegExp matriculaDocente = RegExp(r'^[a-zA-Z]+$');
+                                  RegExp matriculaDocenteRex = RegExp(r'^[0-9]{4,6}$');
+                                  if (matriculaDocente.hasMatch(valor)) {
+                                    return "Solo numeros";
+                                  } else {
+                                    if (!matriculaDocenteRex.hasMatch(valor)) {
+                                      return "4-6 caracteres";
+                                    }
                                   }
+                                } else {
+                                  return "Ingrese la Matricula";
                                 }
-                              } else {
-                                return "Ingrese la Matricula";
-                              }
-                              return null;
-                            },                            
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Matricula")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.app_registration_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),                  
-                            ),
-                          ),
-                        ),
-                      ),
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            controller: nombreDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                 RegExp nombreTutor = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
-                                 if (!nombreTutor.hasMatch(value)) {
-                                   return "Solo letras";
-                                 }
-                              }else {
-                                return "Ingresa el Nombre ";
-                              }
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Nombre Docente")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.account_circle_rounded,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-    
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(horizontal: 15,),
-                          child: TextFormField(
-                            controller: apePaternoDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                RegExp apellidoPaterno =  RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
-                                if (!apellidoPaterno.hasMatch(value)) {
-                                  return "Solo letras";
-                                }
-                              }  else {
-                                return "Ingresa el dato";
-                              }                                 
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Paterno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons. person,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),   
-                            ),
-                          ),
-                        ),
-                      ),
-            
-            
-                      const SizedBox(width: 10), // Espacio entre los campos
-                      
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(right: 15),
-                          child: TextFormField(
-                            controller: apeMaternoDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                              RegExp apellidoM = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
-                                if (!apellidoM.hasMatch(value)) {
-                                  return "Solo letras";
-                                }
-                              } else {
-                                return "Ingresa el Dato";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Ape. Materno")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.person_2,
-                                color: Color.fromARGB(255, 5, 78, 186),
-                              ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding: const EdgeInsets.symmetric(vertical: 5),
-            
-                            ),
-                          ),
-                        ),
-                      ),                      
-                    ],
-                  ),
-
-
-                 Row(      
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 15, vertical: 40
-                          ),
-                          child: TextFormField(
-                            controller: emailDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
-                                if (!regex.hasMatch(value)) {
-                                  return "Ingresa un correo electrónico válido";
-                                }
-                              } else {
-                                return "Ingresa el Email";
-                              }
-                              return null;
-                            },
-                            keyboardType: TextInputType.emailAddress,
-                            decoration: InputDecoration(
-                              label:
-                                  FadeAnimation(1, const Text("Email")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.email,
+                                return null;
+                              },                            
+                              keyboardType: TextInputType.number,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Matricula")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.app_registration_rounded,
                                   color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 5),                  
                               ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
                             ),
                           ),
                         ),
-                      ), 
-                    ],
-                  ),
-
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.only(left: 15, right: 15),
-                          child: TextFormField(
-                            controller: contrasenaDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                
-                              } else {
-                                return "Ingresa la contraseña";
-                              }
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Contraseña")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                              prefixIcon: const Icon(
-                                Icons.lock,
+              
+                        const SizedBox(width: 10), // Espacio entre los campos
+                        
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: TextFormField(
+                              controller: nombreDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                   RegExp nombreTutor = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
+                                   if (!nombreTutor.hasMatch(value)) {
+                                     return "Solo letras";
+                                   }
+                                }else {
+                                  return "Ingresa el Nombre ";
+                                }
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Nombre Docente")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.account_circle_rounded,
                                   color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 5),
                               ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(vertical: 5),
                             ),
                           ),
                         ),
-                      ),            
-                      // const SizedBox(width: 10), // Espacio entre los campos
-                    ],
-                  ),
-  
-            
-            
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 40),
-                          child: TextFormField(
-                            controller: recadoDocente,
-                            validator: (value) {
-                              if (value != null && value.isNotEmpty) {
-                                RegExp recado =  RegExp(r'^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]+$');
-                                if (recado.hasMatch(value)) {
+                      ],
+                    ),
+                      
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(horizontal: 15,),
+                            child: TextFormField(
+                              controller: apePaternoDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                  RegExp apellidoPaterno =  RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
+                                  if (!apellidoPaterno.hasMatch(value)) {
+                                    return "Solo letras";
+                                  }
+                                }  else {
+                                  return "Ingresa el dato";
+                                }                                 
+                                return null;
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Ape. Paterno")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons. person,
+                                  color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 5),   
+                              ),
+                            ),
+                          ),
+                        ),
+              
+              
+                        const SizedBox(width: 10), // Espacio entre los campos
+                        
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 15),
+                            child: TextFormField(
+                              controller: apeMaternoDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                RegExp apellidoM = RegExp(r'^[a-zA-ZáéíóúüÁÉÍÓÚÜ\s]+$');
+                                  if (!apellidoM.hasMatch(value)) {
+                                    return "Solo letras";
+                                  }
+                                } else {
+                                  return "Ingresa el Dato";
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Ape. Materno")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.person_2,
+                                  color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(vertical: 5),
+              
+                              ),
+                            ),
+                          ),
+                        ),                      
+                      ],
+                    ),
+                      
+                      
+                   Row(      
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 15, vertical: 40
+                            ),
+                            child: TextFormField(
+                              controller: emailDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                  RegExp regex = RegExp(r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+                                  if (!regex.hasMatch(value)) {
+                                    return "Ingresa un correo electrónico válido";
+                                  }
+                                } else {
+                                  return "Ingresa el Email";
+                                }
+                                return null;
+                              },
+                              keyboardType: TextInputType.emailAddress,
+                              decoration: InputDecoration(
+                                label:
+                                    FadeAnimation(1, const Text("Email")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.email,
+                                    color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(vertical: 5),
+                              ),
+                            ),
+                          ),
+                        ), 
+                      ],
+                    ),
+                      
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 15, right: 15),
+                            child: TextFormField(
+                              controller: contrasenaDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
                                   
                                 } else {
-                                  return "No caracteres Especiales";
+                                  return "Ingresa la contraseña";
                                 }
-                              } else {
-                                // // Otras condiciones de validación
-                                // if (value == null) {
-                                //   return "El valor no cumple con los requisitos";
-                                // }
-                                return null;
-                              }
-                            },
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              label: FadeAnimation(1, const Text("Recado")),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(20),
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Contraseña")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.lock,
+                                    color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(vertical: 5),
                               ),
-                              prefixIcon: const Icon(
-                                Icons.message,
-                                color: Color.fromARGB(255, 5, 78, 186),
+                            ),
+                          ),
+                        ),            
+                        // const SizedBox(width: 10), // Espacio entre los campos
+                      ],
+                    ),
+                        
+              
+              
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 15, vertical: 40),
+                            child: TextFormField(
+                              controller: recadoDocente,
+                              validator: (value) {
+                                if (value != null && value.isNotEmpty) {
+                                  RegExp recado =  RegExp(r'^[a-zA-Z0-9áéíóúüÁÉÍÓÚÜ\s]+$');
+                                  if (recado.hasMatch(value)) {
+                                    
+                                  } else {
+                                    return "No caracteres Especiales";
+                                  }
+                                } else {
+                                  // // Otras condiciones de validación
+                                  // if (value == null) {
+                                  //   return "El valor no cumple con los requisitos";
+                                  // }
+                                  return null;
+                                }
+                              },
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                label: FadeAnimation(1, const Text("Recado")),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(20),
+                                ),
+                                prefixIcon: const Icon(
+                                  Icons.message,
+                                  color: Color.fromARGB(255, 5, 78, 186),
+                                ),
+                                labelStyle: const TextStyle(
+                                  fontSize: 12,
+                                  color: Color.fromARGB(255, 6, 30, 65),
+                                ),
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
                               ),
-                              labelStyle: const TextStyle(
-                                fontSize: 12,
-                                color: Color.fromARGB(255, 6, 30, 65),
-                              ),
-                              contentPadding:
-                                  const EdgeInsets.symmetric(horizontal: 80, vertical: 30),
                             ),
                           ),
                         ),
-                      ),
-                    ],
-                  ),
-            
-            
-           
-                  const SizedBox(
-                    height: 20,
-                  ),
-      
-        
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Container(
-        
-                          margin: const EdgeInsets.symmetric(
-                            horizontal: 80, vertical: 40
-                          ),
-        
-                         child: 
-          
-                         OutlinedButton.icon(
-                            onPressed: () async {
-
-                              if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
-
-                                var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/insertDocente.php');
-                                var response = await http.post(
-                                  url,
-                                  body: {
-                                    'matricula': matriculaDocente.text,
-                                    'nombre': nombreDocente.text,
-                                    'apePaterno': apePaternoDocente.text,
-                                    'apeMaterno': apeMaternoDocente.text,
-                                    'email': emailDocente.text,
-                                    'pass': contrasenaDocente.text,
-                                    'recado': recadoDocente.text,
-                                  }
-                                );
-
-                                if (response.statusCode == 200) {
-                                  Map<String, dynamic> responseData = json.decode(response.body);
-                                  int httpCode = responseData['httpCode'];
-                                  String message = responseData['message'];
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(message))
-                                  );  
-
-                                  matriculaDocente.clear();
-                                  nombreDocente.clear();
-                                  apePaternoDocente.clear();
-                                  apeMaternoDocente.clear();
-                                  emailDocente.clear();
-                                  contrasenaDocente.clear();
-                                  recadoDocente.clear();
-                                                                 
-                                  // print('Response data-------------------------: ${response.body}');
-
-                                } else if(response.statusCode == 409){
-                                  Map<String, dynamic> responseData = json.decode(response.body);
-                                  int httpCode = responseData['httpCode'];
-                                  String message = responseData['message'];
-
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text(message,
-                                    style: const TextStyle(color: Colors.red),)
-                                    )
-                                  );
-                                
-                                } else {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Error en la solicitud. Código de estado: ${response.statusCode}', 
-                                      style: const TextStyle(color: Colors.red),)
-                                    )
-                                  );
-
-                                }
-                                print("Validacion Exitosa");
-                              } else{
-                                print("Validacion no Exitosa");
-                              }
-                            },
-                            icon: FadeAnimation(1, const Icon(Icons.person_add, color: Colors.white,)),
-                            label: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                const SizedBox(width: 10),
-                                FadeAnimation(1,
-                                    const Text(
-                                      "Registrar Docente",
-                                      style: TextStyle(
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.white
-                                        ),   
-                                    )
-                                ),
-                              ],
+                      ],
+                    ),
+              
+              
+                             
+                    const SizedBox(
+                      height: 20,
+                    ),
+                        
+                          
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Container(
+                          
+                            margin: const EdgeInsets.symmetric(
+                              horizontal: 80, vertical: 40
                             ),
-                            style: ButtonStyle(
-                              fixedSize:
-                                  MaterialStateProperty.all(const Size(270, 50)),
-                              overlayColor:
-                                  MaterialStateProperty.resolveWith<Color>(
-                                      (Set<MaterialState> states) {
-                                if (states.contains(MaterialState.pressed)) {
-                                  return Color.fromARGB(255, 239, 68, 20);
-                                }
-                                return Color.fromARGB(255, 48, 8, 206); 
-                              }),
+                          
+                           child: 
+                            
+                           OutlinedButton.icon(
+                              onPressed: () async {
                       
-                               backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
-                            ),
-                          ),      
-                         ),
-                      ),
-                    ],
-                  )        
-                  // Resto de tus TextFormField aquí...
-                ],
+                                if (_keyForm.currentState != null && _keyForm.currentState!.validate()) {
+                      
+                                  var url = Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/docente/insertDocente.php');
+                                  var response = await http.post(
+                                    url,
+                                    body: {
+                                      'matricula': matriculaDocente.text,
+                                      'nombre': nombreDocente.text,
+                                      'apePaterno': apePaternoDocente.text,
+                                      'apeMaterno': apeMaternoDocente.text,
+                                      'email': emailDocente.text,
+                                      'pass': contrasenaDocente.text,
+                                      'recado': recadoDocente.text,
+                                    }
+                                  );
+                      
+                                  if (response.statusCode == 200) {
+                                    Map<String, dynamic> responseData = json.decode(response.body);
+                                    int httpCode = responseData['httpCode'];
+                                    String message = responseData['message'];
+                      
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message))
+                                    );  
+                      
+                                    matriculaDocente.clear();
+                                    nombreDocente.clear();
+                                    apePaternoDocente.clear();
+                                    apeMaternoDocente.clear();
+                                    emailDocente.clear();
+                                    contrasenaDocente.clear();
+                                    recadoDocente.clear();
+                                                                   
+                                    // print('Response data-------------------------: ${response.body}');
+                      
+                                  } else if(response.statusCode == 409){
+                                    Map<String, dynamic> responseData = json.decode(response.body);
+                                    int httpCode = responseData['httpCode'];
+                                    String message = responseData['message'];
+                      
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(content: Text(message,
+                                      style: const TextStyle(color: Colors.red),)
+                                      )
+                                    );
+                                  
+                                  } else {
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text('Error en la solicitud. Código de estado: ${response.statusCode}', 
+                                        style: const TextStyle(color: Colors.red),)
+                                      )
+                                    );
+                      
+                                  }
+                                  print("Validacion Exitosa");
+                                } else{
+                                  print("Validacion no Exitosa");
+                                }
+                              },
+                              icon: FadeAnimation(1, const Icon(Icons.person_add, color: Colors.white,)),
+                              label: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  const SizedBox(width: 10),
+                                  FadeAnimation(1,
+                                      const Text(
+                                        "Registrar Docente",
+                                        style: TextStyle(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.white
+                                          ),   
+                                      )
+                                  ),
+                                ],
+                              ),
+                              style: ButtonStyle(
+                                fixedSize:
+                                    MaterialStateProperty.all(const Size(270, 50)),
+                                overlayColor:
+                                    MaterialStateProperty.resolveWith<Color>(
+                                        (Set<MaterialState> states) {
+                                  if (states.contains(MaterialState.pressed)) {
+                                    return Color.fromARGB(255, 239, 68, 20);
+                                  }
+                                  return Color.fromARGB(255, 48, 8, 206); 
+                                }),
+                        
+                                 backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+                              ),
+                            ),      
+                           ),
+                        ),
+                      ],
+                    )        
+                    // Resto de tus TextFormField aquí...
+                  ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
-      ],
+      ),
     );
   }
   

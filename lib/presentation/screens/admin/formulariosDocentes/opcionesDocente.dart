@@ -1,10 +1,12 @@
-// ignore_for_file: avoid_print
+// ignore_for_file: file_names
 
 import 'dart:convert';
 import 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/getDocentesFromJson.dart';
 import 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/updateDocente.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+
+//esta es la lista de los docentes para que se visualicen en una pantalla
 
 class OpcionesDocente extends StatefulWidget {
   static const opcionesDocente = "Opciones-Docente ";
@@ -50,7 +52,6 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _isDisposed = false;
     starPolling();
@@ -58,7 +59,7 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+
     _isDisposed = true;
     super.dispose();
   }

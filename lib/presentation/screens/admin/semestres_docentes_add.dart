@@ -72,7 +72,7 @@ class SemestresDocentesAdd extends StatelessWidget {
 
         
         body: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             // const _BackgroundBubbles(),
             Column(
@@ -188,14 +188,14 @@ class SemestresDocentes extends StatelessWidget {
             overlayColor: MaterialStateProperty.resolveWith<Color>(
                 (Set<MaterialState> states) {
               if (states.contains(MaterialState.pressed)) {
-                 return Color.fromARGB(255, 239, 68, 20); // Cambia esto al color que desees para el highlightColor
+                 return const Color.fromARGB(255, 239, 68, 20); // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
  // Cambia esto al color que desees para el highlightColor
               }
               return colors.primary; // Por defecto, usa el overlayColor predeterminado
             }),
 
-            backgroundColor: MaterialStateProperty.all<Color>(Color.fromARGB(255, 17, 5, 130)),
+            backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130)),
           ),
         ),
 

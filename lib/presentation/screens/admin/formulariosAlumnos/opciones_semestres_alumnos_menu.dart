@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 class OpcionesMenuAlumnoSemestres extends StatelessWidget {
   static const opcionesSemestresAlumnosMenu = "semestres";
 
+  // ignore: use_key_in_widget_constructors
   const OpcionesMenuAlumnoSemestres({
     Key? key,
   });
