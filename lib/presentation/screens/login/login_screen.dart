@@ -7,8 +7,8 @@ import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:simple_animations/simple_animations.dart';
-import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -34,212 +34,295 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
-          child: ListView(children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/images/op.png",
-                  fit: BoxFit.cover,
-                ),
-                const Text(
-                  "",
-                  style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.w700,
-                      color: Color.fromARGB(255, 17, 5, 130)),
-                ),
-
-                const SizedBox(
-                  height: 15,
-                ),
-
-                Container(
-                  decoration: BoxDecoration(
-                    // color: const Color.fromARGB(255, 17, 5, 130),
-                    borderRadius: BorderRadius.circular(15),
+          child: ListView(
+            physics: const BouncingScrollPhysics(), 
+            children: [
+            Form(
+              key: _keyForm,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/op.png",
+                    fit: BoxFit.cover,
                   ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 10,
+                  const Text(
+                    "",
+                    style: TextStyle(
+                        fontSize: 36,
+                        fontWeight: FontWeight.w700,
+                        color: Color.fromARGB(255, 17, 5, 130)),
+                  ),
+
+                  const SizedBox(
+                    height: 15,
+                  ),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      // color: const Color.fromARGB(255, 17, 5, 130),
+                      borderRadius: BorderRadius.circular(15),
                     ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        label:
-                            FadeAnimation(1, const Text("Correo electronico")),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        prefixIcon: const Icon(Icons.mark_email_unread,
-                            color: Color.fromARGB(255, 17, 5, 130)),
-                        labelStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 17, 5, 130),
-                        ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
                       ),
-                    ),
-                  ),
-                ),
-
-                const SizedBox(
-                  height: 15,
-                ),
-
-                Container(
-                  decoration: BoxDecoration(
-                    // color: const Color.fromARGB(255, 17, 5, 130),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 10,
-                    ),
-                    child: TextFormField(
-                      keyboardType: TextInputType.text,
-                      decoration: InputDecoration(
-                        label: FadeAnimation(1, const Text("Contraseña")),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        prefixIcon: const Icon(
-                          Icons.lock_person_rounded,
-                          color: Color.fromARGB(255, 17, 5, 130),
-                        ),
-                        labelStyle: const TextStyle(
-                          fontSize: 15,
-                          color: Color.fromARGB(255, 17, 5, 130),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                // Align(
-                //   alignment: Alignment.bottomRight,
-                //   child: InkWell(
-                //     onTap: (){
-
-                //     },
-                //     child: const Text("Contraseña olvidada"),
-
-                //   ),
-                // ),
-
-                const SizedBox(
-                  height: 15,
-                ),
-
-                Row(
-                  children: [
-                    Expanded(
-                        child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: MaterialButton(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15)),
-                        color: const Color.fromARGB(255, 17, 5, 130),
-                        onPressed: () {
-                          context.pushNamed(MenuAdmin.menuAdmin);
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value != null && value.isNotEmpty) {
+                            RegExp regex = RegExp(
+                                r'^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$');
+                            if (!regex.hasMatch(value)) {
+                              return "Ingresa un correo electrónico válido";
+                            }
+                          } else {
+                            return "Ingresa el Email";
+                          }
+                          return null;
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 20),
-                          child: Text(
-                            "LOGIN",
-                            style: TextStyle(color: Colors.white),
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        decoration: InputDecoration(
+                          label: FadeAnimation(
+                              1, const Text("Correo electronico")),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          prefixIcon: const Icon(Icons.mark_email_unread,
+                              color: Color.fromARGB(255, 17, 5, 130)),
+                          labelStyle: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 17, 5, 130),
                           ),
                         ),
                       ),
-                    ))
-                  ],
-                ),
+                    ),
+                  ),
 
-                const SizedBox(
-                  height: 10,
-                ),
+                  const SizedBox(
+                    height: 15,
+                  ),
 
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: Row(
+                  Container(
+                    decoration: BoxDecoration(
+                      // color: const Color.fromARGB(255, 17, 5, 130),
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 10,
+                        vertical: 10,
+                      ),
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value != null && value.isNotEmpty) {
+                          } else {
+                            return "Ingresa la contraseña";
+                          }
+                        },
+                        controller: passController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          label: FadeAnimation(1, const Text("Contraseña")),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          prefixIcon: const Icon(
+                            Icons.lock_person_rounded,
+                            color: Color.fromARGB(255, 17, 5, 130),
+                          ),
+                          labelStyle: const TextStyle(
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 17, 5, 130),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  // Align(
+                  //   alignment: Alignment.bottomRight,
+                  //   child: InkWell(
+                  //     onTap: (){
+
+                  //     },
+                  //     child: const Text("Contraseña olvidada"),
+
+                  //   ),
+                  // ),
+
+                  const SizedBox(
+                    height: 15,
+                  ),
+
+                  Row(
                     children: [
                       Expanded(
-                          child: Divider(
-                        thickness: 0.5,
-                        color: Color.fromARGB(255, 104, 23, 219),
+                          child: Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: MaterialButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                          color: const Color.fromARGB(255, 17, 5, 130),
+                          onPressed: () async {
+                            context.pushNamed(MenuAdmin.menuAdmin);
+                            /*if (_keyForm.currentState != null &&
+                                _keyForm.currentState!.validate()) {
+                              String email = emailController.text;
+                              String pass = passController.text;
+
+                              var response = await http.post(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/sesion/sesion.php'),
+                                body:{
+                                  'email': email,
+                                  'pass': pass
+                                }
+                              );
+
+                              if (response.statusCode == 200) {
+                                // Map<String, dynamic> responseData = json.decode(response.body);
+                                List<dynamic> responseData =
+                                    json.decode(response.body);
+                                for (var item in responseData) {
+                                  String idRol = item['id_rol'];
+
+                                  if (idRol == "2") {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => MenuDocente(
+                                            id: item['id'],
+                                            nombre: item['nombre'],
+                                            appaterno: item['appaterno'],
+                                            apmaterno: item['apmaterno'],
+                                            recordatorio: item['recordatorio'],
+                                          ),
+                                        ));
+                                        
+                                  } else if (idRol == "1") {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const MenuAdmin(
+                                              // id: item['nombre']
+                                              ),
+                                        ));
+
+                                    print(responseData);
+
+                                    
+                                  } else {
+                                    print("Error 500");
+                                  }
+                                  emailController.clear();
+                                  passController.clear();
+                                  
+                                }
+                              }
+                            }*/
+                            // context.pushNamed(MenuAdmin.menuAdmin);
+                          },
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 15),
+                            child: Text(
+                              "Iniciar Sesión",
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 20),
+                            ),
+                          ),
+                        ),
                       ))
                     ],
                   ),
-                ),
 
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Container(
-                        alignment: Alignment.center,
-                        height: 55,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 10,
-                              )
-                            ]),
-                        child: Image.asset(
-                          "assets/images/face.png",
+                  const SizedBox(
+                    height: 10,
+                  ),
+
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Divider(
+                          thickness: 0.5,
+                          color: Color.fromARGB(255, 104, 23, 219),
+                        ))
+                      ],
+                    ),
+                  ),
+
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Row(
+                      children: [
+                        Expanded(
+                            child: Container(
+                          alignment: Alignment.center,
                           height: 55,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.2),
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                )
+                              ]),
+                          child: Image.asset(
+                            "assets/images/face.png",
+                            height: 55,
+                          ),
+                        )),
+                        const SizedBox(
+                          width: 20,
                         ),
-                      )),
-                      const SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                          child: Container(
-                        alignment: Alignment.center,
-                        height: 55,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 10,
-                              )
-                            ]),
-                        child: Image.asset(
-                          "assets/images/google.png",
-                          height: 35,
-                        ),
-                      )),
-                      const SizedBox(width: 20),
-                      Expanded(
-                          child: Container(
-                        alignment: Alignment.center,
-                        height: 55,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(6),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Colors.black.withOpacity(.2),
-                                blurRadius: 10,
-                              )
-                            ]),
-                        child:
-                            Image.asset("assets/images/insta.png", height: 50),
-                      )),
+                        Expanded(
+                            child: Container(
+                          alignment: Alignment.center,
+                          height: 55,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.2),
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                )
+                              ]),
+                          child: Image.asset(
+                            "assets/images/google.png",
+                            height: 35,
+                          ),
+                        )),
+                        const SizedBox(width: 20),
+                        Expanded(
+                            child: Container(
+                          alignment: Alignment.center,
+                          height: 55,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(6),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.2),
+                                  offset: const Offset(0, 5),
 
-                      const SizedBox(width: 20),
-                    ],
-                  ),                  
-                )
-              ],
+                                  blurRadius: 10,
+                                )
+                              ]),
+                          child: Image.asset("assets/images/insta.png",
+                              height: 50),
+                        )),
+                        const SizedBox(width: 20),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           ]),
         ),
