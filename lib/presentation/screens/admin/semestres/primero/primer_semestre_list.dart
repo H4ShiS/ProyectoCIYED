@@ -59,7 +59,6 @@ class _ListPrimeroState extends State<ListPrimero> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _isDisposed = true;
   }

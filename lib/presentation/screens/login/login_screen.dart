@@ -166,8 +166,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               borderRadius: BorderRadius.circular(15)),
                           color: const Color.fromARGB(255, 17, 5, 130),
                           onPressed: () async {
-                            context.pushNamed(MenuAdmin.menuAdmin);
-                            /*if (_keyForm.currentState != null &&
+                            // context.pushNamed(MenuAdmin.menuAdmin);
+                            if (_keyForm.currentState != null &&
                                 _keyForm.currentState!.validate()) {
                               String email = emailController.text;
                               String pass = passController.text;
@@ -219,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   
                                 }
                               }
-                            }*/
+                            }
                             // context.pushNamed(MenuAdmin.menuAdmin);
                           },
                           child: const Padding(

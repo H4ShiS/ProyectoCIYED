@@ -1,10 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/formulario_materias.dart';
+// ignore_for_file: public_member_api_docs, sort_constructors_first, use_key_in_widget_constructors, deprecated_member_use
 import 'package:app_ciyed/presentation/screens/barril.dart';
-import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:go_router/go_router.dart';
 import 'package:flutter/cupertino.dart';
 
 // ignore: must_be_immutable
@@ -127,7 +124,11 @@ Widget itemDashboard(BuildContext context, String title, IconData iconData, Colo
             child: Icon(iconData, color: Colors.white)
           ),
           const SizedBox(height: 8),
-          Text(title.toString(), style: Theme.of(context).textTheme.subtitle1)
+          Text(title.toString(), 
+          style: Theme.of(context).textTheme.subtitle1?.copyWith(
+            color: const Color.fromARGB(255, 17, 5, 130),
+
+          ))
         ],
       ),
     ),

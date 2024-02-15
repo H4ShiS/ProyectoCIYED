@@ -1,4 +1,6 @@
 
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 List<GetAlumnosPrimero> getAlumnosPrimeroFromJson(String str) => List<GetAlumnosPrimero>.from(json.decode(str).map((x) => GetAlumnosPrimero.fromJson(x)));

@@ -7,6 +7,7 @@ import '../../../../widgets/Animatios/Animaciones.dart';
 import 'package:http/http.dart' as http;
 
 class UpdateFomrularioAlumno extends StatefulWidget {
+  // ignore: constant_identifier_names
   static const UpdateformularioAlumno = "Formulario-Alumno";
   final String id;
   final String nombre;

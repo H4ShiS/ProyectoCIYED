@@ -37,6 +37,31 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
     return registros;
   }
 
+
+ Future<void> starPolling  () async{
+    
+    await Future.delayed(const Duration(seconds: 2));
+    if (!_isDisposed) {
+        var newData = await getDocentes();
+        setState(() {
+          data.clear();
+          data.addAll(newData);
+        });
+      }
+    
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _isDisposed = false;
+    starPolling();
+  }
+
+
+
+
+/*
   Future<void> starPolling  () async{
     while (!_isDisposed) {
     await Future.delayed(const Duration(seconds: 2));
@@ -59,11 +84,10 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
 
   @override
   void dispose() {
-
     _isDisposed = true;
     super.dispose();
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,17 +189,76 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
               });
             },
             child: Card(
-              elevation: 2,
-              margin:  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
-              child: ListTile(
-                title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
-                subtitle: Text(
-                      'Nombre: ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
-                      style: const TextStyle(fontSize: 18),
+                elevation: 2,
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
                 ),
-                trailing: const Icon(Icons.arrow_back_ios_new_outlined),
-              )
-            ),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.0),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 5),
+                        color: Colors.black.withOpacity(.111),
+                        blurRadius: 9
+                      ),
+                    ],
+                  ),
+                  child: ListTile(
+                    title: RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: 'Matricula: ',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color.fromRGBO(17, 5, 130, 1), 
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                data[index].matricula,
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    subtitle: RichText(
+                      text: TextSpan(
+                        children: [
+                          const TextSpan(
+                            text: 'Nombre: ',
+                            style: TextStyle(
+                              fontSize: 17,
+                              color: Color.fromRGBO(17, 5, 130, 1), 
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextSpan(
+                            text:
+                                '  ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
+                            style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    trailing: const Icon(
+                      Icons.arrow_back_ios_new_outlined,
+                      color: Color.fromARGB(255, 17, 5, 130),
+                      
+                    ),
+                  ),
+                ),
+              ),
           ),
         );
       },
