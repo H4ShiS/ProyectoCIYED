@@ -58,7 +58,6 @@ class _MenuAdminState extends State<MenuAdmin> {
       
           Container(
             color: const Color.fromARGB(255, 17, 5, 130),
-            
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 40),
               decoration: const BoxDecoration(

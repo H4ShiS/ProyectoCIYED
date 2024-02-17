@@ -219,15 +219,9 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
                             child: TextFormField(
                               validator: (value) {
                                 if (value != null && value.isNotEmpty) {
-                      
-                                  
-                      
                                 } else {
-                      
                                   return "Ingresa el Nombre";
-                      
                                 }
-                                        
                                 return null;
                               },
                               controller: nombreMateria,

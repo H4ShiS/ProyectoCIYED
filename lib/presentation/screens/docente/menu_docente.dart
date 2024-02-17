@@ -35,30 +35,24 @@ class _MenuDocenteState extends State<MenuDocente> {
 
     ThemeData();
     return Scaffold(
-      body:  OpcionesMenuDocente(
-          userId: widget.id,
-          nombre: widget.nombre,
-          appaterno: widget.appaterno,
-          apmaterno: widget.apmaterno,
-          recordatorio: widget.recordatorio,
-      )
-    );
+        body: OpcionesMenuDocente(
+      userId: widget.id,
+      nombre: widget.nombre,
+      appaterno: widget.appaterno,
+      apmaterno: widget.apmaterno,
+      recordatorio: widget.recordatorio,
+    ));
   }
 }
 
-
-
-
-
 // ignore: must_be_immutable
 class OpcionesMenuDocente extends StatelessWidget {
-
   String userId;
   String nombre;
   String appaterno;
   String apmaterno;
   String recordatorio;
-  
+
   OpcionesMenuDocente({
     Key? key,
     required this.userId,
@@ -70,51 +64,118 @@ class OpcionesMenuDocente extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   
-
     // final colors = Theme.of(context).colorScheme;
 
     return Scaffold(
-
-      body: ListView(
-        padding:  EdgeInsets.zero,
-        children: [
-          Container(
-            decoration: const BoxDecoration(
+        body: ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        Container(
+          decoration: const BoxDecoration(
               color: Color.fromARGB(255, 17, 5, 130),
-              borderRadius: BorderRadius.only(
-                bottomRight: Radius.circular(50)
-              ) 
+              borderRadius:
+                  BorderRadius.only(bottomRight: Radius.circular(50))),
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 50,
+              ),
+              ListTile(
+                contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+                title: Text(
+                  "$nombre $appaterno $apmaterno",
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
+                subtitle: Text(
+                  " $recordatorio",
+                  style: Theme.of(context)
+                      .textTheme
+                      .titleMedium
+                      ?.copyWith(color: Colors.white),
+                ),
+                trailing: const CircleAvatar(
+                  backgroundImage: AssetImage("assets/images/insta.png"),
+                  radius: 45,
+                ),
+              ),
+              const SizedBox(
+                height: 30,
+              )
+            ],
+          ),
+        ),
+        Container(
+          color: const Color.fromARGB(255, 17, 5, 130),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(topLeft: Radius.circular(100)
+              )
             ),
-            child: Column(
+            // child: ,                 --------- faltan los botones o semestres divididos
+
+          
+            
+            child: Row(
               children: [
-                 const SizedBox(height: 50,),
-                 ListTile(
-                  contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-                  title: Text( "$nombre $appaterno $apmaterno", style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                    color: Colors.white,
-                  ),),
-                  subtitle: Text( " $recordatorio", style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                    color: Colors.white
-                  ),),
-                  trailing: const CircleAvatar(
-                   backgroundImage: AssetImage("assets/images/insta.png"), 
-                    radius: 45,
+
+                const SizedBox(height: 50,),
+                OutlinedButton.icon(
+                  onPressed: () {},
+                  icon: FadeAnimation(
+                      1,
+                      const Icon(
+                        Icons.looks_two,
+                        color: Colors.white,
+                      )),
+                  label: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const SizedBox(width: 25),
+                      FadeAnimation(
+                          1,
+                          const Text(
+                            "Primer Semestre",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          )),
+                    ],
                   ),
-                 ),
-                 const SizedBox(height: 30,)
+                  style: ButtonStyle(
+                    fixedSize: MaterialStateProperty.all(const Size(270, 45)),
+                    overlayColor: MaterialStateProperty.resolveWith<Color>(
+                        (Set<MaterialState> states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return const Color.fromARGB(255, 239, 68,
+                            20); // Cambia esto al color que desees para el highlightColor
+                      }
+                      return Colors.black; // Por defecto, usa el overlayColor predeterminado
+                    }),
+
+                    // backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 239, 68, 20)),
+                    backgroundColor: MaterialStateProperty.all<Color>(
+                        const Color.fromARGB(255, 17, 5, 130)),
+                  ),
+                ),
+                
               ],
             ),
-          ),    
-        ],
-      )
-    );
+
+            
+          ),
+        )
+      ],
+    ));
   }
 }
 
-
-
-      /*
+/*
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -427,4 +488,3 @@ class OpcionesMenuDocente extends StatelessWidget {
           ),
         ),
       ),*/
-

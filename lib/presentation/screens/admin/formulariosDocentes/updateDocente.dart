@@ -212,7 +212,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                               controller: nombreDocenteUpdate,
                               validator: (value) {
                                 if (value != null && value.isNotEmpty) {
-                                   RegExp nombreTutor = RegExp(r'[a-zA-Z\s]$');
+                                   RegExp nombreTutor = RegExp(r'^[a-zA-Z0-ZáéíóúüÁÉÍÓÚÜñÑ\s]+$');
                                    if (!nombreTutor.hasMatch(value)) {
                                      return "Solo letras";
                                    }
@@ -252,7 +252,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                               controller: apePaternoDocenteUpdate,
                               validator: (value) {
                                 if (value != null && value.isNotEmpty) {
-                                  RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z\s]+$');
+                                  RegExp apellidoPaterno =  RegExp(r'^[a-zA-Z0-ZáéíóúüÁÉÍÓÚÜñÑ\s]+$');
                                   if (!apellidoPaterno.hasMatch(value)) {
                                     return "Solo letras";
                                   }
@@ -291,7 +291,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                               controller: apeMaternoDocenteUpdate,
                               validator: (value) {
                                 if (value != null && value.isNotEmpty) {
-                                RegExp apellidoM = RegExp(r'^[a-zA-Z\s]+$');
+                                RegExp apellidoM = RegExp(r'^[a-zA-Z0-ZáéíóúüÁÉÍÓÚÜñÑ\s]+$');
                                   if (!apellidoM.hasMatch(value)) {
                                     return "Solo letras";
                                   }
@@ -418,7 +418,7 @@ class FormularioDocenteTextField extends StatelessWidget {
                               controller: recadoDocenteUpdate,
                               validator: (value) {
                                 if (value != null && value.isNotEmpty) {
-                                  RegExp recado =  RegExp(r'^[a-zA-Z9-9áéíóúüÁÉÍÓÚÜ\s]+$');
+                                  RegExp recado =  RegExp(r'^[a-zA-Z9-ZáéíóúüÁÉÍÓÚÜñÑ\s]+$');
                                   if (recado.hasMatch(value)) {
                                     
                                   } else {
