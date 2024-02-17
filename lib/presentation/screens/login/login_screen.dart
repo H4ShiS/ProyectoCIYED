@@ -18,15 +18,15 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  
+  bool _isSecurity = true;
+  final formField = GlobalKey<FormState>();
+  final _keyForm = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    // final colors = Theme.of(context).colorScheme;
-    final formField = GlobalKey<FormState>();
-    final _keyForm = GlobalKey<FormState>();
-    final emailController = TextEditingController();
-    final passController = TextEditingController();
-
-    // bool passToggle = true;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -115,6 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         vertical: 10,
                       ),
                       child: TextFormField(
+                        obscureText: _isSecurity,
                         validator: (value) {
                           if (value != null && value.isNotEmpty) {
                           } else {
@@ -136,22 +137,37 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 15,
                             color: Color.fromARGB(255, 17, 5, 130),
                           ),
+
+                          // suffixIcon: tooglePassword()//esto es un metodo generado abajo
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _isSecurity =
+                                    !_isSecurity; // Cambio de _isSecurity al presionar el botón
+                              });
+                            },
+                            icon: _isSecurity
+                                ? const Icon(Icons.visibility)
+                                : const Icon(Icons.visibility_off),
+                            color: Colors.grey,
+                          ),
+
                         ),
                       ),
                     ),
                   ),
+/*
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: InkWell(
+                      onTap: (){
 
-                  // Align(
-                  //   alignment: Alignment.bottomRight,
-                  //   child: InkWell(
-                  //     onTap: (){
+                      },
+                      child: const Text("Contraseña olvidada"),
 
-                  //     },
-                  //     child: const Text("Contraseña olvidada"),
-
-                  //   ),
-                  // ),
-
+                    ),
+                  ),
+*/
                   const SizedBox(
                     height: 15,
                   ),
@@ -328,7 +344,23 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+
   }
+
+  Widget tooglePassword() {
+    return IconButton(
+        onPressed: () {
+          setState(() {
+            _isSecurity = !_isSecurity;
+          });
+        },
+        icon: _isSecurity
+            ? const Icon( Icons.visibility)
+            : const Icon(Icons.visibility_off),
+            color: Colors.grey,
+    );
+  }
+  
 }
 
 
