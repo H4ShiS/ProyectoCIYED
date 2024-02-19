@@ -234,6 +234,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                   passController.clear();
                                   
                                 }
+                              } else{
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                      const SnackBar(content:Text("Correo o Contraseña incorrectos",
+                                      style: TextStyle(color: Colors.red),)
+                                      )
+                                    );
                               }
                             }
                             // context.pushNamed(MenuAdmin.menuAdmin);
