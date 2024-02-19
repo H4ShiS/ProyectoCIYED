@@ -92,7 +92,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                   " $recordatorio",
                   style: Theme.of(context)
                       .textTheme
-                      .titleMedium
+                      .titleSmall
                       ?.copyWith(color: Colors.white),
                 ),
                 trailing: const CircleAvatar(
@@ -105,69 +105,397 @@ class OpcionesMenuDocente extends StatelessWidget {
               )
             ],
           ),
-        ),
+        ),        
         Container(
           color: const Color.fromARGB(255, 17, 5, 130),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
+            padding: const EdgeInsets.all(40),
             decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(topLeft: Radius.circular(100)
               )
             ),
-            // child: ,                 --------- faltan los botones o semestres divididos
+            child: Container(
+              padding: const EdgeInsets.only(top: 10),
+              child: Column(
+                children: [
 
-          
-            
-            child: Row(
-              children: [
 
-                const SizedBox(height: 50,),
-                OutlinedButton.icon(
-                  onPressed: () {},
-                  icon: FadeAnimation(
-                      1,
-                      const Icon(
-                        Icons.looks_two,
-                        color: Colors.white,
-                      )),
-                  label: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const SizedBox(width: 25),
-                      FadeAnimation(
-                          1,
-                          const Text(
-                            "Primer Semestre",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Color.fromARGB(255, 115, 20, 239),
+                              ),
+                              child: const Icon(
+                                Icons.looks_one_rounded,
+                                color: Colors.white,
+                              ),
                             ),
-                          )),
-                    ],
-                  ),
-                  style: ButtonStyle(
-                    fixedSize: MaterialStateProperty.all(const Size(270, 45)),
-                    overlayColor: MaterialStateProperty.resolveWith<Color>(
-                        (Set<MaterialState> states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return const Color.fromARGB(255, 239, 68,
-                            20); // Cambia esto al color que desees para el highlightColor
-                      }
-                      return Colors.black; // Por defecto, usa el overlayColor predeterminado
-                    }),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Primer Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+                  
+                  const SizedBox(height: 15,),
 
-                    // backgroundColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 239, 68, 20)),
-                    backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 17, 5, 130)),
-                  ),
-                ),
-                
-              ],
-            ),
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Color.fromARGB(255, 243, 84, 40),
+                              ),
+                              child: const Icon(
+                                Icons.looks_two,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Segundo Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
 
-            
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Colors.cyan,
+                              ),
+                              child: const Icon(
+                                Icons.looks_3,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Tercer Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Colors.deepPurple,
+                              ),
+                              child: const Icon(
+                                Icons.looks_4,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Cuarto Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Colors.amber,
+                              ),
+                              child: const Icon(
+                                Icons.looks_5,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Quinto Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Colors.pink,
+                              ),
+                              child: const Icon(
+                                Icons.looks_6,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Sexto Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+
+                  const SizedBox(height: 15,),
+
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 5),
+                          color: Colors.black.withOpacity(.111),
+                          blurRadius: 9
+                        ),
+                      ]
+                    ),
+                    child: OutlinedButton(
+                      onPressed: () {},
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                        overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
+                        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ), 
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
+                        child: Row(
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.all(8.0),
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color:  Color.fromARGB(255, 208, 22, 9)
+                              ),
+                              child: const Icon(
+                                Icons.picture_as_pdf_sharp,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const SizedBox(width: 16.0),
+                            const Text(
+                              "Reportes Semestre",
+                              style: TextStyle(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                                color: Color.fromARGB(255, 17, 5, 130),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),  
+
+
+
+
+                ],
+              ),
+            ),     
           ),
         )
       ],

@@ -38,30 +38,26 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
   }
 
 
- Future<void> starPolling  () async{
+//  Future<void> starPolling  () async{
+  //   await Future.delayed(const Duration(seconds: 2));
+  //   if (!_isDisposed) {
+  //       var newData = await getDocentes();
+  //       setState(() {
+  //         data.clear();
+  //         data.addAll(newData);
+  //       });
+  //     }
     
-    await Future.delayed(const Duration(seconds: 2));
-    if (!_isDisposed) {
-        var newData = await getDocentes();
-        setState(() {
-          data.clear();
-          data.addAll(newData);
-        });
-      }
-    
-  }
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    _isDisposed = false;
-    starPolling();
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _isDisposed = false;
+  //   starPolling();
+  // }
 
 
-
-
-/*
   Future<void> starPolling  () async{
     while (!_isDisposed) {
     await Future.delayed(const Duration(seconds: 2));
@@ -87,7 +83,7 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
     _isDisposed = true;
     super.dispose();
   }
-*/
+
   @override
   Widget build(BuildContext context) {
     

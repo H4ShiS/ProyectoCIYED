@@ -109,12 +109,12 @@ class OpcionesSemestreAlumno extends StatelessWidget {
                 mainAxisSpacing: 30,
                 children: [
                   
-                  itemDashboard(context, 'Semestre', Icons.looks_one, Colors.black, const ListPrimero()),
-                  itemDashboard(context, 'Semestre', Icons.looks_two, const Color.fromARGB(255, 255, 98, 0), const OpcionesMenuAlumnoSemestres()),
-                  itemDashboard(context, 'Semestre', Icons.looks_3, const Color.fromARGB(255, 225, 22, 7), const FomrularioDocente()),
-                  itemDashboard(context, 'Semestre', Icons.looks_4, const Color.fromARGB(255, 176, 176, 12), const OpcionesDocente()),
-                  itemDashboard(context, 'Semestre', Icons.looks_5, const Color.fromARGB(255, 6, 34, 192), const FomrularioMaterias()),
-                  itemDashboard(context, 'Semestre', Icons.looks_6_sharp, const Color.fromARGB(255, 22, 105, 97), const GetListaMaterias()),
+                  itemDashboard(context, '1 Semestre', Icons.looks_one, Colors.black, const ListPrimero()),
+                  itemDashboard(context, '2 Semestre', Icons.looks_two, const Color.fromARGB(255, 255, 98, 0), const OpcionesMenuAlumnoSemestres()),
+                  itemDashboard(context, '3 Semestre', Icons.looks_3, const Color.fromARGB(255, 225, 22, 7), const FomrularioDocente()),
+                  itemDashboard(context, '4 Semestre', Icons.looks_4, const Color.fromARGB(255, 176, 176, 12), const OpcionesDocente()),
+                  itemDashboard(context, '5 Semestre', Icons.looks_5, const Color.fromARGB(255, 6, 34, 192), const FomrularioMaterias()),
+                  itemDashboard(context, '6 Semestre', Icons.looks_6_sharp, const Color.fromARGB(255, 22, 105, 97), const GetListaMaterias()),
                   // itemDashboard(context, 'Pendientes', CupertinoIcons.refresh_bold, Colors.blue, const MenuAdmin()),
                   itemDashboard(context, 'Opciones', Icons.rule_folder, const Color.fromARGB(255, 109, 64, 255), const MenuAdmin()),
                 ],
