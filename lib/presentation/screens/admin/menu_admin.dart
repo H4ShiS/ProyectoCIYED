@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
 
-// ignore: must_be_immutable
+//pantalla destinada a las funciones que ltiene el adminsitradkr para el manejo de esta aplicacion el ciual debe de tener 
+//las funciones de un CRUD, ademas de tambien contemplar el aparatado para la descarga para las asostencias
+//para
+//contiene lo que el el poder registrar a los alumnos, por los diferentes emestres  grupos que estan definidos
+//ademas de contemplar las funciones de actrualizar a los diferentes alumnos Registrados,
 class MenuAdmin extends StatefulWidget {
   static const menuAdmin = "admin";
 

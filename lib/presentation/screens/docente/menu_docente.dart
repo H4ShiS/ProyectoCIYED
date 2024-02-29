@@ -1,9 +1,7 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
+// import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
-
-import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
-
-// ignore: must_be_immutable
+//clase para el menu del docente el cual coentiene los diferenetes seemstres que son 6 para que la navegacion que sea correspondiente
 class MenuDocente extends StatefulWidget {
   static const menuDocenteHome = "menu_docente";
 
@@ -45,7 +43,6 @@ class _MenuDocenteState extends State<MenuDocente> {
   }
 }
 
-// ignore: must_be_immutable
 class OpcionesMenuDocente extends StatelessWidget {
   String userId;
   String nombre;
@@ -489,8 +486,6 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ),
                     ),
                   ),  
-
-
 
 
                 ],

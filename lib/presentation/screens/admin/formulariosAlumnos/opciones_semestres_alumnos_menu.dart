@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use
+// ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use, prefer_const_constructors
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ciyed/presentation/screens/barril.dart';
@@ -109,12 +109,12 @@ class OpcionesSemestreAlumno extends StatelessWidget {
                 mainAxisSpacing: 30,
                 children: [
                   
-                  itemDashboard(context, '1 Semestre', Icons.looks_one, Colors.black, const ListPrimero()),
-                  itemDashboard(context, '2 Semestre', Icons.looks_two, const Color.fromARGB(255, 255, 98, 0), const OpcionesMenuAlumnoSemestres()),
-                  itemDashboard(context, '3 Semestre', Icons.looks_3, const Color.fromARGB(255, 225, 22, 7), const FomrularioDocente()),
-                  itemDashboard(context, '4 Semestre', Icons.looks_4, const Color.fromARGB(255, 176, 176, 12), const OpcionesDocente()),
-                  itemDashboard(context, '5 Semestre', Icons.looks_5, const Color.fromARGB(255, 6, 34, 192), const FomrularioMaterias()),
-                  itemDashboard(context, '6 Semestre', Icons.looks_6_sharp, const Color.fromARGB(255, 22, 105, 97), const GetListaMaterias()),
+                  itemDashboard(context, '1 Semestre', Icons.looks_one, Colors.black, ListPrimero(numeroSemestre: 1,)),
+                  itemDashboard(context, '2 Semestre', Icons.looks_two, const Color.fromARGB(255, 255, 98, 0), ListPrimero(numeroSemestre: 2,)),
+                  itemDashboard(context, '3 Semestre', Icons.looks_3, const Color.fromARGB(255, 225, 22, 7),  ListPrimero(numeroSemestre: 3,)),
+                  itemDashboard(context, '4 Semestre', Icons.looks_4, const Color.fromARGB(255, 176, 176, 12),  ListPrimero(numeroSemestre: 4)),
+                  itemDashboard(context, '5 Semestre', Icons.looks_5, const Color.fromARGB(255, 6, 34, 192),  ListPrimero(numeroSemestre: 5)),
+                  itemDashboard(context, '6 Semestre', Icons.looks_6_sharp, const Color.fromARGB(255, 22, 105, 97),  ListPrimero(numeroSemestre: 6)),
                   // itemDashboard(context, 'Pendientes', CupertinoIcons.refresh_bold, Colors.blue, const MenuAdmin()),
                   itemDashboard(context, 'Opciones', Icons.rule_folder, const Color.fromARGB(255, 109, 64, 255), const MenuAdmin()),
                 ],

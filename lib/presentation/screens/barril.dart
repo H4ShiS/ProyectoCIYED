@@ -19,6 +19,11 @@ export 'package:app_ciyed/presentation/screens/admin/formulariosAlumnos/formular
 export 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/formulario_docente.dart';
 
 
+//este es una clase el cal me bva a ayuadar a maejar los navegadores hacia otras pantallas
+//esto me permite a llevar un mejor control hacerca de como puedo manejar las impottacionde de las demas clases
+//y que no tenga un monton de imports en las clases 
+
+
 
 
 

@@ -10,6 +10,7 @@ import 'package:simple_animations/simple_animations.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+//esta clase pentenece a lo que es el modo de iniciar sesion apra lo uqe es el login y se pueda acceder a la aplicacion 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -223,8 +224,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                               // id: item['nombre']
                                               ),
                                         ));
-
-                                    print(responseData);
 
                                     
                                   } else {

@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, camel_case_types
+// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks
 
 import 'dart:convert';
 import 'package:app_ciyed/presentation/screens/admin/semestres/primero/getListaPrimeroJson.dart';
@@ -9,7 +9,8 @@ import 'package:http/http.dart' as http;
 class ListPrimero extends StatefulWidget {
 
   static const listaPrimero = "Primer Semestre";
-  const ListPrimero({super.key});
+  final int numeroSemestre;
+  const ListPrimero({super.key, required this.numeroSemestre});
 
   @override
   State<ListPrimero> createState() => _ListPrimeroState();
@@ -17,10 +18,10 @@ class ListPrimero extends StatefulWidget {
 
 class _ListPrimeroState extends State<ListPrimero> {
 
+
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
   late bool _isDisposed;
 
-  
   Future<List<GetAlumnosPrimero>> getDatos() async {
     var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/alumno/primero/getPrimerSemestre.php'));
     var jsonData = jsonDecode(response.body);
@@ -28,7 +29,11 @@ class _ListPrimeroState extends State<ListPrimero> {
     
     if (jsonData is List) {
       for (var datos in jsonData) {
-        registros.add(GetAlumnosPrimero.fromJson(datos));
+        // registros.add(GetAlumnosPrimero.fromJson(datos));
+        var alumno = GetAlumnosPrimero.fromJson(datos);
+        if (alumno.idSemestre == widget.numeroSemestre.toString()) {
+          registros.add(alumno);
+        }
       }
     } else {
       registros.add(GetAlumnosPrimero.fromJson(jsonData));
@@ -36,10 +41,10 @@ class _ListPrimeroState extends State<ListPrimero> {
     return registros;
   }
 
-  Future<void> startLongPolling() async {
 
+  Future<void> startLongPolling() async {
     while (!_isDisposed) {
-    await Future.delayed(const Duration(seconds: 5)); // Espera 10 segundos
+    await Future.delayed(const Duration(seconds: 1)); // Espera 10 segundos
     if (!_isDisposed) {
         var newData = await getDatos();
         setState(() {
@@ -61,18 +66,19 @@ class _ListPrimeroState extends State<ListPrimero> {
   void dispose() {
     super.dispose();
     _isDisposed = true;
+    super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 17, 5, 130),
         toolbarHeight: 80,
-        title: const Text(
-          "Alumnos Primero",
-          style: TextStyle(color: Colors.white),
+        title:  Text(
+          "Alumnos ${widget.numeroSemestre} semestre",
+          style: const TextStyle(color: Colors.white),
         ),
         actions: [
           IconButton(
@@ -102,7 +108,7 @@ class _ListPrimeroState extends State<ListPrimero> {
             borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(15),
           bottomRight: Radius.circular(15),
-        )),
+        ))
       ),
       body: ListView.builder(
         itemCount: data.length,
@@ -155,3 +161,5 @@ class _ListPrimeroState extends State<ListPrimero> {
                       'Nombre: ${data[index].nombre}',
                       style: const TextStyle(fontSize: 18),
                 ), */
+
+

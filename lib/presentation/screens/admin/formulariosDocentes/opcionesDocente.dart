@@ -60,7 +60,7 @@ class _OpcionesDocenteState extends State<OpcionesDocente> {
 
   Future<void> starPolling  () async{
     while (!_isDisposed) {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 1));
     if (!_isDisposed) {
         var newData = await getDocentes();
         setState(() {
