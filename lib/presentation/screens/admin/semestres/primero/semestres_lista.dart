@@ -1,87 +1,94 @@
-// ignore_for_file: file_names
+// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks
 
 import 'dart:convert';
-
-import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/getListaMateriasFromJSON.dart';
-import 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/updateMaterias.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/primero/getListaPrimeroJson.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/primero/update_formulario_alumno.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-//lista de las materias para que se visualicen en una pantalla
 
-class GetListaMaterias extends StatefulWidget {
-  static const opcionesMateria = "opciones materia";
-  const GetListaMaterias({super.key});
+class ListPrimero extends StatefulWidget {
+
+  static const listaPrimero = "Primer Semestre";
+  final int numeroSemestre;
+  const ListPrimero({super.key, required this.numeroSemestre});
 
   @override
-  State<GetListaMaterias> createState() => _GetListaMateriasState();
+  State<ListPrimero> createState() => _ListPrimeroState();
 }
 
-class _GetListaMateriasState extends State<GetListaMaterias> {
+class _ListPrimeroState extends State<ListPrimero> {
 
-  List<GetMateriaLista> data = <GetMateriaLista>[];
+
+  List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
   late bool _isDisposed;
 
-
-  Future<List<GetMateriaLista>> getMaterias() async {
-    var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/materia/getMateria.php'));
+  Future<List<GetAlumnosPrimero>> getDatos() async {
+    var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/alumno/primero/getPrimerSemestre.php'));
     var jsonData = jsonDecode(response.body);
-    var registros = <GetMateriaLista>[];
-
+    var registros = <GetAlumnosPrimero>[];
+    
     if (jsonData is List) {
       for (var datos in jsonData) {
-        registros.add(GetMateriaLista.fromJson(datos));
+        // registros.add(GetAlumnosPrimero.fromJson(datos));
+        var alumno = GetAlumnosPrimero.fromJson(datos);
+        if (alumno.idSemestre == widget.numeroSemestre.toString()) {
+          registros.add(alumno);
+        }
       }
     } else {
-      registros.add(GetMateriaLista.fromJson(jsonData));
+      registros.add(GetAlumnosPrimero.fromJson(jsonData));
     }
     return registros;
   }
 
-  Future<void> starPolling() async {
+
+  Future<void> startLongPolling() async {
     while (!_isDisposed) {
-      await Future.delayed(const Duration(seconds: 2));
-      if (!_isDisposed) {
-        var newData = await getMaterias();
+    await Future.delayed(const Duration(seconds: 1)); // Espera 10 segundos
+    if (!_isDisposed) {
+        var newData = await getDatos();
         setState(() {
           data.clear();
           data.addAll(newData);
         });
       }
-    }
+    }   
   }
-    
 
   @override
   void initState() {
     super.initState();
     _isDisposed = false;
-    starPolling();
+    startLongPolling();
   }
 
   @override
   void dispose() {
+    super.dispose();
     _isDisposed = true;
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 17, 5, 130),
         toolbarHeight: 80,
-        title: const Text(
-          "Materias",
-          style: TextStyle(color: Colors.white),
+        title:  Text(
+          "Alumnos ${widget.numeroSemestre} semestre",
+          style: const TextStyle(color: Colors.white),
         ),
         actions: [
           IconButton(
             onPressed: () {},
             icon: const Icon(
-              Icons.edit,
+              Icons.list_alt_outlined,
               color: Colors.white,
               size: 30,
             ),
+            // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
           ),
           const SizedBox(
             width: 15,
@@ -103,21 +110,29 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
           bottomRight: Radius.circular(15),
         )),
       ),
-
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
               Navigator.push(
-                context,
+                context, 
                 MaterialPageRoute(
-                  builder: (context) => UpdateFomrularioMaterias(
-                    materiaId: data[index].id,
-                    nombreM: data[index].nombre,
-                    matriculaM: data[index].matricula,
+                  builder: (context) => UpdateFomrularioAlumno(
+                    id: data[index].id,
+                    nombre: data[index].nombre,
+                    appaterno: data[index].appaterno,
+                    apmaterno: data[index].apmaterno,
+                    nombretutor: data[index].nombretutor,
+                    apptutor: data[index].apptutor,
+                    apmtutor: data[index].apmtutor,
+                    telefono: data[index].telefono,
+                    telefonoopcional: data[index].telefonoopcional,
+                    matricula: data[index].matricula,
+                    nia: data[index].nia,
+                    idGrupo: data[index].idGrupo,
                     idSemestre: data[index].idSemestre,
-                    idUsuario: data[index].idUsuario,
+                    
                   ),
                 )
               );
@@ -157,7 +172,7 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
                   },
                 );
               },
-            onDismissed: (direction) {
+              onDismissed: (direction) {
                 setState(() {
                   data.removeAt(index);
                 });
@@ -213,7 +228,8 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
                             ),
                           ),
                           TextSpan(
-                            text: ' ${data[index].nombre}',
+                            text:
+                                '  ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,
@@ -237,16 +253,23 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
   }
 }
 
-/*child: Card(
+
+/*title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
+                subtitle: Text(
+                      'Nombre: ${data[index].nombre}',
+                      style: const TextStyle(fontSize: 18),
+                ), */
+
+
+/*hild: Card(
                 elevation: 2,
-                margin:  const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                 child: ListTile(
-                  title: Text('Matricula: ${data[index].matricula}', style: const TextStyle(fontSize: 18,),),
+                  title: Text(data[index].matricula, style: const TextStyle(fontSize: 18)),
                   subtitle: Text(
-                        'Nombre: ${data[index].nombre}',
-                        style: const TextStyle(fontSize: 18),
+                        'Nombre: ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}', style: const TextStyle(fontSize: 18),
                   ),
-                  trailing: const Icon(Icons.arrow_back_ios_new_outlined),
-                    
-                )
-              ) */
+                  trailing: const Icon(Icons.arrow_back_ios_new_outlined), // Personaliza el icono según tus necesidades
+                ),
+              ),
+ */

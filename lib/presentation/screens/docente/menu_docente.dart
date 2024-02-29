@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 // import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
+import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 //clase para el menu del docente el cual coentiene los diferenetes seemstres que son 6 para que la navegacion que sea correspondiente
 class MenuDocente extends StatefulWidget {
@@ -149,18 +150,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Color.fromARGB(255, 115, 20, 239),
                               ),
-                              child: const Icon(
-                                Icons.looks_one_rounded,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_one_rounded,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Primer Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation( 1,
+                              const Text(
+                                "Primer Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -169,7 +174,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
                   
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -202,18 +207,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Color.fromARGB(255, 243, 84, 40),
                               ),
-                              child: const Icon(
-                                Icons.looks_two,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_two,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Segundo Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(1,
+                              const Text(
+                                "Segundo Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -222,7 +231,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -255,18 +264,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Colors.cyan,
                               ),
-                              child: const Icon(
-                                Icons.looks_3,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_3,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Tercer Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(1,
+                              const Text(
+                                "Tercer Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -275,7 +288,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -308,18 +321,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Colors.deepPurple,
                               ),
-                              child: const Icon(
-                                Icons.looks_4,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_4,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Cuarto Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(1,
+                              const Text(
+                                "Cuarto Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -328,7 +345,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -361,18 +378,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Colors.amber,
                               ),
-                              child: const Icon(
-                                Icons.looks_5,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_5,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Quinto Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(
+                              1, const Text(
+                                "Quinto Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -381,7 +402,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -414,18 +435,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Colors.pink,
                               ),
-                              child: const Icon(
-                                Icons.looks_6,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.looks_6,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Sexto Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(1,
+                              const Text(
+                                "Sexto Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -434,7 +459,7 @@ class OpcionesMenuDocente extends StatelessWidget {
                     ),
                   ),  
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     decoration: BoxDecoration(
@@ -467,18 +492,22 @@ class OpcionesMenuDocente extends StatelessWidget {
                                 shape: BoxShape.circle,
                                 color:  Color.fromARGB(255, 208, 22, 9)
                               ),
-                              child: const Icon(
-                                Icons.picture_as_pdf_sharp,
-                                color: Colors.white,
+                              child: FadeAnimation(1,
+                                const Icon(
+                                  Icons.picture_as_pdf_sharp,
+                                  color: Colors.white,
+                                ),
                               ),
                             ),
                             const SizedBox(width: 16.0),
-                            const Text(
-                              "Reportes Semestre",
-                              style: TextStyle(
-                                fontSize: 17,
-                                fontWeight: FontWeight.bold,
-                                color: Color.fromARGB(255, 17, 5, 130),
+                            FadeAnimation(1,
+                              const Text(
+                                "Reportes Semestre",
+                                style: TextStyle(
+                                  fontSize: 17,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color.fromARGB(255, 17, 5, 130),
+                                ),
                               ),
                             ),
                           ],
@@ -497,6 +526,7 @@ class OpcionesMenuDocente extends StatelessWidget {
     ));
   }
 }
+
 
 /*
       body: SafeArea(

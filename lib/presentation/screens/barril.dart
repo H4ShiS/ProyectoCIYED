@@ -2,7 +2,7 @@
 
 export 'package:app_ciyed/presentation/screens/admin/formulariosMaterias/opcionesMaterias.dart';
 
-export 'package:app_ciyed/presentation/screens/admin/semestres/primero/primer_semestre_list.dart';
+export 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista.dart';
 
 export 'package:app_ciyed/presentation/screens/admin/formulariosDocentes/opcionesDocente.dart';
 

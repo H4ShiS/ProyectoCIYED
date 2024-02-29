@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, use_key_in_widget_constructors, deprecated_member_use
 import 'package:app_ciyed/presentation/screens/barril.dart';
+import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/cupertino.dart';
@@ -83,8 +84,8 @@ class _MenuAdminState extends State<MenuAdmin> {
                   itemDashboard(context, 'Opciones', CupertinoIcons.pencil_outline, Colors.brown, const OpcionesDocente()),
                   itemDashboard(context, 'Materias', CupertinoIcons.book_solid, Colors.indigo, const FomrularioMaterias()),
                   itemDashboard(context, 'Opciones', CupertinoIcons.add_circled, Colors.teal, const GetListaMaterias()),
-                  itemDashboard(context, 'About', CupertinoIcons.question_circle, Colors.blue, const MenuAdmin()),
-                  itemDashboard(context, 'Contact', CupertinoIcons.phone, Colors.pinkAccent, const MenuAdmin()),
+                  itemDashboard(context, 'Informacion', CupertinoIcons.question_circle, Colors.blue, const MenuAdmin()),
+                  itemDashboard(context, 'Contacto', CupertinoIcons.phone, Colors.pinkAccent, const MenuAdmin()),
                 ],
               ),
 
@@ -124,7 +125,7 @@ Widget itemDashboard(BuildContext context, String title, IconData iconData, Colo
               color: background,
               shape: BoxShape.circle,
             ),
-            child: Icon(iconData, color: Colors.white)
+            child: FadeAnimation(1, Icon(iconData, color: Colors.white)),
           ),
           const SizedBox(height: 8),
           Text(title.toString(), 

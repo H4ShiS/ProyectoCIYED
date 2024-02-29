@@ -152,7 +152,7 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
   List<String> listaDeSemestre = [
     "Primero",
     "Segundo",
-    "Tercer",
+    "Tercero",
     "Cuarto",
     "Quinto",
     "Sexto"
