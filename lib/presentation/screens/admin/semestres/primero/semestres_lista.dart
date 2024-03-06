@@ -66,7 +66,7 @@ class _ListPrimeroState extends State<ListPrimero> {
   void dispose() {
     super.dispose();
     _isDisposed = true;
-    super.dispose();
+    // super.dispose();
   }
 
   @override
@@ -229,7 +229,7 @@ class _ListPrimeroState extends State<ListPrimero> {
                           ),
                           TextSpan(
                             text:
-                                '  ${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
+                                '${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
                             style: const TextStyle(
                               fontSize: 18,
                               color: Colors.black,

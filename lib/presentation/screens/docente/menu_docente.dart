@@ -1,5 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, must_be_immutable
 // import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
+import 'package:app_ciyed/presentation/screens/docente/lista_materias.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 //clase para el menu del docente el cual coentiene los diferenetes seemstres que son 6 para que la navegacion que sea correspondiente
@@ -118,7 +119,6 @@ class OpcionesMenuDocente extends StatelessWidget {
               child: Column(
                 children: [
 
-
                   Container(
                     decoration: BoxDecoration(
                       boxShadow: [
@@ -130,7 +130,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 1, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
@@ -187,7 +194,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 2, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
@@ -244,7 +258,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 3, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
@@ -301,7 +322,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 4, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
@@ -358,7 +386,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 5, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
@@ -415,7 +450,14 @@ class OpcionesMenuDocente extends StatelessWidget {
                       ]
                     ),
                     child: OutlinedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ListaMaterias(numeroSemestre: 6, id: userId,),
+                            )
+                        );
+                      },
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                         overlayColor: MaterialStateProperty.all<Color>(const Color.fromARGB(255, 17, 5, 130),),
