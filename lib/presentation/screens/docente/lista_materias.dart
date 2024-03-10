@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista.dart';
 import 'package:app_ciyed/presentation/screens/docente/jsonmaterias/getListaMateriasJson.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -76,7 +77,9 @@ class _ListaMateriasState extends State<ListaMaterias> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              
+            },
             icon: const Icon(
               Icons.list_alt_outlined,
               color: Colors.white,
@@ -109,7 +112,11 @@ class _ListaMateriasState extends State<ListaMaterias> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-                
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          const ListPrimero(numeroSemestre: 1)));
             },
             child: Card(
               elevation: 2,

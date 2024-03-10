@@ -1,6 +1,5 @@
-// To parse this JSON data, do
-//
 //     final materiasDocente = materiasDocenteFromJson(jsonString);
+// ignore_for_file: file_names
 
 import 'dart:convert';
 

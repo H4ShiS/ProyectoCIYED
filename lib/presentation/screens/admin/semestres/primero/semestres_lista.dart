@@ -18,7 +18,7 @@ class ListPrimero extends StatefulWidget {
 
 class _ListPrimeroState extends State<ListPrimero> {
 
-
+  int selectIndex = 0;
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
   late bool _isDisposed;
 
@@ -82,7 +82,8 @@ class _ListPrimeroState extends State<ListPrimero> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+            },
             icon: const Icon(
               Icons.list_alt_outlined,
               color: Colors.white,
@@ -248,6 +249,34 @@ class _ListPrimeroState extends State<ListPrimero> {
             ),
           );
         },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        currentIndex: selectIndex,
+        onTap: (value) {
+          
+          setState(() {
+            selectIndex = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.two_wheeler),
+            activeIcon: Icon(Icons.motorcycle),
+            label: "Prueba",
+            backgroundColor: Color.fromARGB(255, 17, 5, 130),
+          ),
+
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_rounded),
+            activeIcon: Icon(Icons.people),
+            label: "Personas",
+            backgroundColor: Color.fromARGB(255, 17, 5, 130),
+          ),
+
+          
+        ]
       ),
     );
   }
