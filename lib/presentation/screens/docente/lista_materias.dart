@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista_a.dart';
 import 'package:app_ciyed/presentation/screens/docente/jsonmaterias/getListaMateriasJson.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -116,7 +116,7 @@ class _ListaMateriasState extends State<ListaMaterias> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          const ListPrimero(numeroSemestre: 1)));
+                          const ListSemestreGrupoA(numeroSemestre: 1)));
             },
             child: Card(
               elevation: 2,

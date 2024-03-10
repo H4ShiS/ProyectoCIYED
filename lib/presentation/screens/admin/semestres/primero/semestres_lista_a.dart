@@ -6,17 +6,17 @@ import 'package:app_ciyed/presentation/screens/admin/semestres/primero/update_fo
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class ListPrimero extends StatefulWidget {
+class ListSemestreGrupoA extends StatefulWidget {
 
   static const listaPrimero = "Primer Semestre";
   final int numeroSemestre;
-  const ListPrimero({super.key, required this.numeroSemestre});
+  const ListSemestreGrupoA({super.key, required this.numeroSemestre});
 
   @override
-  State<ListPrimero> createState() => _ListPrimeroState();
+  State<ListSemestreGrupoA> createState() => _ListSemestreGrupoAState();
 }
 
-class _ListPrimeroState extends State<ListPrimero> {
+class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
 
   int selectIndex = 0;
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
@@ -31,7 +31,7 @@ class _ListPrimeroState extends State<ListPrimero> {
       for (var datos in jsonData) {
         // registros.add(GetAlumnosPrimero.fromJson(datos));
         var alumno = GetAlumnosPrimero.fromJson(datos);
-        if (alumno.idSemestre == widget.numeroSemestre.toString()) {
+        if (alumno.idSemestre == widget.numeroSemestre.toString() && alumno.idGrupo == "1") {
           registros.add(alumno);
         }
       }
@@ -250,7 +250,7 @@ class _ListPrimeroState extends State<ListPrimero> {
           );
         },
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      /*bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.shifting,
         currentIndex: selectIndex,
         onTap: (value) {
@@ -277,7 +277,7 @@ class _ListPrimeroState extends State<ListPrimero> {
 
           
         ]
-      ),
+      ),*/
     );
   }
 }
