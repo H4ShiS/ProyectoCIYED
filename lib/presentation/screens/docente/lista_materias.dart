@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista_a.dart';
 import 'package:app_ciyed/presentation/screens/docente/jsonmaterias/getListaMateriasJson.dart';
 import 'package:app_ciyed/presentation/screens/docente/nabvar_alumnos.dart';
 import 'package:flutter/material.dart';

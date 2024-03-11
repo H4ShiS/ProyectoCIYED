@@ -23,17 +23,6 @@ class NavBarAlumnosMateria extends StatefulWidget {
 class _NavBarAlumnosMateriaState extends State<NavBarAlumnosMateria> {
   int selectIndex = 0;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // print("${widget.idDocente}");
-    // print("${widget.idMateria}");
-    // print("${widget.numeroSemestre}");
-
-
-  }
-
 
   @override
   Widget build(BuildContext context) {

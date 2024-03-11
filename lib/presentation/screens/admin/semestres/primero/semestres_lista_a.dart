@@ -250,34 +250,7 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
           );
         },
       ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: selectIndex,
-        onTap: (value) {
-          
-          setState(() {
-            selectIndex = value;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.two_wheeler),
-            activeIcon: Icon(Icons.motorcycle),
-            label: "Prueba",
-            backgroundColor: Color.fromARGB(255, 17, 5, 130),
-          ),
 
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_rounded),
-            activeIcon: Icon(Icons.people),
-            label: "Personas",
-            backgroundColor: Color.fromARGB(255, 17, 5, 130),
-          ),
-
-          
-        ]
-      ),*/
     );
   }
 }
