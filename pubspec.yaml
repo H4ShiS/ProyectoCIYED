@@ -16,7 +16,6 @@ dependencies:
     sdk: flutter
   go_router: ^11.1.2
   http: ^1.1.0
-  mdi: ^4.0.0
   simple_animations: ^5.0.2
 
 dev_dependencies:
