@@ -20,8 +20,14 @@ class AsistenciaGrupoA extends StatefulWidget {
 }
 
 class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
+
   List<AsistenciaAlumnos> data = <AsistenciaAlumnos>[];
   late bool _isDisposed;
+  DateTime selectedDate = DateTime.now();
+  Map<String, int> selectedOptions = {};
+  bool selectAll = false;
+
+
 
   Future<List<AsistenciaAlumnos>> getDatos() async {
     var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/docente/alumnos/alumnosAsistencia.php'));
@@ -56,6 +62,58 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
     }   
   }
 
+ 
+
+void _updateAllSelection() {
+  setState(() {
+    selectAll = !selectAll;
+    for (var alumno in data) {
+      selectedOptions[alumno.id] = selectAll ? 1 : 0;
+    }
+  });
+}
+
+
+  bool todosSeleccionados() {
+    // Verificar si todos los radio buttons están seleccionados
+    for (int i = 0; i < data.length; i++) {
+      if (selectedOptions[data[i].id] == null ||
+          selectedOptions[data[i].id] == 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  void mostrarMensaje() {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content:  Text('Por favor, selecciona todas las opciones antes de enviar.'),
+      duration:  Duration(seconds: 2),
+    ),
+  );
+}
+  // bool todosSeleccionados() {
+  //   return selectedOptions.values.every((value) => value != null);
+  // }
+
+
+// void imprimirValoresSeleccionados() {
+//     for (String idAlumno in selectedOptions.keys) {
+//       int? valorSeleccionado = selectedOptions[idAlumno];
+//       print('ID Alumno: $idAlumno - Valor Seleccionado: $valorSeleccionado');
+//     }
+//   }
+
+  void enviarDatos() {
+    // Aquí deberías enviar la solicitud POST con los datos seleccionados.
+    // Puedes usar el paquete http para hacer la solicitud.
+    // Por ejemplo, si tienes una función que envía la solicitud:
+    // enviarSolicitudPost(selectedOptions);
+    print('Enviando datos...');
+    print(selectedOptions);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -70,7 +128,6 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
     // super.dispose();
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,29 +135,66 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
         backgroundColor: const Color.fromARGB(255, 17, 5, 130),
         toolbarHeight: 80,
         title:  Text(
-          "Alumnos ${widget.idMateriaNavBar} semestre",
+          "Alumnos ${widget.idMateriaNavBar}",
           style: const TextStyle(color: Colors.white),
         ),
         actions: [
           IconButton(
-            onPressed: () {
+            onPressed: () async{
+              final DateTime? dateTime = await showDatePicker(
+                context: context, 
+                initialDate: selectedDate,
+                firstDate: DateTime(2000), 
+                lastDate: DateTime(3000),
+                // locale: const Locale('es'),
+
+              );
+              if (dateTime != null) {
+                setState(() {
+                  selectedDate = dateTime;
+                });
+
+              }
             },
             icon: const Icon(
-              Icons.list_alt_outlined,
+              Icons.calendar_month,
               color: Colors.white,
               size: 30,
             ),
             // style:  ButtonStyle(backgroundColor: MaterialStateProperty.all<Color>(Colors.white)),
           ),
+
+          IconButton(
+            onPressed: () {
+              _updateAllSelection();
+            },
+            icon: Icon(
+              selectAll ? Icons.check_circle : Icons.radio_button_off,
+              color: Colors.white,
+              size: 30,
+            ),
+          ),
+
           const SizedBox(
             width: 15,
           ),
+          
+          // IconButton(
+          //   onPressed: () {
+          //     imprimirValoresSeleccionados();
+          //   },
+          //   icon: const Icon(
+          //     Icons.print,
+          //     color: Colors.white,
+          //   ),
+          // ),
+
         ],
         leading: IconButton(
           icon: const Icon(
-            Icons.arrow_back_rounded, // Icono de flecha de retroceso
+            Icons.arrow_back_rounded, 
             color:
-                Colors.white, // Cambia el color de la flecha de retroceso aquí
+                Colors.white, 
           ),
           onPressed: () {
             Navigator.pop(context);
@@ -117,7 +211,7 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
         itemBuilder: (context, index) {
           return Card(
             elevation: 2,
-            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 3),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(15.0),
             ),
@@ -136,51 +230,69 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
                 title: RichText(
                   text: TextSpan(
                     children: [
-                      const TextSpan(
-                        text: 'Matricula: ',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Color.fromRGBO(17, 5, 130, 1),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
                       TextSpan(
-                        text: data[index].matricula,
+                        text:
+                            '${data[index].nombre} ${data[index].appaterno} \n${data[index].apmaterno}',
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.black,
+                          color: Color.fromRGBO(17, 5, 130, 1),
                         ),
                       ),
                     ],
                   ),
                 ),
-                subtitle: RichText(
-                  text: TextSpan(
-                    children: [
-                      const TextSpan(
-                        text: 'Alumno: ',
-                        style: TextStyle(
-                          fontSize: 17,
-                          color: Color.fromRGBO(17, 5, 130, 1),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      TextSpan(
-                        text:
-                            '${data[index].nombre} ${data[index].appaterno} ${data[index].apmaterno}',
-                        style: const TextStyle(
-                          fontSize: 15,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
+                
+                trailing: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  verticalDirection: VerticalDirection.down,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Radio(
+                      value: 1,
+                      groupValue: selectedOptions[data[index].id],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOptions[data[index].id] = 1;
+                        });
+                      },
+                    ),
+                    const Text('A'),
+                    Radio(
+                      value: 2,
+                      groupValue: selectedOptions[data[index].id],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOptions[data[index].id] = 2;
+                        });
+                      },
+                    ),
+                    const Text('F'),
+                    Radio(
+                      value: 3,
+                      groupValue: selectedOptions[data[index].id],
+                      onChanged: (value) {
+                        setState(() {
+                          selectedOptions[data[index].id] = 3;
+                        });
+                      },
+                    ),
+                    const Text('P'),
+                  ],
                 ),
               ),
             ),
           );
         },
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: todosSeleccionados() ? enviarDatos : mostrarMensaje,
+          
+        label: const Text('Enviar'),
+        icon: const Icon(Icons.send),
+        backgroundColor: Colors.blue,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
+
