@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_brace_in_string_interps
+
 import 'dart:convert';
 
 import 'package:app_ciyed/presentation/screens/docente/ListaDeGruposAlumnos/aistenciaJson.dart';
@@ -27,8 +29,6 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
   Map<String, int> selectedOptions = {};
   bool selectAll = false;
 
-
-
   Future<List<AsistenciaAlumnos>> getDatos() async {
     var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/docente/alumnos/alumnosAsistencia.php'));
     var jsonData = jsonDecode(response.body);
@@ -48,7 +48,6 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
     return registros;
   }
 
-
   Future<void> startLongPolling() async {
     while (!_isDisposed) {
     await Future.delayed(const Duration(seconds: 1)); // Espera 10 segundos
@@ -62,8 +61,6 @@ class _AsistenciaGrupoAState extends State<AsistenciaGrupoA> {
     }   
   }
 
- 
-
 void _updateAllSelection() {
   setState(() {
     selectAll = !selectAll;
@@ -72,7 +69,6 @@ void _updateAllSelection() {
     }
   });
 }
-
 
   bool todosSeleccionados() {
     // Verificar si todos los radio buttons están seleccionados
@@ -93,25 +89,55 @@ void _updateAllSelection() {
     ),
   );
 }
-  // bool todosSeleccionados() {
-  //   return selectedOptions.values.every((value) => value != null);
-  // }
+
+  void enviarDatos() async{
+
+    if (!todosSeleccionados()) {
+      mostrarMensaje();
+      return;
+    }
+
+    List<Map<String, String>> alumnosData = [];
+    for (var alumno in data) {
+      alumnosData.add({
+        'idAlumno': alumno.id.toString(),
+        'valorSeleccionado': selectedOptions[alumno.id].toString(),
+        // Agrega aquí los demás campos que necesites enviar
+      });
+    }
+
+    String idDocente = widget.idDocenteNavBar;
+    String idMateria = widget.idMateriaNavBar;
+    String fechaSeleccionada = selectedDate.toLocal().toString().split(' ')[0];
+    
+    for (var data in alumnosData) {
+
+      print('alumnovID ${data['idAlumno']}');
+  print('Valos Asistencia: ${data['valorSeleccionado']}');
+  print('IdDocente: ${idDocente}');
+  print('IdMateria: ${idMateria}');
+  print('Fecha Seleccionada: ${fechaSeleccionada}');
 
 
-// void imprimirValoresSeleccionados() {
-//     for (String idAlumno in selectedOptions.keys) {
-//       int? valorSeleccionado = selectedOptions[idAlumno];
-//       print('ID Alumno: $idAlumno - Valor Seleccionado: $valorSeleccionado');
-//     }
-//   }
 
-  void enviarDatos() {
-    // Aquí deberías enviar la solicitud POST con los datos seleccionados.
-    // Puedes usar el paquete http para hacer la solicitud.
-    // Por ejemplo, si tienes una función que envía la solicitud:
-    // enviarSolicitudPost(selectedOptions);
-    print('Enviando datos...');
-    print(selectedOptions);
+    // var response = await http.post(
+    //   Uri.parse('https://pruebas97979797.000webhostapp.iarDatos.php'),
+    //   body: {
+    //     'iddocente': idDocente,
+    //     'idmateria': idMateria,
+    //     'idAlumno': data['idAlumno']!,
+    //     'valorSeleccionado': data['valorSeleccionado']!,
+    //     // Agrega aquí los demás campos que necesites enviar
+    //   },
+    // );
+
+    // if (response.statusCode == 200) {
+    //   print("Validacion exitosa");
+    // } else {
+    //   print("Error en la validacion");
+    // }
+
+    }
   }
 
   @override
@@ -147,7 +173,6 @@ void _updateAllSelection() {
                 firstDate: DateTime(2000), 
                 lastDate: DateTime(3000),
                 // locale: const Locale('es'),
-
               );
               if (dateTime != null) {
                 setState(() {
@@ -178,16 +203,6 @@ void _updateAllSelection() {
           const SizedBox(
             width: 15,
           ),
-          
-          // IconButton(
-          //   onPressed: () {
-          //     imprimirValoresSeleccionados();
-          //   },
-          //   icon: const Icon(
-          //     Icons.print,
-          //     color: Colors.white,
-          //   ),
-          // ),
 
         ],
         leading: IconButton(
@@ -285,7 +300,10 @@ void _updateAllSelection() {
         },
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: todosSeleccionados() ? enviarDatos : mostrarMensaje,
+        // onPressed: todosSeleccionados() ? enviarDatos : mostrarMensaje,
+        onPressed: (){
+          enviarDatos();
+        },
           
         label: const Text('Enviar'),
         icon: const Icon(Icons.send),
