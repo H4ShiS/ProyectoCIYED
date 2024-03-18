@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps
+// ignore_for_file: unnecessary_brace_in_string_interps, use_build_context_synchronously, prefer_typing_uninitialized_variables
 
 import 'dart:convert';
 
@@ -84,7 +84,7 @@ void _updateAllSelection() {
   void mostrarMensaje() {
   ScaffoldMessenger.of(context).showSnackBar(
     const SnackBar(
-      content:  Text('Por favor, selecciona todas las opciones antes de enviar.'),
+      content:  Text('Por favor, selecciona todas las opciones antes de enviar.', style: TextStyle(color: Colors.red),),
       duration:  Duration(seconds: 2),
     ),
   );
@@ -109,35 +109,51 @@ void _updateAllSelection() {
     String idDocente = widget.idDocenteNavBar;
     String idMateria = widget.idMateriaNavBar;
     String fechaSeleccionada = selectedDate.toLocal().toString().split(' ')[0];
+    var response;
     
     for (var data in alumnosData) {
+      //     print('alumnovID ${data['idAlumno']}');
+      // print('Valos Asistencia: ${data['valorSeleccionado']}');
+      // print('IdDocente: ${idDocente}');
+      // print('IdMateria: ${idMateria}');
+      // print('Fecha Seleccionada: ${fechaSeleccionada}');
 
-      print('alumnovID ${data['idAlumno']}');
-  print('Valos Asistencia: ${data['valorSeleccionado']}');
-  print('IdDocente: ${idDocente}');
-  print('IdMateria: ${idMateria}');
-  print('Fecha Seleccionada: ${fechaSeleccionada}');
-
-
-
-    // var response = await http.post(
-    //   Uri.parse('https://pruebas97979797.000webhostapp.iarDatos.php'),
-    //   body: {
-    //     'iddocente': idDocente,
-    //     'idmateria': idMateria,
-    //     'idAlumno': data['idAlumno']!,
-    //     'valorSeleccionado': data['valorSeleccionado']!,
-    //     // Agrega aquí los demás campos que necesites enviar
-    //   },
-    // );
-
-    // if (response.statusCode == 200) {
-    //   print("Validacion exitosa");
-    // } else {
-    //   print("Error en la validacion");
-    // }
-
+      response = await http.post(
+        Uri.parse('https://pruebas97979797.000webhostapp.com/apis/docente/alumnos/insertAsistencia.php'),
+        body: {
+          'asistencia': data['valorSeleccionado']!,
+          'fecha': fechaSeleccionada,
+          'idAlumno': data['idAlumno']!,
+          'idMateria': idMateria,
+          'idDocente': idDocente,
+        },
+      );
     }
+
+    if (response.statusCode == 200) {
+        Map<String, dynamic> responseData = json.decode(response.body);
+      
+        String message = responseData['message'];
+
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(message)));
+      }  else if (response.statusCode == 409) {
+        Map<String, dynamic> responseData = json.decode(response.body);
+        
+        String message = responseData['message'];
+
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          message,
+          style: const TextStyle(color: Colors.red),
+        )));
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+          'Error en la solicitud. Código de estado: ${response.statusCode}',
+          style: const TextStyle(color: Colors.red),
+        )));
+      }
   }
 
   @override

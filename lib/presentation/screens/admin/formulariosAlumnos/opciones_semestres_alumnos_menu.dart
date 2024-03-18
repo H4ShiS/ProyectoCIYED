@@ -1,5 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first, deprecated_member_use, prefer_const_constructors
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/navbar_grupos_lista_alumnos.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/navbar_grupos_lista_alumnos.dart';
 import 'package:app_ciyed/presentation/widgets/Animatios/Animaciones.dart';
 import 'package:flutter/material.dart';
 import 'package:app_ciyed/presentation/screens/barril.dart';

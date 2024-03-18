@@ -1,22 +1,22 @@
 // ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks
 
 import 'dart:convert';
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/getListaPrimeroJson.dart';
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/update_formulario_alumno.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/getListaPrimeroJson.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/update_formulario_alumno.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class ListSemestreGrupoA extends StatefulWidget {
+class ListSemestreGrupoB extends StatefulWidget {
 
   static const listaPrimero = "Primer Semestre";
   final int numeroSemestre;
-  const ListSemestreGrupoA({super.key, required this.numeroSemestre});
+  const ListSemestreGrupoB({super.key, required this.numeroSemestre});
 
   @override
-  State<ListSemestreGrupoA> createState() => _ListSemestreGrupoAState();
+  State<ListSemestreGrupoB> createState() => _ListSemestreGrupoBState();
 }
 
-class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
+class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
 
   int selectIndex = 0;
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
@@ -31,7 +31,7 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
       for (var datos in jsonData) {
         // registros.add(GetAlumnosPrimero.fromJson(datos));
         var alumno = GetAlumnosPrimero.fromJson(datos);
-        if (alumno.idSemestre == widget.numeroSemestre.toString() && alumno.idGrupo == "1") {
+        if (alumno.idSemestre == widget.numeroSemestre.toString() && alumno.idGrupo == "2") {
           registros.add(alumno);
         }
       }
@@ -250,7 +250,34 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
           );
         },
       ),
+      /*bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.shifting,
+        currentIndex: selectIndex,
+        onTap: (value) {
+          
+          setState(() {
+            selectIndex = value;
+          });
+        },
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.two_wheeler),
+            activeIcon: Icon(Icons.motorcycle),
+            label: "Prueba",
+            backgroundColor: Color.fromARGB(255, 17, 5, 130),
+          ),
 
+
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_2_rounded),
+            activeIcon: Icon(Icons.people),
+            label: "Personas",
+            backgroundColor: Color.fromARGB(255, 17, 5, 130),
+          ),
+
+          
+        ]
+      ),*/
     );
   }
 }

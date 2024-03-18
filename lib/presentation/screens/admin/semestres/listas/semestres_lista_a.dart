@@ -1,22 +1,22 @@
-// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks
+// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously
 
 import 'dart:convert';
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/getListaPrimeroJson.dart';
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/update_formulario_alumno.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/getListaPrimeroJson.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/update_formulario_alumno.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class ListSemestreGrupoB extends StatefulWidget {
+class ListSemestreGrupoA extends StatefulWidget {
 
   static const listaPrimero = "Primer Semestre";
   final int numeroSemestre;
-  const ListSemestreGrupoB({super.key, required this.numeroSemestre});
+  const ListSemestreGrupoA({super.key, required this.numeroSemestre});
 
   @override
-  State<ListSemestreGrupoB> createState() => _ListSemestreGrupoBState();
+  State<ListSemestreGrupoA> createState() => _ListSemestreGrupoAState();
 }
 
-class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
+class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
 
   int selectIndex = 0;
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
@@ -31,7 +31,7 @@ class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
       for (var datos in jsonData) {
         // registros.add(GetAlumnosPrimero.fromJson(datos));
         var alumno = GetAlumnosPrimero.fromJson(datos);
-        if (alumno.idSemestre == widget.numeroSemestre.toString() && alumno.idGrupo == "2") {
+        if (alumno.idSemestre == widget.numeroSemestre.toString() && alumno.idGrupo == "1") {
           registros.add(alumno);
         }
       }
@@ -166,6 +166,40 @@ class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
                           child: const Text("Eliminar"),
                           onPressed: () async {
                             Navigator.of(context).pop(true);
+                            String idAlumno = data[index].id;
+
+                            var response = await http.get(
+                              Uri.parse(
+                                  'https://pruebas97979797.000webhostapp.com/apis/eliminacion/deleteAlumno.php?id=$idAlumno'),
+                            );
+
+                            if (response.statusCode == 200) {
+                              Map<String, dynamic> responseCode =
+                                  json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("$message, $httpCode")));
+                              print('Response data: ${response.body}');
+                            } else if (response.statusCode == 500) {
+                              Map<String, dynamic> responseCode =
+                                  json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("$message, $httpCode")));
+                            } else {
+                              Map<String, dynamic> responseCode =
+                                  json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("$message, $httpCode")));
+                            }
                           },
                         ),
                       ],
@@ -250,34 +284,7 @@ class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
           );
         },
       ),
-      /*bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.shifting,
-        currentIndex: selectIndex,
-        onTap: (value) {
-          
-          setState(() {
-            selectIndex = value;
-          });
-        },
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.two_wheeler),
-            activeIcon: Icon(Icons.motorcycle),
-            label: "Prueba",
-            backgroundColor: Color.fromARGB(255, 17, 5, 130),
-          ),
 
-
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_2_rounded),
-            activeIcon: Icon(Icons.people),
-            label: "Personas",
-            backgroundColor: Color.fromARGB(255, 17, 5, 130),
-          ),
-
-          
-        ]
-      ),*/
     );
   }
 }

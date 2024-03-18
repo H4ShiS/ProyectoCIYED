@@ -1,5 +1,5 @@
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista_a.dart';
-import 'package:app_ciyed/presentation/screens/admin/semestres/primero/semestres_lista_b.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/semestres_lista_a.dart';
+import 'package:app_ciyed/presentation/screens/admin/semestres/listas/semestres_lista_b.dart';
 import 'package:flutter/material.dart';
 
 
