@@ -170,12 +170,11 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
 
                             var response = await http.get(
                               Uri.parse(
-                                  'https://pruebas97979797.000webhostapp.com/apis/eliminacion/deleteAlumno.php?id=$idAlumno'),
+                                  'https://pruebas97979797.000webhostapp.com/apis/admin/eliminacion/deleteAlumno.php?id=$idAlumno'),
                             );
 
                             if (response.statusCode == 200) {
-                              Map<String, dynamic> responseCode =
-                                  json.decode(response.body);
+                              Map<String, dynamic> responseCode = json.decode(response.body);
                               int httpCode = responseCode['httpCode'];
                               String message = responseCode['message'];
 
