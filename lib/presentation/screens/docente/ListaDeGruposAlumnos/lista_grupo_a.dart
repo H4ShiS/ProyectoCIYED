@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_brace_in_string_interps, use_build_context_synchronously, prefer_typing_uninitialized_variables
+// ignore_for_file: unnecessary_brace_in_string_interps, use_build_context_synchronously
 
 import 'dart:convert';
 

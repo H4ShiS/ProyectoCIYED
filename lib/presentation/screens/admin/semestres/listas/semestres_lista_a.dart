@@ -18,7 +18,6 @@ class ListSemestreGrupoA extends StatefulWidget {
 
 class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
 
-  int selectIndex = 0;
   List<GetAlumnosPrimero> data = <GetAlumnosPrimero>[];
   late bool _isDisposed;
 
@@ -43,7 +42,7 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
 
 
   Future<void> startLongPolling() async {
-    while (!_isDisposed) {
+    while (true) {
     await Future.delayed(const Duration(seconds: 1)); // Espera 10 segundos
     if (!_isDisposed) {
         var newData = await getDatos();
@@ -61,12 +60,12 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
     _isDisposed = false;
     startLongPolling();
   }
+  
 
   @override
   void dispose() {
-    super.dispose();
     _isDisposed = true;
-    // super.dispose();
+    super.dispose();
   }
 
   @override
@@ -116,9 +115,7 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Navigator.push(
-                context, 
-                MaterialPageRoute(
+              Navigator.push(context, MaterialPageRoute(
                   builder: (context) => UpdateFomrularioAlumno(
                     id: data[index].id,
                     nombre: data[index].nombre,
@@ -153,8 +150,7 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
                   builder: (BuildContext context) {
                     return AlertDialog(
                       title: const Text("Confirmación"),
-                      content: const Text(
-                          "¿Estás seguro de que quieres eliminar este usuario?"),
+                      content: const Text("¿Estás seguro de que quieres eliminar este usuario?"),
                       actions: [
                         TextButton(
                           child: const Text("Cancelar"),
@@ -165,13 +161,14 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
                         TextButton(
                           child: const Text("Eliminar"),
                           onPressed: () async {
+
                             Navigator.of(context).pop(true);
+
                             String idAlumno = data[index].id;
 
-                            var response = await http.get(
-                              Uri.parse(
-                                  'https://pruebas97979797.000webhostapp.com/apis/admin/eliminacion/deleteAlumno.php?id=$idAlumno'),
-                            );
+                            // print('Response data: ${idAlumno}');
+
+                            var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/eliminacion/deleteAlumno.php?id=$idAlumno'),);
 
                             if (response.statusCode == 200) {
                               Map<String, dynamic> responseCode = json.decode(response.body);
@@ -181,23 +178,19 @@ class _ListSemestreGrupoAState extends State<ListSemestreGrupoA> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                   SnackBar(
                                       content: Text("$message, $httpCode")));
-                              print('Response data: ${response.body}');
+                              // print('Response data: ${response.body}');
                             } else if (response.statusCode == 500) {
-                              Map<String, dynamic> responseCode =
-                                  json.decode(response.body);
+                              Map<String, dynamic> responseCode = json.decode(response.body);
                               int httpCode = responseCode['httpCode'];
                               String message = responseCode['message'];
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("$message, $httpCode")));
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$message, $httpCode")));
                             } else {
-                              Map<String, dynamic> responseCode =
-                                  json.decode(response.body);
+                              Map<String, dynamic> responseCode = json.decode(response.body);
                               int httpCode = responseCode['httpCode'];
                               String message = responseCode['message'];
                               ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                      content: Text("$message, $httpCode")));
+                                  SnackBar(content: Text("$message, $httpCode"))
+                              );
                             }
                           },
                         ),
