@@ -124,7 +124,7 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
       "Séptimo",
       "Octavo",
       "Noveno",
-      "Décimo",
+      "Décimo", //falta agregar lo que son los demas formatos
     ];
 
   late List<Map<String, dynamic>> docentes;
