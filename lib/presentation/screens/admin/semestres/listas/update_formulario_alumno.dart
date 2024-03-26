@@ -156,6 +156,10 @@ class _UpdateFormularioAlumnoTextfieldState extends State<UpdateFormularioAlumno
     "Cuarto",
     "Quinto",
     "Sexto"
+    "Séptimo",
+    "Octavo",
+    "Noveno",
+    "Décimo",
   ];
   TextEditingController updateMatricula = TextEditingController();
   TextEditingController updateNia = TextEditingController();

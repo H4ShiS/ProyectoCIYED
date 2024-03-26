@@ -80,7 +80,12 @@ class _FormularioAlumnoTextfieldState extends State<FormularioAlumnoTextfield> {
     "Tercero",
     "Cuarto",
     "Quinto",
-    "Sexto"
+    "Sexto",
+    "Séptimo",
+    "Octavo",
+    "Noveno",
+    "Décimo",
+
   ];
   TextEditingController matricula = TextEditingController();
   TextEditingController nia = TextEditingController();

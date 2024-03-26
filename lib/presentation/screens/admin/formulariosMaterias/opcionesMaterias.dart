@@ -1,4 +1,4 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, use_build_context_synchronously
 
 import 'dart:convert';
 
@@ -38,7 +38,7 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
   }
 
   Future<void> starPolling() async {
-    while (!_isDisposed) {
+    while (true) {
       await Future.delayed(const Duration(seconds: 2));
       if (!_isDisposed) {
         var newData = await getMaterias();
@@ -150,6 +150,37 @@ class _GetListaMateriasState extends State<GetListaMaterias> {
                           child: const Text("Eliminar"),
                           onPressed: () async {
                             Navigator.of(context).pop(true);
+
+                            Navigator.of(context).pop(true);
+
+                            String idAlumno = data[index].id;
+
+                            print('Response data: ${idAlumno}');
+
+                            var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/eliminacion/deleteMateria.php?id=$idAlumno'),);
+
+                            if (response.statusCode == 200) {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("$message, $httpCode")));
+                              print('Response data: ${response.body}');
+                            } else if (response.statusCode == 500) {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$message, $httpCode")));
+                            } else {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("$message, $httpCode"))
+                              );
+                            }
                           },
                         ),
                       ],

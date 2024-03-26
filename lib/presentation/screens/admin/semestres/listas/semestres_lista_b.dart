@@ -1,4 +1,4 @@
-// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks
+// ignore_for_file: unused_field, camel_case_types, unrelated_type_equality_checks, use_build_context_synchronously
 
 import 'dart:convert';
 import 'package:app_ciyed/presentation/screens/admin/semestres/listas/getListaPrimeroJson.dart';
@@ -43,7 +43,7 @@ class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
 
 
   Future<void> startLongPolling() async {
-    while (!_isDisposed) {
+    while (true) {
     await Future.delayed(const Duration(seconds: 1)); // Espera 10 segundos
     if (!_isDisposed) {
         var newData = await getDatos();
@@ -166,6 +166,36 @@ class _ListSemestreGrupoBState extends State<ListSemestreGrupoB> {
                           child: const Text("Eliminar"),
                           onPressed: () async {
                             Navigator.of(context).pop(true);
+                            Navigator.of(context).pop(true);
+
+                            String idAlumno = data[index].id;
+
+                            // print('Response data: ${idAlumno}');
+
+                            var response = await http.get(Uri.parse('https://pruebas97979797.000webhostapp.com/apis/admin/eliminacion/deleteAlumno.php?id=$idAlumno'),);
+
+                            if (response.statusCode == 200) {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                      content: Text("$message, $httpCode")));
+                              // print('Response data: ${response.body}');
+                            } else if (response.statusCode == 500) {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("$message, $httpCode")));
+                            } else {
+                              Map<String, dynamic> responseCode = json.decode(response.body);
+                              int httpCode = responseCode['httpCode'];
+                              String message = responseCode['message'];
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text("$message, $httpCode"))
+                              );
+                            }
                           },
                         ),
                       ],

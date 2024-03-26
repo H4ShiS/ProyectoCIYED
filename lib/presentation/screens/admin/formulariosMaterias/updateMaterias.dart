@@ -114,7 +114,18 @@ class _UpdateFormularioMateriasTextfieldState extends State<UpdateFormularioMate
   final TextEditingController updateMatriculaMateria = TextEditingController();
   final TextEditingController updateNombreMateria = TextEditingController();
 
-  List<String> listaDeSemestre = [ "Primero",  "Segundo", "Tercer", "Cuarto","Quinto", "Sexto"];
+  List<String> listaDeSemestre = [
+      "Primero",  
+      "Segundo", 
+      "Tercer", 
+      "Cuarto",
+      "Quinto", 
+      "Sexto", 
+      "Séptimo",
+      "Octavo",
+      "Noveno",
+      "Décimo",
+    ];
 
   late List<Map<String, dynamic>> docentes;
   Map<String, dynamic> docenteSelected = {};

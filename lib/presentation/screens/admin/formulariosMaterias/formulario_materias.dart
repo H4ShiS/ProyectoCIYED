@@ -89,7 +89,18 @@ class _FormularioMateriasTextfieldState extends State<FormularioMateriasTextfiel
   final _keyForm = GlobalKey<FormState>();
   TextEditingController matriculaMateria = TextEditingController();
   TextEditingController nombreMateria = TextEditingController();
-  List<String> listaDeSemestre = [ "Primero",  "Segundo", "Tercer", "Cuarto","Quinto", "Sexto"];
+  List<String> listaDeSemestre = [ 
+      "Primero",  
+      "Segundo", 
+      "Tercer", 
+      "Cuarto",
+      "Quinto", 
+      "Sexto", 
+      "Séptimo",
+      "Octavo",
+      "Noveno",
+      "Décimo",
+    ];
 
   late List<Map<String, dynamic>> docentes;
   Map<String, dynamic> docenteSelected = {};
